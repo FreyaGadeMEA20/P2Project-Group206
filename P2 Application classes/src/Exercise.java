@@ -1,44 +1,52 @@
-import java.util.Date;
-
+//import java.util.Date;
 public class Exercise {
 	private String exerciseName;
-	private String description;
-	private Date timeToComplete;
+	private String edescription;
+	private int timeToComplete;
+	private int pauseTime;
 	private int difficulty;
 	private int amountToDo;
 	private boolean completed;
 
-	Exercise(String name, String desc, Date time, int diff, int amount) {
+	Exercise(String name, String desc, int time, int diff, int amount) {
 		this.exerciseName = name;
-		this.description = desc;
+		this.edescription = desc;
 		this.timeToComplete = time;
 		this.difficulty = diff;
 		this.amountToDo = amount;
 
 	}
 
-	public String getExercisenName() {
+	public String getExerciseName() {
 		return this.exerciseName;
 	}
 
-	public void setExercisenName(String name) {
+	public void setExerciseName(String name) {
 		this.exerciseName = name;
 	}
 
-	public String getDescription() {
-		return this.description;
+	public String getEDescription() {
+		return this.edescription;
 	}
 
-	public void setDescription(String desc) {
-		this.exerciseName = desc;
+	public void setEDescription(String desc) {
+		this.edescription = desc;
 	}
 
-	public Date getTimeToComplete() {
+	public int getTimeToComplete() {
 		return this.timeToComplete;
 	}
 
-	public void setTimeToComplete(Date time) {
+	public void setTimeToComplete(int time) {
 		this.timeToComplete = time;
+	}
+
+	public int getPauseTime() {
+		return this.pauseTime;
+	}
+
+	public void setPauseTime(int time) {
+		this.pauseTime = time;
 	}
 
 	public int getDifficulty() {
