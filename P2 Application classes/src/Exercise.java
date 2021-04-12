@@ -56,7 +56,7 @@ public class Exercise {
 	public void setAmountToDo(int amount) {
 		this.amountToDo = amount;
 	}
-	
+
 	public boolean getCompleted() {
 		return this.completed;
 	}
