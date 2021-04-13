@@ -69,6 +69,10 @@ public class Exercise {
 		return this.completed;
 	}
 
+	public void startExercise() {
+		//play animations and start timers and what not...s
+	}
+
 	public void setCompleted(boolean x) {
 		this.completed = x;
 	}

@@ -67,6 +67,7 @@ public class ExerciseProgram {
 	public void startProgram() {
 		this.currentExercise=listOfExercises.get(0);
 		this.currentExerciseCounter =1;
+		this.currentExercise.startExercise();
 	}
 	
 	public void nextExercise() {
