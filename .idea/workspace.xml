@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa48877-88ad-4c60-86bc-d6620c4c0fd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/.idea/.name" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/.gitignore" afterDir="false" />
@@ -28,10 +27,8 @@
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/proguard-rules.pro" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/androidTest/java/com/example/webcamtesting/ExampleInstrumentedTest.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/java/com/example/webcamtesting/MainActivity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
@@ -56,6 +53,9 @@
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/gradlew" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/gradlew.bat" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/P2AndroidTesting/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/java/com/example/webcamtesting/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/java/com/example/webcamtesting/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/P2AndroidTesting/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

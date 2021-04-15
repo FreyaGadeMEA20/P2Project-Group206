@@ -6,46 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="587dp"
+        tools:srcCompat="@drawable/weirdchamp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/imageView"
+        android:background="?android:attr/listDivider" />
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_above="@id/btnCapture">
+        android:layout_below="@id/divider"
+        android:orientation="horizontal">
 
         <TextureView
             android:id="@+id/textureView"
-            android:layout_width="160dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <TextureView
             android:id="@+id/textureView4"
-            android:layout_width="160dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <TextureView
             android:id="@+id/textureView5"
-            android:layout_width="160dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <TextureView
             android:id="@+id/textureView6"
-            android:layout_width="160dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
     </LinearLayout>
-
-
-
-    <Button
-        android:id="@+id/btnCapture"
-
-        android:text="CAPTURE"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-
 </RelativeLayout>
