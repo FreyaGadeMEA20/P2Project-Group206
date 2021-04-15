@@ -1,86 +1,93 @@
 import java.util.ArrayList;
 
 public class User {
+
+	private String name;
+	private int age;
+	private int heightinCM;
+	private int weightinKG;
+	private float bmi;
+	private ArrayList<User> friendlist = new ArrayList<User>();
+	// private int webcam;
+	// private int microphone;
+
+	public User(String name, int age, int height, int weight) {
+		this.name = name;
+		this.age = age;
+		this.heightinCM = height;
+		this.weightinKG = weight;
+		this.bmi = weight/height*height/100;
+		//setBmi();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public int getHeight() {
+		return heightinCM;
+	}
+
+	public int getWeight() {
+		return weightinKG;
+	}
+
+	public float getBmi() {
+		return this.bmi;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public void setHeight(int height) {
+		this.heightinCM = height;
+	}
+
+	public void setWeight(int weight) {
+		this.weightinKG = weight;
+	}
 	
-	public String name;
-	public int age;
-	public int heightinCM;
-	public int weightinKG;
-	public float bmi;
-	public ArrayList<User> friendlist=new ArrayList<User>();
-	public int webcam;
-	public int microphone;
+	public void setBmi() {
+		this.bmi = this.weightinKG/this.heightinCM*this.heightinCM/100;
+	}
 
-public User(String name, int age, int heightinCM, int weightinKG, int bmi) {
-	//setName(name);
-	//setAge(age);
-	//setHeight(heightinCM);
-	//setWeight(weightinKG);
-	//setBmi(bmi);
-}
+	public void addFriend(User user) {
+		if (!friendlist.contains(user)) {
+			friendlist.add(user);
+			user.addFriend(this);
+		}
+		// else throw "Already friends with this person"-error
+	}
 
-public String getName() {
-	return name;
-}
-public int getAge() {
-	return age;
-}
-public int getHeight() {
-	return heightinCM;
-}
-public int getWeight() {
-	return weightinKG;
-}
-public float getBmi() {
-	return bmi;
-}
-public void setName(String name) {
-	this.name=name;
-}
-public void setAge(int age) {
-	this.age=age;
-}
-public void setHeight(int heightinCM) {
-	this.heightinCM=heightinCM;
-}
-public void setWeight(int weightinKG) {
-	this.weightinKG=weightinKG;
-}
-public void setBmi(float bmi) {
-	this.bmi=bmi;
-}
+	public void removeFriend(User user) {
+		friendlist.remove(user);
+	}
 
-public void addFriend(User user) {
-	//friendlist.add(User.name);
-	//friendlist.add(age);
-	//friendlist.add(heightinCM);
-	//friendlist.add(weightinKG);
-	//friendlist.add(bmi);
-	friendlist.add(user);	
+	public ArrayList<User> getFriendlist() {
+		return this.friendlist;
+
+	}
+
+	public String getFriendsNames() { //seems to not work somehow... O.o
+		String namelist= "dumbshit";
+		for (User friend : friendlist) {
+			namelist.concat(friend.getName());
+		}
+		return namelist;
+	}
+
+	public void JoinRoom() {
+	}
+
+	public void LeaveRoom() {
+	}
 }
-public void removeFriend(User user) {
-	//friendlist.remove(name);
-	//friendlist.remove(age);
-	//friendlist.remove(heightinCM);
-	//friendlist.remove(weightinKG);
-	//friendlist.remove(bmi);
-	friendlist.remove(user);
-}
-//@Override
-//public String toString()
-//{
-  //return String.format( "Name: %s\nStudent Age: %s\nStudent", name, age, heightinCM, weightinKG, bmi);
-//}
-
-}
-
-
-
-//public void JoinRoom() {
-
-//}
-
-//public void LeaveRoom() {
-	
-//	}
-//}
