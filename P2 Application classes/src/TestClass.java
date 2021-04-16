@@ -6,11 +6,13 @@ public class TestClass {
 		
 		User user1 = new User("dude42",21,176,83);
 		User user2 = new User("WhackBoiii21",17,181,65);
+		User user3 = new User("miSScommie",23,155,65);
 		user1.addFriend(user2);
+		user1.addFriend(user3);
 		
 		System.out.println(user1.getFriendlist());
 		System.out.println(user2.getFriendlist());
-		System.out.println("User1 friend name: " + user1.getFriendsNames());
+		System.out.println("User1 friend names: " + user1.getFriendsNames());
 		System.out.println(user2.getFriendsNames());
 		
 		System.out.println("user "+user1.getName()+" is "+ user1.getAge()+" years old, weighs "+user1.getWeight()+"kg and is "+user1.getHeight()+"cm tall.");

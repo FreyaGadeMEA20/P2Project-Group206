@@ -16,8 +16,7 @@ public class User {
 		this.age = age;
 		this.heightinCM = height;
 		this.weightinKG = weight;
-		this.bmi = weight / ((height * height) / 100);
-		// setBmi();
+		this.bmi = this.weightinKG / ((this.heightinCM / 100) * (this.heightinCM / 100));
 	}
 
 	public String getName() {
@@ -37,9 +36,7 @@ public class User {
 	}
 
 	public float getBmi() {
-		
-		System.out.println(this.weightinKG + " / " + this.heightinCM/100);
-		this.bmi = this.weightinKG / ((this.heightinCM/100) * (this.heightinCM/100));
+		this.bmi = this.weightinKG / ((this.heightinCM / 100) * (this.heightinCM / 100));
 		return this.bmi;
 	}
 
@@ -79,9 +76,9 @@ public class User {
 	public String getFriendsNames() { // seems to not work somehow... O.o
 		String namelist = "";
 		for (User friend : friendlist) {
-			namelist = "\n" + namelist + friend.getName();
+			namelist = namelist + "\n" + friend.getName();
 		}
-		
+
 		// namelist.concat(friend.getName());}
 
 		/*
@@ -90,6 +87,13 @@ public class User {
 		 */
 		return namelist;
 
+	}
+
+	public void createRoom(User user) { // måske burde denne metode ligge i User, da jeg tænker en User først bliver
+										// RoomAdmin, når en user laver et Room
+		new Room(user);
+		// noget typecasting, således at når en User laver et room, bliver han til en
+		// RoomAdmin
 	}
 
 	public void JoinRoom() {
