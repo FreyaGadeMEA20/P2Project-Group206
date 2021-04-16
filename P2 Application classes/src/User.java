@@ -4,14 +4,14 @@ public class User {
 
 	private String name;
 	private int age;
-	private int heightinCM;
-	private int weightinKG;
+	private float heightinCM;
+	private float weightinKG;
 	private float bmi;
 	private ArrayList<User> friendlist = new ArrayList<User>();
 	// private int webcam;
 	// private int microphone;
 
-	public User(String name, int age, int height, int weight) {
+	public User(String name, int age, float height, float weight) {
 		this.name = name;
 		this.age = age;
 		this.heightinCM = height;
@@ -28,16 +28,18 @@ public class User {
 		return age;
 	}
 
-	public int getHeight() {
+	public float getHeight() {
 		return heightinCM;
 	}
 
-	public int getWeight() {
+	public float getWeight() {
 		return weightinKG;
 	}
 
 	public float getBmi() {
-		this.bmi = this.weightinKG / this.heightinCM * this.heightinCM / 100;
+		
+		System.out.println(this.weightinKG + " / " + this.heightinCM/100);
+		this.bmi = this.weightinKG / ((this.heightinCM/100) * (this.heightinCM/100));
 		return this.bmi;
 	}
 
@@ -49,11 +51,11 @@ public class User {
 		this.age = age;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		this.heightinCM = height;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(float weight) {
 		this.weightinKG = weight;
 	}
 
