@@ -10,7 +10,7 @@ public class TestClass {
 		
 		System.out.println(user1.getFriendlist());
 		System.out.println(user2.getFriendlist());
-		System.out.println(user1.getFriendsNames());
+		System.out.println("User1 friend name: " + user1.getFriendsNames());
 		System.out.println(user2.getFriendsNames());
 		
 		System.out.println("user "+user1.getName()+" is "+ user1.getAge()+" years old, weighs "+user1.getWeight()+"kg and is "+user1.getHeight()+"cm tall.");
@@ -19,6 +19,7 @@ public class TestClass {
 		
 		
 	}
+	
 	public void createtRoom(User user) { //måske burde denne metode ligge i User, da jeg tænker en User først bliver RoomAdmin, når en user laver et Room
 		new Room(user);
 		//noget typecasting, således at når en User laver et room, bliver han til en RoomAdmin

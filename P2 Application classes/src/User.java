@@ -77,13 +77,19 @@ public class User {
 	}
 
 	public String getFriendsNames() { // seems to not work somehow... O.o
-		String namelist = "dumbshit";
-		// for (User friend : friendlist) {
-		// namelist.concat(friend.getName());}
-		for (int i = 0; i < friendlist.size(); i++) {
-			namelist.concat(friendlist.get(i).getName());
+		String namelist = "";
+		for (User friend : friendlist) {
+			namelist = "\n" + namelist + friend.getName();
 		}
+		
+		// namelist.concat(friend.getName());}
+
+		/*
+		 * for (int i = 0; i < friendlist.size(); i++) { ;
+		 * namelist.concat(friendlist.get(i).getName()); namelist.concat(":)");
+		 */
 		return namelist;
+
 	}
 
 	public void JoinRoom() {
