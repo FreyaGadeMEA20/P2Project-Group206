@@ -16,8 +16,8 @@ public class User {
 		this.age = age;
 		this.heightinCM = height;
 		this.weightinKG = weight;
-		this.bmi = weight/height*height/100;
-		//setBmi();
+		this.bmi = weight / ((height * height) / 100);
+		// setBmi();
 	}
 
 	public String getName() {
@@ -37,6 +37,7 @@ public class User {
 	}
 
 	public float getBmi() {
+		this.bmi = this.weightinKG / this.heightinCM * this.heightinCM / 100;
 		return this.bmi;
 	}
 
@@ -54,10 +55,6 @@ public class User {
 
 	public void setWeight(int weight) {
 		this.weightinKG = weight;
-	}
-	
-	public void setBmi() {
-		this.bmi = this.weightinKG/this.heightinCM*this.heightinCM/100;
 	}
 
 	public void addFriend(User user) {
@@ -77,10 +74,12 @@ public class User {
 
 	}
 
-	public String getFriendsNames() { //seems to not work somehow... O.o
-		String namelist= "dumbshit";
-		for (User friend : friendlist) {
-			namelist.concat(friend.getName());
+	public String getFriendsNames() { // seems to not work somehow... O.o
+		String namelist = "dumbshit";
+		// for (User friend : friendlist) {
+		// namelist.concat(friend.getName());}
+		for (int i = 0; i < friendlist.size(); i++) {
+			namelist.concat(friendlist.get(i).getName());
 		}
 		return namelist;
 	}
