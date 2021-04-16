@@ -8,6 +8,7 @@ public class Room {
 
 	Room(User user) {
 		this.roomAdmin = user;
+		new RoomAdmin(user);
 	}
 
 	public void addExercise( Exercise exe) {

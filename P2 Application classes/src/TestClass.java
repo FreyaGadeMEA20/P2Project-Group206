@@ -19,10 +19,13 @@ public class TestClass {
 		System.out.println("his BMI therefore is:"+user1.getBmi());
 		
 		
+
+		user1.createRoom(user1);
+		
 		
 	}
 	
-	public void createtRoom(User user) { //måske burde denne metode ligge i User, da jeg tænker en User først bliver RoomAdmin, når en user laver et Room
+	public void createRoom(User user) { //måske burde denne metode ligge i User, da jeg tænker en User først bliver RoomAdmin, når en user laver et Room
 		new Room(user);
 		//noget typecasting, således at når en User laver et room, bliver han til en RoomAdmin
 	}
