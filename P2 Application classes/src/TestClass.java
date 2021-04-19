@@ -18,6 +18,8 @@ public class TestClass {
 		System.out.println("user "+user1.getName()+" is "+ user1.getAge()+" years old, weighs "+user1.getWeight()+"kg and is "+user1.getHeight()+"cm tall.");
 		System.out.println("his BMI therefore is:"+user1.getBmi());
 		
+		Exercise basicPushups = new Exercise("Armbøjninger", "Læg dig ned med fronten mod gulvet og brug armene til skiftevist at løfte og sænke din krop fra gulvet.", 30000,2,20);
+		System.out.println("the exercise "+basicPushups.getExerciseName()+ " instructs:"+basicPushups.getEDescription()+"it lasts about "+basicPushups.getTimeToComplete()/1000+" seconds and requires "+basicPushups.getAmountToDo()+" repetitions and is rated for a difficulty of "+basicPushups.getDifficulty());
 		
 
 		user1.createRoom(user1);
