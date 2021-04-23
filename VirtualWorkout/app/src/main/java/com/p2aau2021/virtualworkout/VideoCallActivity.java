@@ -70,6 +70,7 @@ public class VideoCallActivity extends AppCompatActivity {
     private User user;
     private static final String TAG = VideoCallActivity.class.getName();
     private boolean isMuted = false;
+    private boolean isCalling = true;
 
     private boolean isLocalCall = true;
     private EditText mSearchFriendEditText;
@@ -453,7 +454,7 @@ public class VideoCallActivity extends AppCompatActivity {
                     joinFriendChildEventListener = new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                            DBUser result = dataSnapshot.getValue(DBUser.class);
+                            //DBUser result = dataSnapshot.getValue(DBUser.class);
                             joinFriend(DBFriend.get(position));
                             mShowFriendLinearLayout.setVisibility(View.GONE);
                             /*}else {
@@ -520,7 +521,7 @@ public class VideoCallActivity extends AppCompatActivity {
     }
 
     public void onLockRoomClick(View view) {
-        if (isLocalCall) {
+        if (!isLocalCall) {
             //when the user is in his own room
             if (localState.equals(Constant.USER_STATE_LOCK)) {
                 //set the room to public
@@ -536,11 +537,11 @@ public class VideoCallActivity extends AppCompatActivity {
         }else {
             //when user is joining other people's room
             //leave that room and come back to user's own room
-            isLocalCall = true;
-            finishCalling();
+            //isLocalCall = true;
+            //finishCalling();
             channelName = userName;
             startCalling();
-            localState = Constant.USER_STATE_OPEN;
+            //localState = Constant.USER_STATE_OPEN;
             //update user's room state
             mRef.child(userName).setValue(new DBUser(userName, user.getAgoraUid(), localState, DBFriend));
         }
@@ -548,22 +549,12 @@ public class VideoCallActivity extends AppCompatActivity {
 
     private void finishCalling() {
         mRtcEngine.leaveChannel();
-        mUidsList.clear();
+        //mUidsList.clear();
     }
 
     private void startCalling() {
-        //set up local video canvas
-        mRtcEngine.enableVideo();
-        mRtcEngine.enableInEarMonitoring(true);
-        mRtcEngine.setInEarMonitoringVolume(80);
-
-        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
-        mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_HIDDEN, 0));
-        surfaceView.setZOrderOnTop(false);
-        surfaceView.setZOrderMediaOverlay(false);
-
-        //join the channel
-        //mRtcEngine.joinChannel(null, channelName, "Extra Optional Data", 0);
+        joinChannel();
+        setupLocalVideo();
     }
 
     private void initializeEngine() {
@@ -600,6 +591,7 @@ public class VideoCallActivity extends AppCompatActivity {
     private void joinChannel() {
         // Join a channel with a token, token can be null.
         mRtcEngine.joinChannel(null, channelName, "Extra Optional Data", 0);
+        showToast("joined channel " + channelName);
     }
 
     private boolean checkSelfPermission(String permission, int requestCode) {
@@ -619,5 +611,14 @@ public class VideoCallActivity extends AppCompatActivity {
         mRtcEngine.muteLocalAudioStream(isMuted);
         int res = isMuted ? R.drawable.btn_mute : R.drawable.btn_unmute;
         mMuteBtn.setImageResource(res);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isCalling) {
+            mRtcEngine.leaveChannel();
+        }
+        RtcEngine.destroy();
     }
 }
