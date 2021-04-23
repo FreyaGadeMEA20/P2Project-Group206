@@ -454,13 +454,11 @@ public class VideoCallActivity extends AppCompatActivity {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                             DBUser result = dataSnapshot.getValue(DBUser.class);
-                            if (result.getState().equals(Constant.USER_STATE_OPEN)) {
-                                showToast("Joined"+DBFriend.get(position));
-                                //joinFriend(DBFriend.get(position));
-                                mShowFriendLinearLayout.setVisibility(View.GONE);
-                            }else {
+                            joinFriend(DBFriend.get(position));
+                            mShowFriendLinearLayout.setVisibility(View.GONE);
+                            /*}else {
                                 showToast(DBFriend.get(position) + "'s room is locked. You can message him to say hi!");
-                            }
+                            }*/
 
                             mRef.orderByChild("name").startAt(DBFriend.get(position)).endAt(DBFriend.get(position) + "\uf8ff").removeEventListener(joinFriendChildEventListener);
                         }
@@ -486,7 +484,6 @@ public class VideoCallActivity extends AppCompatActivity {
                         }
                     };
                     mRef.orderByChild("name").startAt(DBFriend.get(position)).endAt(DBFriend.get(position) + "\uf8ff").addChildEventListener(joinFriendChildEventListener);
-
                 }else if (v.getId() == R.id.btn_chat_friend){
                     //startMessaging(DBFriend.get(position));
                 }
