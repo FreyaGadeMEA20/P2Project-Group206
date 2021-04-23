@@ -455,7 +455,8 @@ public class VideoCallActivity extends AppCompatActivity {
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                             DBUser result = dataSnapshot.getValue(DBUser.class);
                             if (result.getState().equals(Constant.USER_STATE_OPEN)) {
-                                joinFriend(DBFriend.get(position));
+                                showToast("Joined"+DBFriend.get(position));
+                                //joinFriend(DBFriend.get(position));
                                 mShowFriendLinearLayout.setVisibility(View.GONE);
                             }else {
                                 showToast(DBFriend.get(position) + "'s room is locked. You can message him to say hi!");
