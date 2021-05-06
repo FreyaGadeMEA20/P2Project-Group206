@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "611403050870",
+    "firebase_url": "https://virtual-workout-default-rtdb.firebaseio.com",
+    "project_id": "virtual-workout",
+    "storage_bucket": "virtual-workout.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611403050870:android:8d954e50db98b8a4785457",
+        "android_client_info": {
+          "package_name": "com.p2aau.virtualworkoutv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611403050870-lb3fdi5dmk3h5203bk3fchg9uu58d79u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCDjb6SW6U7CTPtopFaxYEl5FA7W6WzYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611403050870-lb3fdi5dmk3h5203bk3fchg9uu58d79u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611403050870:android:eb31bbca85fec191785457",
+        "android_client_info": {
+          "package_name": "com.p2aau2021.virtualworkout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611403050870-lb3fdi5dmk3h5203bk3fchg9uu58d79u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCDjb6SW6U7CTPtopFaxYEl5FA7W6WzYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611403050870-lb3fdi5dmk3h5203bk3fchg9uu58d79u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

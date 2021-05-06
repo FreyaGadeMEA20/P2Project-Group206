@@ -165,14 +165,14 @@ public class VideoCallActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_video_call);
         getExtras();
-        initUI();
+        //initUI();
         generateUser(userName);
         //startVideoCall();
 
         if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
                 checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID) &&
                 checkSelfPermission(REQUESTED_PERMISSIONS[2], PERMISSION_REQ_ID)) {
-            initEngineAndJoinChannel();
+            //initEngineAndJoinChannel();
         }
     }
 
@@ -243,7 +243,7 @@ public class VideoCallActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mRef.child(userName).setValue(new DBUser(userName, user.getAgoraUid(), localState, DBFriend));
+                mRef.child(userName).setValue(new DBUser(userName));
             }
         }, 1500);
 

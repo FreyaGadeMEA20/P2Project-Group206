@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">VirtualWorkoutV2</string>
+    <string name="login_button">Login</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="create_lobby_button">Create Lobby</string>
+    <string name="find_lobby_button">Find lobby</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+</resources>
