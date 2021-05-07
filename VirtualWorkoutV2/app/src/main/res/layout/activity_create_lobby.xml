@@ -6,36 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".CreateLobbyActivity">
 
-
-    <ImageView
-        android:id="@+id/workOut1"
+    <TextView
+        android:id="@+id/create_lobby_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/workOut3"
-        android:layout_centerInParent="true"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/create_lobby_title" />
 
-    <ImageView
-        android:id="@+id/workOut2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_toRightOf="@id/workOut1"
-        app:srcCompat="@drawable/ic_launcher_background" />
-
-    <ImageView
-        android:id="@+id/workOut3"
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/workOuts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_toLeftOf="@id/workOut4"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="visible"
+        app:columnCount="2"
+        app:rowCount="2"
+        app:useDefaultMargins="true">
 
-    <ImageView
-        android:id="@+id/workOut4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/workOut2"
-        android:layout_centerInParent="true"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        <ImageView
+            android:id="@+id/workOut1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <ImageView
+            android:id="@+id/workOut2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <ImageView
+            android:id="@+id/workOut3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_column="0"
+            app:layout_row="1"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <ImageView
+            android:id="@+id/workOut4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_launcher_background" />
+    </androidx.gridlayout.widget.GridLayout>
+
+    <LinearLayout
+        android:id="@+id/cardio_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
+
 </RelativeLayout>

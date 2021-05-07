@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ProfileActivity">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/nav_profile"
-        android:onClick="onProfileClick"
-        android:title="Profile" />
+        android:title="Profile"
+        android:onClick="onProfileClick"/>
 
     <item
         android:id="@+id/nav_friends"
-        android:onClick="onFriendsClick"
-        android:title="Friends" />
+        android:title="Friends"
+        android:onClick="onFriendsClick"/>
 
     <item
         android:id="@+id/nav_workouts"
-        android:onClick="onWorkoutClick"
-        android:title="Workouts" />
+        android:title="Workouts"
+        android:onClick="onWorkoutClick"/>
 </menu>

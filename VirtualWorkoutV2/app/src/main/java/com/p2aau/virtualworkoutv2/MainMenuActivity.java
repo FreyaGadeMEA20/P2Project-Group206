@@ -16,6 +16,8 @@ import com.p2aau.virtualworkoutv2.classes.User;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -49,7 +51,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // -- Side menu -- //
 
-    // - Method for setting up the sidemenu - //
+    // - Method for setting up the side menu - //
     public void SetupDrawer(){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.mainMenuLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -60,30 +62,38 @@ public class MainMenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    // - Method for toggling the sidemenu from a button - //
-    public boolean onOptionsItemSelected(MenuItem item){
+    // - Method for toggling the side menu from a button - //
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    // - Creates the menu with the buttons - //
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation_menu, menu);
+        return true;
+    }
+
     // - Method for going to the profile page - //
-    public void onProfileClick(View view){
+    public void onProfileClick(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
         startActivity(intent);
     }
 
     // - Method for going to the friends page - //
-    public void onFriendsClick(View view){
+    public void onFriendsClick(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, FriendsActivity.class);
         startActivity(intent);
     }
 
     // - Method for going to the workout page - //
-    public void onWorkoutClick(View view){
+    public void onWorkoutClick(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, WorkoutActivity.class);
         startActivity(intent);
     }
