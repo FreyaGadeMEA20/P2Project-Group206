@@ -7,4 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".LobbyActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <Button
+      android:id="@+id/button3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Select Workout"
+      app:layout_constraintBottom_toTopOf="@+id/imageView3"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.501"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+      android:id="@+id/button5"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Ready Up"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.501"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+  <ImageView
+      android:id="@+id/imageView3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:srcCompat="@drawable/ic_launcher_background"
+      tools:layout_editor_absoluteY="257dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

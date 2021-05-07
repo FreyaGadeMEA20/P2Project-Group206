@@ -7,20 +7,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class CreateLobbyActivity extends AppCompatActivity {
 
 
-    androidx.gridlayout.widget.GridLayout workOutStage1;
+    androidx.gridlayout.widget.GridLayout workOutCategories;
     ImageView[] workOutTypes;
+    LinearLayout[] workOutSubcategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_lobby);
 
-        workOutStage1 = (androidx.gridlayout.widget.GridLayout) findViewById(R.id.workOuts);
+        workOutCategories = (androidx.gridlayout.widget.GridLayout) findViewById(R.id.workOuts);
+        workOutCategories.setVisibility(View.VISIBLE);
+
+        workOutSubcategories = new LinearLayout[]{(LinearLayout) findViewById(R.id.cardio_layout),
+                (LinearLayout) findViewById(R.id.strength_layout),
+                (LinearLayout) findViewById(R.id.blitz_layout),
+                (LinearLayout) findViewById(R.id.fat_burn_layout)};
+
+        for(int i = 0; i < workOutSubcategories.length; i++){
+            workOutSubcategories[i].setVisibility(View.GONE);
+        }
 
         workOutTypes = new ImageView[]{(ImageView) findViewById(R.id.workOut1),
                 (ImageView) findViewById(R.id.workOut2),
@@ -36,19 +48,21 @@ public class CreateLobbyActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (v == workOutTypes[0]){
-                workOutStage1.setVisibility(View.GONE);
+                workOutCategory(0);
             } else if (v == workOutTypes[1]){
-                workOutStage1.setVisibility(View.GONE);
+                workOutCategory(1);
             } else if (v == workOutTypes[2]){
-                workOutStage1.setVisibility(View.GONE);
+                workOutCategory(2);
             } else if (v == workOutTypes[3]){
-                workOutStage1.setVisibility(View.GONE);
+                workOutCategory(3);
             }
         }
     };
 
-    public void onChosenWorkoutClick(View view) {
+    public void workOutCategory(int _int) {
+        workOutCategories.setVisibility(View.GONE);
 
+        workOutSubcategories[_int].setVisibility(View.VISIBLE);
     }
 
     // - Method for making it easier to make a toast - //
