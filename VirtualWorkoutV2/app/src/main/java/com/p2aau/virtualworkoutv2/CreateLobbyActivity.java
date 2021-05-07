@@ -7,25 +7,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class CreateLobbyActivity extends AppCompatActivity {
 
-    GridLayout workOutStage1 = (GridLayout) findViewById(R.id.workOuts);
 
-    ImageView[] workOutTypes = {(ImageView) findViewById(R.id.workOut1),
-            (ImageView) findViewById(R.id.workOut2),
-            (ImageView) findViewById(R.id.workOut3),
-            (ImageView) findViewById(R.id.workOut4)};
+    androidx.gridlayout.widget.GridLayout workOutStage1;
+    ImageView[] workOutTypes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_lobby);
 
+        workOutStage1 = (androidx.gridlayout.widget.GridLayout) findViewById(R.id.workOuts);
+
+        workOutTypes = new ImageView[]{(ImageView) findViewById(R.id.workOut1),
+                (ImageView) findViewById(R.id.workOut2),
+                (ImageView) findViewById(R.id.workOut3),
+                (ImageView) findViewById(R.id.workOut4)};
+
         for(int i = 0; i < workOutTypes.length; i++){
             workOutTypes[i].setOnClickListener(handler);
         }
-
     }
 
     View.OnClickListener handler = new View.OnClickListener() {
@@ -45,5 +49,10 @@ public class CreateLobbyActivity extends AppCompatActivity {
 
     public void onChosenWorkoutClick(View view) {
 
+    }
+
+    // - Method for making it easier to make a toast - //
+    public void MakeAToast(String _toast){
+        Toast.makeText(this, _toast, Toast.LENGTH_SHORT).show();
     }
 }
