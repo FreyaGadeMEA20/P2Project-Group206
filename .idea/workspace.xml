@@ -23,8 +23,124 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa48877-88ad-4c60-86bc-d6620c4c0fd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/P2Project-Group206.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkout/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/LobbyWorkoutActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/AGApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/AGEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/BeforeCallEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/ConstantApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/CurrentUserSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/DuringCallEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/EngineConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/MyEngineEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/BaseActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/CallActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/CallOptionsActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/NetworkTestActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/SettingsActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/GridVideoViewContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/GridVideoViewContainerAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/InChannelMessageListAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/MessageListDecoration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/SettingsButtonDecoration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/SmallVideoViewAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/SmallVideoViewDecoration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/VideoEncResolutionAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/VideoUserStatusHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/VideoViewAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/openvcall/ui/layout/VideoViewAdapterUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/propeller/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/propeller/UserStatusData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/propeller/VideoInfoData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/propeller/ui/AGLinearLayout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/propeller/ui/AGRelativeLayout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/propeller/ui/RecyclerItemClickListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/propeller/ui/RtlLinearLayoutManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/propeller/ui/ViewUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/add_friend_to_party.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_android_network.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_android_testing.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_audio_mixing.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_audio_mixing_off.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_back_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_camera.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_camera_off.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_confirm_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_filter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_filter_off.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_hangup.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_keyboard_hide.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_microphone.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_microphone_off.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_options.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_speaker.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_speaker_off.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_btn_switch_camera_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_ic_settings_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_icon_default_avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_icon_muted.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_icon_speaker.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_rounded_bg.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_rounded_bg_blue.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_rounded_bg_for_btn.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/drawable/agora_rounded_bg_for_btn_normal.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_choose_workout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_activity_call.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_activity_call_options.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_activity_network_test.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_activity_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_ard_agora_actionbar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_ard_agora_actionbar_with_back_btn.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_ard_agora_actionbar_with_title.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_in_channel_message.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_simple_spinner_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_simple_spinner_item_light.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_small_video_view_dock.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_user_control_mask.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_video_enc_resolution_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/agora_video_view_container.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/menu/agora_menu_call.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/menu/agora_menu_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/menu/friends_list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/AGORA/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/AGORA/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/AGORA/ids.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/AGORA/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/AGORA/strings_config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/AGORA/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/ids.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/strings_config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkout/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkout/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkout/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkout/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/CreateLobbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/ChooseWorkoutActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/LobbyActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/LobbyActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/MainMenuActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/MainMenuActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/WorkoutActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/WorkoutsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_create_lobby.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_create_lobby.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_lobby.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_lobby.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_workout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_workout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
