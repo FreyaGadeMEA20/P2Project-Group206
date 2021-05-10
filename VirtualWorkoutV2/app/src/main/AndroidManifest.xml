@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualWorkoutV2">
-        <activity android:name=".CreateLobbyActivity"></activity>
         <activity android:name=".LobbyActivity"></activity>
+        <activity android:name=".LobbyWorkoutActivity"></activity>
         <activity android:name=".FindLobbyActivity" />
-        <activity android:name=".WorkoutActivity" />
+        <activity android:name=".WorkoutsActivity" />
         <activity android:name=".FriendsActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainMenuActivity" />
