@@ -1,29 +1,22 @@
 package com.p2aau.virtualworkoutv2;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.p2aau.virtualworkoutv2.classes.User;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -35,7 +28,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // - Attributes for navigation menu - //
     private DrawerLayout mDrawerLayout;
+    private DrawerLayout fDrawerLayout;
     private ActionBarDrawerToggle mToggle;
+    private ActionBarDrawerToggle fToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +49,14 @@ public class MainMenuActivity extends AppCompatActivity {
     // - Method for setting up the side menu - //
     public void SetupDrawer(){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.mainMenuLayout);
+        fDrawerLayout = (DrawerLayout) findViewById(R.id.mainMenuLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        fToggle = new ActionBarDrawerToggle(this, fDrawerLayout, R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
+        fDrawerLayout.addDrawerListener(fToggle);
         mToggle.syncState();
+        fToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -67,8 +66,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
         if (mToggle.onOptionsItemSelected(item)) {
             return true;
+        } else if(fToggle.onOptionsItemSelected(item)) {
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -108,10 +108,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // - Method for finding lobby button - //
     //TODO evaluate if need for extra
-    public void onFindLobbyClick(View view){
-        Intent intent = new Intent(MainMenuActivity.this, FindLobbyActivity.class);
+    public void onFindLobbyClick(View view) {
+        /*Intent intent = new Intent(MainMenuActivity.this, FindLobbyActivity.class);
         startActivity(intent);
-    }
+        */
+        fDrawerLayout.openDrawer(GravityCompat.END);
+}
 
     // -- Backend methods -- //
 

@@ -23,8 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa48877-88ad-4c60-86bc-d6620c4c0fd0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/P2Project-Group206.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/MainMenuActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/java/com/p2aau/virtualworkoutv2/MainMenuActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_find_lobby.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_find_lobby.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_main_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/VirtualWorkoutV2/app/src/main/res/layout/activity_main_menu.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
