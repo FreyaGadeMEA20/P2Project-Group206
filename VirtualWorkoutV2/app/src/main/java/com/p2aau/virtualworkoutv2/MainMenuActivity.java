@@ -11,7 +11,6 @@ import com.p2aau.virtualworkoutv2.classes.User;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -94,7 +93,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // - Method for going to the workout page - //
     public void onWorkoutClick(MenuItem item){
-        Intent intent = new Intent(MainMenuActivity.this, WorkoutActivity.class);
+        Intent intent = new Intent(MainMenuActivity.this, WorkoutsActivity.class);
         startActivity(intent);
     }
 
@@ -102,7 +101,8 @@ public class MainMenuActivity extends AppCompatActivity {
     // - Method for creating lobby button - //
     //TODO evaluate if need for extra
     public void onCreateLobbyClick(View view){
-        Intent intent = new Intent(MainMenuActivity.this, CreateLobbyActivity.class);
+        Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
+        //intent.putExtra("channelRoom","test");
         startActivity(intent);
     }
 

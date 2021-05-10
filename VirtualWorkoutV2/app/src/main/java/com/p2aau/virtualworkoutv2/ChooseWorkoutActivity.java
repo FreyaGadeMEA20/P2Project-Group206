@@ -2,15 +2,13 @@ package com.p2aau.virtualworkoutv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class CreateLobbyActivity extends AppCompatActivity {
+public class ChooseWorkoutActivity extends AppCompatActivity {
 
 
     androidx.gridlayout.widget.GridLayout workOutCategories;
@@ -20,7 +18,7 @@ public class CreateLobbyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_lobby);
+        setContentView(R.layout.activity_choose_workout);
 
         workOutCategories = (androidx.gridlayout.widget.GridLayout) findViewById(R.id.workOuts);
         workOutCategories.setVisibility(View.VISIBLE);
