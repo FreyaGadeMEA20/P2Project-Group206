@@ -18,7 +18,7 @@ public class LobbyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_lobby);
+        setContentView(R.layout.activity_lobby);
 
         //room = new Room();
 
@@ -27,6 +27,11 @@ public class LobbyActivity extends AppCompatActivity {
     }
 
     public void onSelectWorkoutClick(View view){
+        Intent intent = new Intent(LobbyActivity.this, ChooseWorkoutActivity.class);
+        startActivity(intent);
+    }
+
+    public void onAddFriendToLobbyClick(View view){
         Intent intent = new Intent(LobbyActivity.this, ChooseWorkoutActivity.class);
         startActivity(intent);
     }
