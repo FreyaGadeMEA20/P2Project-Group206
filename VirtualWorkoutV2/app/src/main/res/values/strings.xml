@@ -28,6 +28,9 @@
     <string name="fat_burn_button_2">Fat Burn Level 2</string>
     <string name="fat_burn_button_3">Fat Burn Level 3</string>
     <string name="fat_burn_button_4">Fat Burn Level 4</string>
+    <!-- End of button strings-->
+
+    <string name="select_workout_button">Select Workout</string>
 
     <string name="open">Open</string>
     <string name="close">Close</string>

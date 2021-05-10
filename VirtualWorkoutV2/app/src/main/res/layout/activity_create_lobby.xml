@@ -1,190 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateLobbyActivity">
+    android:onClick="onSelectWorkoutClick"
+    tools:context=".LobbyActivity">
 
-    <TextView
-        android:id="@+id/create_lobby_title"
+    <Button
+        android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="50dp"
-        android:text="@string/create_lobby_title" />
-
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/workOuts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
-        android:visibility="visible"
-        app:columnCount="2"
-        app:rowCount="2"
-        app:useDefaultMargins="true">
-
-        <ImageView
-            android:id="@+id/workOut1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_launcher_background" />
-
-        <ImageView
-            android:id="@+id/workOut2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_launcher_background" />
-
-        <ImageView
-            android:id="@+id/workOut3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_column="0"
-            app:layout_row="1"
-            app:srcCompat="@drawable/ic_launcher_background" />
-
-        <ImageView
-            android:id="@+id/workOut4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_launcher_background" />
-    </androidx.gridlayout.widget.GridLayout>
-
-    <LinearLayout
-        android:id="@+id/cardio_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/cardio_button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cardio_button_1" />
-
-        <Button
-            android:id="@+id/cardio_button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cardio_button_2" />
-
-        <Button
-            android:id="@+id/cardio_button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cardio_button_3" />
-
-        <Button
-            android:id="@+id/cardio_button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cardio_button_4" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/strength_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/strength_button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/strength_button_1" />
-
-        <Button
-            android:id="@+id/strength_button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/strength_button_2" />
-
-        <Button
-            android:id="@+id/strength_button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/strength_button_3" />
-
-        <Button
-            android:id="@+id/strength_button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/strength_button_4" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/blitz_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/blitz_button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/blitz_button_1" />
-
-        <Button
-            android:id="@+id/blitz_button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/blitz_button_2" />
-
-        <Button
-            android:id="@+id/blitz_button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/blitz_button_3" />
-
-        <Button
-            android:id="@+id/blitz_button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/blitz_button_4" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fat_burn_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/fat_burn_button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fat_burn_button_1" />
-
-        <Button
-            android:id="@+id/fat_burn_button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fat_burn_button_2" />
-
-        <Button
-            android:id="@+id/fat_burn_button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fat_burn_button_3" />
-
-        <Button
-            android:id="@+id/fat_burn_button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fat_burn_button_4" />
-    </LinearLayout>
-
-</RelativeLayout>
+        android:layout_marginTop="108dp"
+        android:text="@string/select_workout_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
