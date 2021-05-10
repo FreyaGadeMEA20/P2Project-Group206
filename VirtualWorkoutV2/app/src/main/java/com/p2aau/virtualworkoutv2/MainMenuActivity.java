@@ -109,9 +109,6 @@ public class MainMenuActivity extends AppCompatActivity {
     // - Method for finding lobby button - //
     //TODO evaluate if need for extra
     public void onFindLobbyClick(View view) {
-        /*Intent intent = new Intent(MainMenuActivity.this, FindLobbyActivity.class);
-        startActivity(intent);
-        */
         fDrawerLayout.openDrawer(GravityCompat.END);
 }
 
