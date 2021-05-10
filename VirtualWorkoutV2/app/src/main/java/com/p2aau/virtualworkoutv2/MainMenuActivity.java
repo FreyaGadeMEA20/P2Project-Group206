@@ -94,6 +94,7 @@ public class MainMenuActivity extends AppCompatActivity {
     //TODO evaluate if need for extra
     public void onCreateLobbyClick(View view){
         Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
+        //intent.putExtra("channelRoom","test");
         startActivity(intent);
     }
 

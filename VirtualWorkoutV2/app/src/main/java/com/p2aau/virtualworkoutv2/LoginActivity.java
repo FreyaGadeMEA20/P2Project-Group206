@@ -22,8 +22,6 @@ public class LoginActivity extends AppCompatActivity {
         EditText userNameEditText = findViewById(R.id.login_user_name_field);
         String userName = userNameEditText.getText().toString();
 
-        Toast.makeText(this,userName, Toast.LENGTH_SHORT);
-
         /*
          * Checks first if the user remembered to enter a username, and only username.
          * For the first real implementation, password and the like are minor details and will be left out.

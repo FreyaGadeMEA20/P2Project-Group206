@@ -22,8 +22,8 @@ public class LobbyActivity extends AppCompatActivity {
 
         //room = new Room();
 
-        GetExtra();
-        ChooseExercise();
+        //GetExtra();
+        //ChooseExercise();
     }
 
     public void onSelectWorkoutClick(View view){
