@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".ui.CallActivity">
+    tools:context=".openvcall.ui.CallActivity">
 
-    <io.agora.openvcall.ui.layout.GridVideoViewContainer
+    <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
         android:id="@+id/grid_video_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <io.agora.propeller.ui.AGLinearLayout
+        <com.p2aau.virtualworkoutv2.propeller.ui.AGLinearLayout
             android:id="@+id/extra_ops_container"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
@@ -46,9 +46,9 @@
                 android:scaleType="center"
                 android:src="@drawable/agora_btn_audio_mixing_off" />
 
-        </io.agora.propeller.ui.AGLinearLayout>
+        </com.p2aau.virtualworkoutv2.propeller.ui.AGLinearLayout>
 
-        <io.agora.propeller.ui.AGLinearLayout
+        <com.p2aau.virtualworkoutv2.propeller.ui.AGLinearLayout
             android:id="@+id/bottom_container"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -157,9 +157,9 @@
 
             </LinearLayout>
 
-        </io.agora.propeller.ui.AGLinearLayout>
+        </com.p2aau.virtualworkoutv2.propeller.ui.AGLinearLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/msg_list"
             android:layout_width="272dp"
             android:layout_height="144dp"

@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
+        android:name=".openvcall.AGApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,6 +20,7 @@
         android:theme="@style/Theme.VirtualWorkoutV2">
         <activity android:name=".LobbyActivity"></activity>
         <activity android:name=".LobbyWorkoutActivity"></activity>
+        <activity android:name=".ChooseWorkoutActivity"></activity>
         <activity android:name=".FindLobbyActivity" />
         <activity android:name=".WorkoutsActivity" />
         <activity android:name=".FriendsActivity" />
