@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- COLORS FROM XD -->
+    <color name="xdBlueLight">#68A9C5</color>
+    <color name="xdBlueDark">#6881C5</color>
 
     <!-- AGORA -->
     <color name="agora_blue">#006AD8</color>

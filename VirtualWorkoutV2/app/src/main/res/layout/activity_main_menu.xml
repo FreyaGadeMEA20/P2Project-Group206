@@ -57,7 +57,8 @@
             android:layout_width="254dp"
             android:layout_height="47dp"
             android:onClick="onFindLobbyClick"
-            android:text="@string/find_lobby_button" />
+            android:text="@string/find_lobby_button"
+            android:background="@drawable/button1" />
 
     </LinearLayout>
 

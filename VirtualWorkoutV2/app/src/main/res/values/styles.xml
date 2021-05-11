@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/xdBlueDark</item>
+        <item name="colorPrimaryDark">@color/xdBlueDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -51,5 +51,4 @@
         <item name="android:shadowDy">2</item>
         <item name="android:shadowColor">@color/transparent_75_white</item>
     </style>
-
 </resources>
