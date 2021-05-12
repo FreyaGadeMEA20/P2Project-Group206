@@ -9,7 +9,7 @@
     <string name="agora_app_id">fbfcfb09e23d41d787a776d8fc78a7fe</string>
     <!-- Please leave it if not enable App Certificate -->
     <!-- You can generate a temporary token at https://dashboard.agora.io/projects -->
-    <string name="agora_access_token">006fbfcfb09e23d41d787a776d8fc78a7feIAAtgUYg5kihTboeqxnU2Gp9WdbPFvs7CYuawhl+ntOIjQx+f9gAAAAAEAB33sfLMs6bYAEAAQAwzptg</string>
+    <string name="agora_access_token">006fbfcfb09e23d41d787a776d8fc78a7feIAAVPrCjaIcpUZvzhTXGs2+xNZtGi+4jlqs0erLgqo7rTAx+f9gAAAAAEAB33sfL/uCcYAEAAQD94Jxg</string>
 
     <string-array name="encryption_mode_values">
         <item>AES-128-XTS</item>
