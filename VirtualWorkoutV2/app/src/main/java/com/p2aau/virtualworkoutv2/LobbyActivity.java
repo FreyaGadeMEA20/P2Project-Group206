@@ -1,5 +1,6 @@
 package com.p2aau.virtualworkoutv2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -7,15 +8,26 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.p2aau.virtualworkoutv2.classes.ExerciseProgram;
+import com.p2aau.virtualworkoutv2.classes.Room;
+import com.p2aau.virtualworkoutv2.classes.User;
 import com.p2aau.virtualworkoutv2.openvcall.ui.BaseActivity;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewAdapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import io.agora.rtc.Constants;
@@ -39,11 +51,10 @@ import android.widget.Toast;
 import com.p2aau.virtualworkoutv2.openvcall.model.AGEventHandler;
 
 import java.util.Iterator;
-
+import java.util.List;
 
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 import com.p2aau.virtualworkoutv2.openvcall.model.DuringCallEventHandler;
-import com.p2aau.virtualworkoutv2.openvcall.model.User;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewAdapter;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewDecoration;
@@ -60,6 +71,13 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 
 public class LobbyActivity extends BaseActivity implements DuringCallEventHandler {
 
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference mRef;
+
+    List<User> UsersInRoom;
+
+    User user;
+    Room room;
     ExerciseProgram exerciseProgram;
     int exerciseType;
     int exerciseLevel;
@@ -130,6 +148,13 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         joinChannel(channelName, config().mUid);
 
         SetupDrawer();
+
+        String previousIntent = getIntent().getExtras().getString("Uniqid");
+        if(previousIntent.equals("create_lobby")){
+        } else if (previousIntent.equals("find_lobby")){
+        } else if (previousIntent.equals("choose_workout")){
+        } else if (previousIntent.equals("end_screen")){
+        }
 
         optional();
     }
@@ -247,6 +272,8 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
             for(int i = 0; i < mUidsList.size(); i ++){
                 UserStatusData user = mGridVideoViewContainer.getItem(i);
 
+                MakeAToast(user.getReadyState()+"");
+
                 if(user.getReadyState()) {
                     allReady = true;
                 } else {
@@ -262,7 +289,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         }
     }
 
-    public void onAddFriendToLobbyClick(View view){
+    public void onAddUserToLobbyClick(View view){
         mDrawerLayout.openDrawer(GravityCompat.END);
     }
 

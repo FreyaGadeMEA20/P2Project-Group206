@@ -18,6 +18,8 @@ public class User {
     // private int webcam;
     // private int microphone;
 
+    public User(){}
+
     public User(String _userName){
         userName = _userName;
     }
@@ -104,7 +106,7 @@ public class User {
 
     public void createRoom(User user) { // måske burde denne metode ligge i User, da jeg tænker en User først bliver
         // RoomAdmin, når en user laver et Room
-        new Room(user);
+        // new Room(user);
         // noget typecasting, således at når en User laver et room, bliver han til en
         // RoomAdmin
     }

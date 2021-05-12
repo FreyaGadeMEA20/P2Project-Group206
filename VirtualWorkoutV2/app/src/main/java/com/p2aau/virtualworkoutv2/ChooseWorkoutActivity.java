@@ -63,6 +63,8 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         workOutSubcategories[_int].setVisibility(View.VISIBLE);
     }
 
+    // intent.putExtra("Uniqid", "choose_workout");
+
     // - Method for making it easier to make a toast - //
     public void MakeAToast(String _toast){
         Toast.makeText(this, _toast, Toast.LENGTH_SHORT).show();

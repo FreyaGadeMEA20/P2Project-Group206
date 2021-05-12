@@ -96,26 +96,29 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onLobbyClick(MenuItem item){
-        Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
-        intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");
-        startActivity(intent);
-    }
-
     // -- Methods for lobby -- //
     // - Method for creating lobby button - //
-    //TODO evaluate if need for extra
     public void onCreateLobbyClick(View view){
         Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
-        intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");
+        intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");    // Name of the channel for AGORA. For testing it is "test"
+        intent.putExtra("user", userName);                              // Username for getting the user from the DB
+        intent.putExtra("Uniqid", "create_lobby");                // ID to tell the program what to do
         startActivity(intent);
     }
 
     // - Method for finding lobby button - //
-    //TODO evaluate if need for extra
     public void onFindLobbyClick(View view) {
         mDrawerLayout.openDrawer(GravityCompat.END);
 }
+
+    // - Method for going to the lobby - //
+    public void onLobbyClick(MenuItem item){
+        Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
+        intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");    // Name of the channel for AGORA. For testing it is "test"
+        intent.putExtra("user", userName);                              // Username for getting the user from the DB
+        intent.putExtra("Uniqid", "find_lobby");                   // ID to tell the program what to do
+        startActivity(intent);
+    }
 
     // -- Backend methods -- //
 
