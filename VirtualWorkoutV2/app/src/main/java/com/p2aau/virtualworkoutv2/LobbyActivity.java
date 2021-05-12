@@ -239,15 +239,22 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
     public void onReadyUpClick(View view){
         boolean allReady = false;
 
+        mGridVideoViewContainer.getItem(0).setReadyState(true);
+
         if (mUidsList.size() < 2) {
             allReady = true;
         } else {
             for(int i = 0; i < mUidsList.size(); i ++){
+                UserStatusData user = mGridVideoViewContainer.getItem(i);
 
+                if(user.getReadyState()) {
+                    allReady = true;
+                } else {
+                    allReady = false;
+                    break;
+                }
             }
         }
-
-
 
         if (allReady){
             Intent intent = new Intent(LobbyActivity.this, LobbyWorkoutActivity.class);
