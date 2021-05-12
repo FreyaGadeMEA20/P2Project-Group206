@@ -26,9 +26,6 @@ import com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.InChannelMessageListAdapter;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewAdapter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

@@ -19,7 +19,7 @@
         <LinearLayout
             android:id="@+id/friend_activity_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="583dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -48,17 +48,22 @@
         <Button
             android:id="@+id/create_lobby_button"
             android:layout_width="254dp"
-            android:layout_height="47dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button1"
             android:onClick="onCreateLobbyClick"
-            android:text="@string/create_lobby_button" />
+            android:text="@string/create_lobby_button"
+            android:layout_margin="10dp"
+            />
+
 
         <Button
             android:id="@+id/find_lobby_button"
             android:layout_width="254dp"
-            android:layout_height="47dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button1"
             android:onClick="onFindLobbyClick"
             android:text="@string/find_lobby_button"
-            android:background="@drawable/button1" />
+            />
 
     </LinearLayout>
 

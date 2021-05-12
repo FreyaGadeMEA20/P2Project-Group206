@@ -60,6 +60,7 @@
         android:layout_width="234dp"
         android:layout_height="56dp"
         android:text="Ready Up"
+        android:background="@drawable/button1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
