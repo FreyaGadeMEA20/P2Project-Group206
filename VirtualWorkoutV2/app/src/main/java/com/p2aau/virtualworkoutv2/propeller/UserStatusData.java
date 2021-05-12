@@ -31,6 +31,16 @@ public class UserStatusData {
 
     private VideoInfoData mVideoInfo;
 
+    private boolean readyState;
+
+    public void setReadyState(boolean _state){
+        readyState = _state;
+    }
+
+    public boolean getReadyState(){
+        return readyState;
+    }
+
     public void setVideoInfo(VideoInfoData video) {
         mVideoInfo = video;
     }

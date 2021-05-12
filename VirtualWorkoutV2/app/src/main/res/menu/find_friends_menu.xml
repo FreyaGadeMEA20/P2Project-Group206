@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <item android:id="@+id/join_friends1"
-            android:title="Join lobby 1" />
+    <item android:id="@+id/join_friends1"
+        android:title="Join lobby 1"
+        android:onClick="onLobbyClick"/>
 
     <item android:id="@+id/join_friends2"
-        android:title="Join lobby 2" />
+        android:title="Join lobby 2"
+        android:onClick="onLobbyClick"/>
 </menu>

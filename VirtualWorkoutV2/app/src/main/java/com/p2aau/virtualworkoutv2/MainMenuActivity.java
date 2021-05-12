@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.p2aau.virtualworkoutv2.classes.User;
+import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +28,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // - Attributes for navigation menu - //
     private DrawerLayout mDrawerLayout;
-    private DrawerLayout fDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private ActionBarDrawerToggle fToggle;
 
@@ -48,12 +48,11 @@ public class MainMenuActivity extends AppCompatActivity {
     // - Method for setting up the side menu - //
     public void SetupDrawer(){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.mainMenuLayout);
-        fDrawerLayout = (DrawerLayout) findViewById(R.id.mainMenuLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
-        fToggle = new ActionBarDrawerToggle(this, fDrawerLayout, R.string.open, R.string.close);
+        fToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
-        fDrawerLayout.addDrawerListener(fToggle);
+        mDrawerLayout.addDrawerListener(fToggle);
         mToggle.syncState();
         fToggle.syncState();
 
@@ -97,19 +96,25 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onLobbyClick(MenuItem item){
+        Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
+        intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");
+        startActivity(intent);
+    }
+
     // -- Methods for lobby -- //
     // - Method for creating lobby button - //
     //TODO evaluate if need for extra
     public void onCreateLobbyClick(View view){
         Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
-        //intent.putExtra("channelRoom","test");
+        intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");
         startActivity(intent);
     }
 
     // - Method for finding lobby button - //
     //TODO evaluate if need for extra
     public void onFindLobbyClick(View view) {
-        fDrawerLayout.openDrawer(GravityCompat.END);
+        mDrawerLayout.openDrawer(GravityCompat.END);
 }
 
     // -- Backend methods -- //

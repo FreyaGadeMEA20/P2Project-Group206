@@ -167,7 +167,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
         mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape); // first is now full view
 
         initMessageList();
-        notifyMessageChanged(new Message(new User(0, null), "start join " + channelName + " as " + (config().mUid & 0xFFFFFFFFL)));
+        //notifyMessageChanged(new Message(new User(0, null), "start join " + channelName + " as " + (config().mUid & 0xFFFFFFFFL)));
 
         joinChannel(channelName, config().mUid);
 
@@ -530,7 +530,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                notifyMessageChanged(new Message(new User(0, null), "user " + (uid & 0xFFFFFFFFL) + " joined"));
+                //notifyMessageChanged(new Message(new User(0, null), "user " + (uid & 0xFFFFFFFFL) + " joined"));
             }
         });
     }
@@ -585,7 +585,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
                     switchToSmallVideoView(bigBgUid);
                 }
 
-                notifyMessageChanged(new Message(new User(0, null), "video from user " + (uid & 0xFFFFFFFFL) + " decoded"));
+                //notifyMessageChanged(new Message(new User(0, null), "video from user " + (uid & 0xFFFFFFFFL) + " decoded"));
             }
         });
     }
@@ -694,7 +694,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
 
                 if (subType == ConstantApp.AppError.NO_CONNECTION_ERROR) {
                     String msg = getString(R.string.msg_connection_error);
-                    notifyMessageChanged(new Message(new User(0, null), msg));
+                    //notifyMessageChanged(new Message(new User(0, null), msg));
                     showLongToast(msg);
                 }
 
@@ -704,7 +704,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
 
                 peerUid = (Integer) data[0];
                 final byte[] content = (byte[]) data[1];
-                notifyMessageChanged(new Message(new User(peerUid, String.valueOf(peerUid)), new String(content)));
+                //notifyMessageChanged(new Message(new User(peerUid, String.valueOf(peerUid)), new String(content)));
 
                 break;
 
@@ -712,7 +712,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
                 int error = (int) data[0];
                 String description = (String) data[1];
 
-                notifyMessageChanged(new Message(new User(0, null), error + " " + description));
+                //notifyMessageChanged(new Message(new User(0, null), error + " " + description));
 
                 break;
             }
@@ -755,7 +755,7 @@ public class CallActivity extends BaseActivity implements DuringCallEventHandler
                     switchToSmallVideoView(bigBgUid);
                 }
 
-                notifyMessageChanged(new Message(new User(0, null), "user " + (uid & 0xFFFFFFFFL) + " left"));
+                //notifyMessageChanged(new Message(new User(0, null), "user " + (uid & 0xFFFFFFFFL) + " left"));
             }
         });
     }

@@ -186,7 +186,7 @@ public class VideoViewAdapterUtil {
         int volume = user.mVolume;
 
         if (volume > 0) {
-            myHolder.mIndicator.setImageResource(R.drawable.agora_icon_speaker);
+            //myHolder.mIndicator.setImageResource(R.drawable.agora_icon_speaker);
             myHolder.mIndicator.setVisibility(View.VISIBLE);
         } else {
             myHolder.mIndicator.setVisibility(View.INVISIBLE);

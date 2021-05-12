@@ -1,35 +1,21 @@
 package com.p2aau.virtualworkoutv2;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.p2aau.virtualworkoutv2.classes.ExerciseProgram;
-import com.p2aau.virtualworkoutv2.classes.Room;
-import com.p2aau.virtualworkoutv2.openvcall.model.Message;
 import com.p2aau.virtualworkoutv2.openvcall.ui.BaseActivity;
-import com.p2aau.virtualworkoutv2.openvcall.ui.CallActivity;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer;
-import com.p2aau.virtualworkoutv2.openvcall.ui.layout.InChannelMessageListAdapter;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewAdapter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import io.agora.rtc.Constants;
@@ -48,25 +34,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.p2aau.virtualworkoutv2.openvcall.model.AGEventHandler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
-import com.p2aau.virtualworkoutv2.R;
 
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 import com.p2aau.virtualworkoutv2.openvcall.model.DuringCallEventHandler;
-import com.p2aau.virtualworkoutv2.openvcall.model.Message;
 import com.p2aau.virtualworkoutv2.openvcall.model.User;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer;
-import com.p2aau.virtualworkoutv2.openvcall.ui.layout.InChannelMessageListAdapter;
-import com.p2aau.virtualworkoutv2.openvcall.ui.layout.MessageListDecoration;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewAdapter;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewDecoration;
 import com.p2aau.virtualworkoutv2.propeller.Constant;
@@ -82,9 +60,9 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 
 public class LobbyActivity extends BaseActivity implements DuringCallEventHandler {
 
-    Room room;
     ExerciseProgram exerciseProgram;
-    int exerciseInt;
+    int exerciseType;
+    int exerciseLevel;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -100,37 +78,33 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
     private volatile boolean mVideoMuted = false;
     private volatile boolean mAudioMuted = false;
-    private volatile boolean mMixingAudio = false;
 
     private volatile int mAudioRouting = Constants.AUDIO_ROUTE_DEFAULT;
-
-    private volatile boolean mFullScreen = false;
 
     private boolean mIsLandscape = false;
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
-
-    private final Handler mUIHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
 
-        SetupDrawer();
+        //GetExtra();
+        ChooseExercise();
     }
 
     @Override
     protected void initUIandEvent() {
         addEventHandler(this);
-        String channelName = "test";
-        //String channelName = getIntent().getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME); // TODO fix to "test" for testing
+        String channelName = getIntent().getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME); // TODO fix to "test" for testing
 
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
         mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 onBigVideoViewClicked(view, position);
+                MakeAToast(position+"");
             }
 
             @Override
@@ -154,6 +128,8 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape); // first is now full view
 
         joinChannel(channelName, config().mUid);
+
+        SetupDrawer();
 
         optional();
     }
@@ -260,19 +236,47 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         startActivity(intent);
     }
 
+    public void onReadyUpClick(View view){
+        boolean allReady = false;
+
+        if (mUidsList.size() < 2) {
+            allReady = true;
+        } else {
+            for(int i = 0; i < mUidsList.size(); i ++){
+
+            }
+        }
+
+
+
+        if (allReady){
+            Intent intent = new Intent(LobbyActivity.this, LobbyWorkoutActivity.class);
+            startActivity(intent);
+        }
+    }
+
     public void onAddFriendToLobbyClick(View view){
         mDrawerLayout.openDrawer(GravityCompat.END);
     }
 
-
     public void GetExtra(){
-        exerciseInt = getIntent().getExtras().getInt("room");
+        exerciseType = getIntent().getExtras().getInt("exerciseType");
+        exerciseLevel = getIntent().getExtras().getInt("exerciseLevel");
     }
 
     public void ChooseExercise(){
-        //TODO long nested if else statement for choosing exerciseprogram :)
-    }
+        if (exerciseType == 1) {
+            if (exerciseLevel == 1) {
 
+            }
+        } else if (exerciseType == 2) {
+
+        } else if (exerciseType == 3) {
+
+        } else if (exerciseType == 4) {
+
+        }
+    }
 
     private void optional() {
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
@@ -433,25 +437,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
             case AGEventHandler.EVENT_TYPE_ON_USER_VIDEO_STATS:
                 IRtcEngineEventHandler.RemoteVideoStats stats = (IRtcEngineEventHandler.RemoteVideoStats) data[0];
 
-                /*if (Constant.SHOW_VIDEO_INFO) {
-                    if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
-                        mGridVideoViewContainer.addVideoInfo(stats.uid, new VideoInfoData(stats.width, stats.height, stats.delay, stats.rendererOutputFrameRate, stats.receivedBitrate));
-                        int uid = config().mUid;
-                        int profileIndex = getVideoEncResolutionIndex();
-                        String resolution = getResources().getStringArray(R.array.string_array_resolutions)[profileIndex];
-                        String fps = getResources().getStringArray(R.array.string_array_frame_rate)[profileIndex];
-
-                        String[] rwh = resolution.split("x");
-                        int width = Integer.valueOf(rwh[0]);
-                        int height = Integer.valueOf(rwh[1]);
-
-                        mGridVideoViewContainer.addVideoInfo(uid, new VideoInfoData(width > height ? width : height,
-                                width > height ? height : width,
-                                0, Integer.valueOf(fps), Integer.valueOf(0)));
-                    }
-                } else {*/
-                    mGridVideoViewContainer.cleanVideoInfo();
-                //}
+                mGridVideoViewContainer.cleanVideoInfo();
 
                 break;
 
@@ -628,12 +614,9 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
     public void notifyHeadsetPlugged(final int routing) {
         mAudioRouting = routing;
+    }
 
-        /*ImageView iv = (ImageView) findViewById(R.id.switch_speaker_id);
-        if (mAudioRouting == Constants.AUDIO_ROUTE_SPEAKERPHONE) {
-            iv.setImageResource(R.drawable.agora_btn_speaker);
-        } else {
-            iv.setImageResource(R.drawable.agora_btn_speaker_off);
-        }*/
+    public void MakeAToast(String _toast){
+        Toast.makeText(this, _toast, Toast.LENGTH_SHORT).show();
     }
 }
