@@ -2,6 +2,7 @@ package com.p2aau.virtualworkoutv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.MediaController;
@@ -18,8 +19,19 @@ public class LobbyWorkoutActivity extends AppCompatActivity {
         String videoPath = "android.resource://"+getPackageName()+"/"+R.raw.jumpingjack;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
-        MediaController mediaController = new MediaController(this);
-        videoView.setMediaController(mediaController);
-        mediaController.setAnchorView(videoView);
+
+        //MediaController mediaController = new MediaController(this); 
+        //videoView.setMediaController(mediaController);
+        // mediaController.setAnchorView(videoView);
+
+        videoView.start();
+
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+            @Override
+            public void  onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+
     }
 }
