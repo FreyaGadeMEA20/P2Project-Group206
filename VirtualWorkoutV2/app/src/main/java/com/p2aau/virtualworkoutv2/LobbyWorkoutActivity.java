@@ -16,7 +16,7 @@ import java.util.Locale;
 
 public class LobbyWorkoutActivity extends AppCompatActivity {
 
-    private static final long START_TIME_IN_MILLIS = 600000;
+    private static long START_TIME_IN_MILLIS = 10000;
     private TextView mTextViewCountDown;
     private Button mButtonStartPause;
     private Button mButtonReset;
@@ -69,6 +69,7 @@ public class LobbyWorkoutActivity extends AppCompatActivity {
             }
         });
         updateCountDownText();
+        startTimer();
     }
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
