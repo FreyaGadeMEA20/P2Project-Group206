@@ -19,6 +19,6 @@ public class ExerciseConstant {
         c1.addExercise(new Exercise("Knee Push-Ups",20000,1,10));
         c1.addExercise(new Exercise("Lunges",20000,1,10));
 
-
+        EXERCISE_PROGRAMS[0][0]= c1;
     }
 }
