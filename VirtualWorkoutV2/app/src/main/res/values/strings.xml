@@ -23,7 +23,9 @@
     <string name="username">User1</string>
 
     <string name="congrats">Congrats, you have completed the exercise!</string>
-
+    <!-- Workout strings -->
+    <string name="workout_starts">Workout starting in</string>
+    <string name="place_phone">Please place phone in an upright position</string>
     <!-- AGORA -->
 
     <string name="label_settings">Settings</string>
