@@ -9,25 +9,10 @@
     <string name="create_lobby_title">Choose a workout</string>
 
     <!-- Button Strings -->
-    <string name="cardio_button_1">Cardio Level 1</string>
-    <string name="cardio_button_2">Cardio Level 2</string>
-    <string name="cardio_button_3">Cardio Level 3</string>
-    <string name="cardio_button_4">Cardio Level 4</string>
-
-    <string name="strength_button_1">Strength Level 1</string>
-    <string name="strength_button_2">Strength Level 2</string>
-    <string name="strength_button_3">Strength Level 3</string>
-    <string name="strength_button_4">Strength Level 4</string>
-
-    <string name="blitz_button_1">Blitz Level 1</string>
-    <string name="blitz_button_2">Blitz Level 2</string>
-    <string name="blitz_button_3">Blitz Level 3</string>
-    <string name="blitz_button_4">Blitz Level 4</string>
-
-    <string name="fat_burn_button_1">Fat Burn Level 1</string>
-    <string name="fat_burn_button_2">Fat Burn Level 2</string>
-    <string name="fat_burn_button_3">Fat Burn Level 3</string>
-    <string name="fat_burn_button_4">Fat Burn Level 4</string>
+    <string name="button_1">Level 1</string>
+    <string name="button_2">Level 2</string>
+    <string name="button_3">Level 3</string>
+    <string name="button_4">Level 4</string>
     <!-- End of button strings-->
 
     <string name="select_workout_button">Select Workout</string>

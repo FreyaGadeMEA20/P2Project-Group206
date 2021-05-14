@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
 import com.p2aau.virtualworkoutv2.classes.ExerciseProgram;
 import com.p2aau.virtualworkoutv2.classes.Room;
 import com.p2aau.virtualworkoutv2.classes.User;
@@ -71,16 +72,8 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 
 public class LobbyActivity extends BaseActivity implements DuringCallEventHandler {
 
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference mRef;
-
-    List<User> UsersInRoom;
-
     User user;
     Room room;
-    ExerciseProgram exerciseProgram;
-    int exerciseType;
-    int exerciseLevel;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -109,7 +102,6 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         setContentView(R.layout.activity_lobby);
 
         //GetExtra();
-        ChooseExercise();
     }
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
@@ -152,9 +144,14 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
         String previousIntent = getIntent().getExtras().getString("Uniqid");
         if(previousIntent.equals("create_lobby")){
+            // Would create the room in the database
+            // As well as add the user to the room in the database
         } else if (previousIntent.equals("find_lobby")){
+            // Only adds the user to the room in the database
         } else if (previousIntent.equals("choose_workout")){
+            ChooseExerciseLevel(ExerciseConstant.EXERCISE_TYPE, ExerciseConstant.EXERCISE_LEVEL); // Gets the exercise
         } else if (previousIntent.equals("end_screen")){
+            // TODO?
         }
 
         optional();
@@ -263,6 +260,8 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
     }
 
     public void onReadyUpClick(View view){
+        // This snippet of code would be for checking if all the people are ready. However, we were not able to implement it to work well.
+        // This meant it was ignored, as it was not a large part of what we had to test.
         /*boolean allReady = false;
 
         mGridVideoViewContainer.getItem(0).setReadyState(true);
@@ -292,23 +291,8 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         mDrawerLayout.openDrawer(GravityCompat.END);
     }
 
-    public void GetExtra(){
-        exerciseType = getIntent().getExtras().getInt("exerciseType");
-        exerciseLevel = getIntent().getExtras().getInt("exerciseLevel");
-    }
-
-    public void ChooseExercise(){
-        if (exerciseType == 1) {
-            if (exerciseLevel == 1) {
-
-            }
-        } else if (exerciseType == 2) {
-
-        } else if (exerciseType == 3) {
-
-        } else if (exerciseType == 4) {
-
-        }
+    public void ChooseExerciseLevel(int _type, int _level){
+        ExerciseConstant.EXERCISE_PROGRAM = ExerciseConstant.EXERCISE_PROGRAMS[_type-1][_level-1];
     }
 
     private void optional() {

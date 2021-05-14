@@ -104,7 +104,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public boolean checkSelfPermission(String permission, int requestCode) {
-        log.debug("checkSelfPermission " + permission + " " + requestCode);
         if (ContextCompat.checkSelfPermission(this,
                 permission)
                 != PackageManager.PERMISSION_GRANTED) {

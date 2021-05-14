@@ -8,12 +8,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+import com.p2aau.virtualworkoutv2.openvcall.ui.BaseActivity;
+
+public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+    }
+
+    @Override
+    protected void initUIandEvent() {
+
+    }
+
+    @Override
+    protected void deInitUIandEvent() {
 
     }
 
@@ -42,4 +54,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivity(intent);
     }
+
+
 }

@@ -2,18 +2,26 @@ package com.p2aau.virtualworkoutv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
+
 public class ChooseWorkoutActivity extends AppCompatActivity {
+
+
+    private int exerciseLevel;
+    private int exerciseType;
 
 
     androidx.gridlayout.widget.GridLayout workOutCategories;
     ImageView[] workOutTypes;
-    LinearLayout[] workOutSubcategories;
+    LinearLayout workOutSubcategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +31,9 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         workOutCategories = (androidx.gridlayout.widget.GridLayout) findViewById(R.id.workOuts);
         workOutCategories.setVisibility(View.VISIBLE);
 
-        workOutSubcategories = new LinearLayout[]{(LinearLayout) findViewById(R.id.cardio_layout),
-                (LinearLayout) findViewById(R.id.strength_layout),
-                (LinearLayout) findViewById(R.id.blitz_layout),
-                (LinearLayout) findViewById(R.id.fat_burn_layout)};
+        workOutSubcategories = (LinearLayout) findViewById(R.id.level_layout);
 
-        for(int i = 0; i < workOutSubcategories.length; i++){
-            workOutSubcategories[i].setVisibility(View.GONE);
-        }
+        workOutSubcategories.setVisibility(View.GONE);
 
         workOutTypes = new ImageView[]{(ImageView) findViewById(R.id.workOut1),
                 (ImageView) findViewById(R.id.workOut2),
@@ -60,10 +63,27 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
     public void workOutCategory(int _int) {
         workOutCategories.setVisibility(View.GONE);
 
-        workOutSubcategories[_int].setVisibility(View.VISIBLE);
+        exerciseType = _int;
+
+        workOutSubcategories.setVisibility(View.VISIBLE);
     }
 
-    // intent.putExtra("Uniqid", "choose_workout");
+    public void onWorkoutClick(View view){
+        Intent intent = new Intent(ChooseWorkoutActivity.this, LobbyActivity.class);
+        intent.putExtra("Uniqid", "choose_workout");
+        ExerciseConstant.EXERCISE_TYPE  = exerciseType+1;
+
+        Button button = (Button) findViewById(view.getId());
+
+        String level = (String) button.getText();
+
+        level = level.replace("Level ", "");
+
+        exerciseLevel = Integer.parseInt(level);
+
+        ExerciseConstant.EXERCISE_LEVEL = exerciseLevel;
+        startActivity(intent);
+    }
 
     // - Method for making it easier to make a toast - //
     public void MakeAToast(String _toast){
