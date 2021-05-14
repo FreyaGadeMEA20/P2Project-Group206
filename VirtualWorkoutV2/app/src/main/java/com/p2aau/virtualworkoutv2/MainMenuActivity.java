@@ -4,9 +4,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.p2aau.virtualworkoutv2.classes.ActivityAdapter;
+import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
+import com.p2aau.virtualworkoutv2.classes.FriendListAdapter;
 import com.p2aau.virtualworkoutv2.classes.User;
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 
@@ -17,6 +22,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import java.util.Random;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -31,17 +38,58 @@ public class MainMenuActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private ActionBarDrawerToggle fToggle;
 
+    String[] friends = {"Poul Poulsen", "Sarah Sarahsen", "Bjørn Bjørnsen", "Ben Ben", "Mike Æ", "Rasmus Reje"};
+
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        SetupDrawer();
-        GetExtras();
-        GenerateUser(userName);
+        GenerateRecyclerView();
+
+        String previousIntent = getIntent().getExtras().getString("Uniqid");
+        if(previousIntent.equals("login") || previousIntent.equals("signup")) {
+            SetupDrawer();
+            GetExtras();
+            GenerateUser(userName);
+        } else if (previousIntent.equals("profile")){
+
+        }
     }
 
-    // --- Methods --- //
+    // --- Methods --- //'
+
+    // -- Friend activity -- //
+    public void GenerateRecyclerView() {
+        recyclerView = findViewById(R.id.recyclerViewMain);
+
+        int[] images = new int[10];
+        for (int i = 0; i < images.length; i++){
+            int[] tempImages = {R.drawable.star_icon, R.drawable.smiley_icon};
+            Random rand = new Random();
+            images[i] = tempImages[rand.nextInt(2)];
+        }
+
+        String[] workouts = {"Cardio", "Strength", "Blitz", "Fat Burn"};
+
+        String[] text = new String[images.length];
+        for (int i = 0; i < images.length; i++){
+            Random rand = new Random();
+            String temp = friends[rand.nextInt(friends.length+1)];
+            if(images[i] == R.drawable.star_icon){
+                temp = temp + " leveled up to Level " + (rand.nextInt(3)+1);
+            } else if (images[i] == R.drawable.smiley_icon){
+                temp = temp +" finished a " + workouts[rand.nextInt(workouts.length+1)] + " Workout Level";
+            }
+            text[i] = temp;
+        }
+
+        ActivityAdapter activityAdapter = new ActivityAdapter(this, text, images);
+        recyclerView.setAdapter(activityAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 
     // -- Side menu -- //
 
@@ -81,6 +129,7 @@ public class MainMenuActivity extends AppCompatActivity {
     // - Method for going to the profile page - //
     public void onProfileClick(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
+        intent.putExtra("user", userName);
         startActivity(intent);
     }
 
@@ -115,7 +164,7 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onLobbyClick(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
         intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");    // Name of the channel for AGORA. For testing it is "test"
-        intent.putExtra("user", userName);                              // Username for getting the user from the DB
+        intent.putExtra("user", ExerciseConstant.USERNAME);                              // Username for getting the user from the DB
         intent.putExtra("Uniqid", "find_lobby");                   // ID to tell the program what to do
         startActivity(intent);
     }
@@ -124,7 +173,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // - Get the extra information relayed from the previous activity (username) - //
     public void GetExtras(){
-        userName = getIntent().getExtras().getString("userName");
+        userName = ExerciseConstant.USERNAME;
     }
 
     // - Generating the user and adding it to the database - //

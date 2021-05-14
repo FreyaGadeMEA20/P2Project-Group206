@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
 import com.p2aau.virtualworkoutv2.openvcall.ui.BaseActivity;
 
 public class LoginActivity extends BaseActivity {
@@ -44,7 +45,8 @@ public class LoginActivity extends BaseActivity {
         } else {
             // If it is not empty, it will continue with that username to the next page/activity.
             Intent intent = new Intent(this, MainMenuActivity.class);
-            intent.putExtra("userName", userName); //Adds the username as an extra element for the program to continue with.
+            ExerciseConstant.USERNAME = userName; //Adds the username to a constant for the program to work with.
+            intent.putExtra("Uniqid", "login");
             startActivity(intent);
         }
     }
