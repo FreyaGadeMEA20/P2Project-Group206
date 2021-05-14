@@ -4,23 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import android.content.Intent;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.ViewStub;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.p2aau.virtualworkoutv2.openvcall.model.AGEventHandler;
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
@@ -42,10 +36,11 @@ import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
 
-public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
+public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCallEventHandler {
 
     private static long START_TIME_IN_MILLIS = 10000;
     private TextView mTextViewCountDown;
+
     private CountDownTimer mCountDownTimer;
 
     private boolean mTimerRunning;
@@ -72,25 +67,11 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lobby_workout);
-
-        VideoView videoView = findViewById(R.id.exercise_video);
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.jumpingjack;
-        Uri uri = Uri.parse(videoPath);
-        videoView.setVideoURI(uri);
-        videoView.start();
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
-
+        setContentView(R.layout.activity_inbetween_workouts);
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         updateCountDownText();
         startTimer();
     }
-
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
     @Override
@@ -215,36 +196,35 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         ImageView iv = (ImageView) view;
 
         iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
-
     }
 
-        private void startTimer() {
-            mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    mTimeLeftInMillis = millisUntilFinished;
-                    updateCountDownText();
-                }
-
-                @Override
-                public void onFinish() {
-                    mTimerRunning = false;
-                    goToInbetweenWorkouts();
-                }
-
-            }.start();
-        }
-
-        private void updateCountDownText() {
-            int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-            int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-            mTextViewCountDown.setText(timeLeftFormatted);
-        }
-
-    public void goToInbetweenWorkouts() {
-        Intent intent = new Intent(LobbyWorkoutActivity.this, InbetweenWorkoutsActivity.class);
+    public void nextWorkout() {
+        Intent intent = new Intent(InbetweenWorkoutsActivity.this, LobbyWorkoutActivity.class);
         startActivity(intent);
+    }
+
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                nextWorkout();
+            }
+
+        }.start();
+    }
+
+    private void updateCountDownText() {
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        mTextViewCountDown.setText(timeLeftFormatted);
     }
 
     private void optional() {
@@ -585,4 +565,3 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         mAudioRouting = routing;
     }
 }
-

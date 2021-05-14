@@ -3,28 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".InbetweenWorkoutsActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/text_view_countdown"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <VideoView
-            android:id="@+id/exercise_video"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="00:00" />
 
     <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
         android:id="@+id/grid_video_view_container_own"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:layout_constraintHeight_percent="0.25" />
+        app:layout_constraintHeight_percent="0.60" />
 
     <ViewStub
         android:id="@id/small_video_view_dock"
@@ -36,13 +31,11 @@
         android:layout="@layout/agora_small_video_view_dock" />
 
     <TextView
-        android:id="@+id/text_view_countdown"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="00:00"
-        android:textColor="@android:color/black"
-        android:textSize="60sp" />
+        android:layout_marginTop="96dp"
+        android:text="@string/congrats" />
 
 </RelativeLayout>

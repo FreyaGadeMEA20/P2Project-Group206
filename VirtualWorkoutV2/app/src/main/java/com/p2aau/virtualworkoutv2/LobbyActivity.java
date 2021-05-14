@@ -112,6 +112,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         ChooseExercise();
     }
 
+    // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
     @Override
     protected void initUIandEvent() {
         addEventHandler(this);
@@ -262,7 +263,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
     }
 
     public void onReadyUpClick(View view){
-        boolean allReady = false;
+        /*boolean allReady = false;
 
         mGridVideoViewContainer.getItem(0).setReadyState(true);
 
@@ -281,12 +282,10 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
                     break;
                 }
             }
-        }
+        }*/
 
-        if (allReady){
-            Intent intent = new Intent(LobbyActivity.this, StartingWorkoutActivity.class);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(LobbyActivity.this, StartingWorkoutActivity.class);
+        startActivity(intent);
     }
 
     public void onAddUserToLobbyClick(View view){

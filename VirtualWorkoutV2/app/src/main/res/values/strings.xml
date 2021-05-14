@@ -36,7 +36,10 @@
     <string name="close">Close</string>
 
     <string name="username">User1</string>
-   <!-- AGORA -->
+
+    <string name="congrats">Congrats, you have completed the exercise!</string>
+
+    <!-- AGORA -->
 
     <string name="label_settings">Settings</string>
 
