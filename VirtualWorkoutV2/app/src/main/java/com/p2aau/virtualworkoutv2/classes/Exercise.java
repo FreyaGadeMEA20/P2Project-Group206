@@ -2,16 +2,16 @@ package com.p2aau.virtualworkoutv2.classes;
 
 public class Exercise {
     private String exerciseName;
-    private String edescription;
+   // private String edescription;
     private int timeToComplete;
     private int pauseTime;
     private int difficulty;
     private int amountToDo;
     private boolean completed;
 
-    Exercise(String name, String desc, int time, int diff, int amount) {
+    Exercise(String name, /*String desc,*/ int time, int diff, int amount) {
         this.exerciseName = name;
-        this.edescription = desc;
+        //this.edescription = desc;
         this.timeToComplete = time;
         this.difficulty = diff;
         this.amountToDo = amount;
@@ -26,13 +26,13 @@ public class Exercise {
         this.exerciseName = name;
     }
 
-    public String getEDescription() {
+   /* public String getEDescription() {
         return this.edescription;
-    }
+    }*/
 
-    public void setEDescription(String desc) {
+   /* public void setEDescription(String desc) {
         this.edescription = desc;
-    }
+    }*/
 
     public int getTimeToComplete() {
         return this.timeToComplete;

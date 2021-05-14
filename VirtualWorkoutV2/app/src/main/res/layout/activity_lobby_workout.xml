@@ -17,6 +17,24 @@
             android:id="@+id/exercise_video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/text_view_countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="00:00"
+            android:textColor="@android:color/white"
+            android:textSize="60sp" />
+
+        <TextView
+            android:id="@+id/text_view_exercise_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exercise description..."
+            android:layout_gravity="center"
+            android:textColor="@android:color/white" />
+
     </FrameLayout>
 
     <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
@@ -34,15 +52,5 @@
         android:layout_marginTop="60dp"
         android:inflatedId="@id/small_video_view_dock"
         android:layout="@layout/agora_small_video_view_dock" />
-
-    <TextView
-        android:id="@+id/text_view_countdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="00:00"
-        android:textColor="@android:color/black"
-        android:textSize="60sp" />
 
 </RelativeLayout>
