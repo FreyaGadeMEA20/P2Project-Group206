@@ -3,6 +3,7 @@ package com.p2aau.virtualworkoutv2.classes;
 public class ExerciseConstant {
     public static int EXERCISE_TYPE = 0;
     public static int EXERCISE_LEVEL = 0;
+    public static String USERNAME = null;
 
     public static ExerciseProgram EXERCISE_PROGRAM = null;
 

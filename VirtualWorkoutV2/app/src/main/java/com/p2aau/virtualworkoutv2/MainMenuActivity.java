@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
 import com.p2aau.virtualworkoutv2.classes.User;
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 
@@ -36,9 +37,14 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        SetupDrawer();
-        GetExtras();
-        GenerateUser(userName);
+        String previousIntent = getIntent().getExtras().getString("Uniqid");
+        if(previousIntent.equals("login") || previousIntent.equals("signup")) {
+            SetupDrawer();
+            GetExtras();
+            GenerateUser(userName);
+        } else if (previousIntent.equals("profile")){
+
+        }
     }
 
     // --- Methods --- //
@@ -81,6 +87,7 @@ public class MainMenuActivity extends AppCompatActivity {
     // - Method for going to the profile page - //
     public void onProfileClick(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
+        intent.putExtra("user", userName);
         startActivity(intent);
     }
 
@@ -115,7 +122,7 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onLobbyClick(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
         intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");    // Name of the channel for AGORA. For testing it is "test"
-        intent.putExtra("user", userName);                              // Username for getting the user from the DB
+        intent.putExtra("user", ExerciseConstant.USERNAME);                              // Username for getting the user from the DB
         intent.putExtra("Uniqid", "find_lobby");                   // ID to tell the program what to do
         startActivity(intent);
     }
@@ -124,7 +131,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // - Get the extra information relayed from the previous activity (username) - //
     public void GetExtras(){
-        userName = getIntent().getExtras().getString("userName");
+        userName = ExerciseConstant.USERNAME;
     }
 
     // - Generating the user and adding it to the database - //

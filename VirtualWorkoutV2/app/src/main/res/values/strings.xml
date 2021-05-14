@@ -7,6 +7,7 @@
     <string name="create_lobby_button">Create Lobby</string>
     <string name="find_lobby_button">Find lobby</string>
     <string name="create_lobby_title">Choose a workout</string>
+    <string name="badges">Achievements</string>
 
     <!-- Button Strings -->
     <string name="button_1">Level 1</string>
