@@ -1,89 +1,50 @@
 package com.p2aau.virtualworkoutv2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.SurfaceView;
-import android.view.View;
-import android.widget.RelativeLayout;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.p2aau.virtualworkoutv2.classes.ExerciseProgram;
-import com.p2aau.virtualworkoutv2.classes.Room;
-import com.p2aau.virtualworkoutv2.classes.User;
-import com.p2aau.virtualworkoutv2.openvcall.ui.BaseActivity;
-import com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer;
-import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewAdapter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import io.agora.rtc.Constants;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.os.CountDownTimer;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.ViewStub;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.p2aau.virtualworkoutv2.openvcall.model.AGEventHandler;
-
-import java.util.Iterator;
-import java.util.List;
-
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 import com.p2aau.virtualworkoutv2.openvcall.model.DuringCallEventHandler;
+import com.p2aau.virtualworkoutv2.openvcall.ui.BaseActivity;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewAdapter;
 import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewDecoration;
-import com.p2aau.virtualworkoutv2.propeller.Constant;
 import com.p2aau.virtualworkoutv2.propeller.UserStatusData;
-import com.p2aau.virtualworkoutv2.propeller.VideoInfoData;
 import com.p2aau.virtualworkoutv2.propeller.ui.RecyclerItemClickListener;
 import com.p2aau.virtualworkoutv2.propeller.ui.RtlLinearLayoutManager;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
+
 import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
-import io.agora.rtc.video.VideoEncoderConfiguration;
 
-public class LobbyActivity extends BaseActivity implements DuringCallEventHandler {
+public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCallEventHandler {
 
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference mRef;
+    private static long START_TIME_IN_MILLIS = 10000;
+    private TextView mTextViewCountDown;
 
-    List<User> UsersInRoom;
+    private CountDownTimer mCountDownTimer;
 
-    User user;
-    Room room;
-    ExerciseProgram exerciseProgram;
-    int exerciseType;
-    int exerciseLevel;
-
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mToggle;
+    private boolean mTimerRunning;
+    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
@@ -106,10 +67,10 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lobby);
-
-        //GetExtra();
-        ChooseExercise();
+        setContentView(R.layout.activity_inbetween_workouts);
+        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+        updateCountDownText();
+        startTimer();
     }
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
@@ -123,7 +84,6 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
             @Override
             public void onItemClick(View view, int position) {
                 onBigVideoViewClicked(view, position);
-                MakeAToast(position+"");
             }
 
             @Override
@@ -147,15 +107,6 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape); // first is now full view
 
         joinChannel(channelName, config().mUid);
-
-        SetupDrawer();
-
-        String previousIntent = getIntent().getExtras().getString("Uniqid");
-        if(previousIntent.equals("create_lobby")){
-        } else if (previousIntent.equals("find_lobby")){
-        } else if (previousIntent.equals("choose_workout")){
-        } else if (previousIntent.equals("end_screen")){
-        }
 
         optional();
     }
@@ -247,68 +198,33 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
     }
 
-    public void SetupDrawer(){
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.lobbyLayout);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
-
-        mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    public void onSelectWorkoutClick(View view){
-        Intent intent = new Intent(LobbyActivity.this, ChooseWorkoutActivity.class);
+    public void nextWorkout() {
+        Intent intent = new Intent(InbetweenWorkoutsActivity.this, LobbyWorkoutActivity.class);
         startActivity(intent);
     }
 
-    public void onReadyUpClick(View view){
-        /*boolean allReady = false;
-
-        mGridVideoViewContainer.getItem(0).setReadyState(true);
-
-        if (mUidsList.size() < 2) {
-            allReady = true;
-        } else {
-            for(int i = 0; i < mUidsList.size(); i ++){
-                UserStatusData user = mGridVideoViewContainer.getItem(i);
-
-                MakeAToast(user.getReadyState()+"");
-
-                if(user.getReadyState()) {
-                    allReady = true;
-                } else {
-                    allReady = false;
-                    break;
-                }
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
             }
-        }*/
 
-        Intent intent = new Intent(LobbyActivity.this, StartingWorkoutActivity.class);
-        startActivity(intent);
-    }
-
-    public void onAddUserToLobbyClick(View view){
-        mDrawerLayout.openDrawer(GravityCompat.END);
-    }
-
-    public void GetExtra(){
-        exerciseType = getIntent().getExtras().getInt("exerciseType");
-        exerciseLevel = getIntent().getExtras().getInt("exerciseLevel");
-    }
-
-    public void ChooseExercise(){
-        if (exerciseType == 1) {
-            if (exerciseLevel == 1) {
-
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                nextWorkout();
             }
-        } else if (exerciseType == 2) {
 
-        } else if (exerciseType == 3) {
+        }.start();
+    }
 
-        } else if (exerciseType == 4) {
-
-        }
+    private void updateCountDownText() {
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        mTextViewCountDown.setText(timeLeftFormatted);
     }
 
     private void optional() {
@@ -647,9 +563,5 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
     public void notifyHeadsetPlugged(final int routing) {
         mAudioRouting = routing;
-    }
-
-    public void MakeAToast(String _toast){
-        Toast.makeText(this, _toast, Toast.LENGTH_SHORT).show();
     }
 }
