@@ -26,6 +26,8 @@
     <!-- Workout strings -->
     <string name="workout_starts">Workout starting in</string>
     <string name="place_phone">Please place phone in an upright position</string>
+    <string name="next_up">Next up:</string>
+
     <!-- AGORA -->
 
     <string name="label_settings">Settings</string>
