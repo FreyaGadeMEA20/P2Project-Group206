@@ -3,6 +3,7 @@ package com.p2aau.virtualworkoutv2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,8 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
     androidx.gridlayout.widget.GridLayout workOutCategories;
     ImageView[] workOutTypes;
     LinearLayout workOutSubcategories;
+    Button[] workoutLevels;
+    int[] workoutColors = {R.color.cardio, R.color.strength, R.color.blitz, R.color.fat_burn};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +38,15 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
 
         workOutSubcategories.setVisibility(View.GONE);
 
-        workOutTypes = new ImageView[]{(ImageView) findViewById(R.id.workOut1),
-                (ImageView) findViewById(R.id.workOut2),
-                (ImageView) findViewById(R.id.workOut3),
-                (ImageView) findViewById(R.id.workOut4)};
+        workOutTypes = new ImageView[]{(ImageView) findViewById(R.id.cardio),
+                (ImageView) findViewById(R.id.strength),
+                (ImageView) findViewById(R.id.blitz),
+                (ImageView) findViewById(R.id.fat_burn)};
+
+        workoutLevels = new Button[]{(Button) findViewById(R.id.button1),
+                (Button) findViewById(R.id.button2),
+                (Button) findViewById(R.id.button3),
+                (Button) findViewById(R.id.button4)};
 
         for(int i = 0; i < workOutTypes.length; i++){
             workOutTypes[i].setOnClickListener(handler);
@@ -66,6 +74,10 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         exerciseType = _int;
 
         workOutSubcategories.setVisibility(View.VISIBLE);
+
+        for(int i = 0; i < workoutLevels.length; i++){
+            workoutLevels[i].setBackgroundColor(getResources().getColor(workoutColors[_int]));
+       }
     }
 
     public void onWorkoutClick(View view){

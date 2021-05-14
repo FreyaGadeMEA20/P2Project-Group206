@@ -23,36 +23,36 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:columnCount="2"
         app:rowCount="2"
         app:useDefaultMargins="true">
 
         <ImageView
-            android:id="@+id/workOut1"
+            android:id="@+id/cardio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/cardio" />
 
         <ImageView
-            android:id="@+id/workOut2"
+            android:id="@+id/strength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/strength" />
 
         <ImageView
-            android:id="@+id/workOut3"
+            android:id="@+id/blitz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_column="0"
             app:layout_row="1"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/blitz" />
 
         <ImageView
-            android:id="@+id/workOut4"
+            android:id="@+id/fat_burn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/fat_burn" />
     </androidx.gridlayout.widget.GridLayout>
 
     <LinearLayout
@@ -61,35 +61,35 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_1"
-            android:onClick="onWorkoutClick"/>
+            android:onClick="onWorkoutClick"
+            android:text="@string/button_1" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_2"
-            android:onClick="onWorkoutClick"/>
+            android:onClick="onWorkoutClick"
+            android:text="@string/button_2" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_3"
-            android:onClick="onWorkoutClick"/>
+            android:onClick="onWorkoutClick"
+            android:text="@string/button_3" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_4"
-            android:onClick="onWorkoutClick"/>
+            android:onClick="onWorkoutClick"
+            android:text="@string/button_4" />
     </LinearLayout>
 
 
