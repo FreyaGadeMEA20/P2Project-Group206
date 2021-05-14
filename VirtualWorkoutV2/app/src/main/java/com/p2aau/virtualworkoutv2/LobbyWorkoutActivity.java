@@ -2,6 +2,7 @@ package com.p2aau.virtualworkoutv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,8 +19,6 @@ public class LobbyWorkoutActivity extends AppCompatActivity {
 
     private static long START_TIME_IN_MILLIS = 10000;
     private TextView mTextViewCountDown;
-    private Button mButtonStartPause;
-    private Button mButtonReset;
     private CountDownTimer mCountDownTimer;
 
     private boolean mTimerRunning;
@@ -31,46 +30,27 @@ public class LobbyWorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lobby_workout);
 
         VideoView videoView = findViewById(R.id.exercise_video);
-        String videoPath = "android.resource://"+getPackageName()+"/"+R.raw.jumpingjack;
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.jumpingjack;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
-
-
-        //MediaController mediaController = new MediaController(this); 
-        //videoView.setMediaController(mediaController);
-        // mediaController.setAnchorView(videoView);
-
         videoView.start();
-
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void  onPrepared(MediaPlayer mp) {
+            public void onPrepared(MediaPlayer mp) {
                 mp.setLooping(true);
             }
         });
 
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
-        mButtonStartPause = findViewById(R.id.button_start_pause);
-        mButtonReset = findViewById(R.id.button_reset);
-        mButtonStartPause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mTimerRunning) {
-                    pauseTimer();
-                } else {
-                    startTimer();
-                }
-            }
-        });
-        mButtonReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resetTimer();
-            }
-        });
         updateCountDownText();
         startTimer();
     }
+
+    public void startWorkout() {
+        Intent intent = new Intent(LobbyWorkoutActivity.this, InBetweenWorkoutsActivity.class);
+        startActivity(intent);
+    }
+
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
@@ -78,35 +58,21 @@ public class LobbyWorkoutActivity extends AppCompatActivity {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
+
             @Override
             public void onFinish() {
                 mTimerRunning = false;
-                mButtonStartPause.setText("Start");
-                mButtonStartPause.setVisibility(View.INVISIBLE);
-                mButtonReset.setVisibility(View.VISIBLE);
+                startWorkout();
             }
+
         }.start();
-        mTimerRunning = true;
-        mButtonStartPause.setText("pause");
-        mButtonReset.setVisibility(View.INVISIBLE);
     }
-    private void pauseTimer() {
-        mCountDownTimer.cancel();
-        mTimerRunning = false;
-        mButtonStartPause.setText("Start");
-        mButtonReset.setVisibility(View.VISIBLE);
-    }
-    private void resetTimer() {
-        mTimeLeftInMillis = START_TIME_IN_MILLIS;
-        updateCountDownText();
-        mButtonReset.setVisibility(View.INVISIBLE);
-        mButtonStartPause.setVisibility(View.VISIBLE);
-    }
+
     private void updateCountDownText() {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         mTextViewCountDown.setText(timeLeftFormatted);
-
     }
+
 }
