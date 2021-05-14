@@ -32,7 +32,7 @@
         android:layout="@layout/agora_small_video_view_dock" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textview4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -45,27 +45,47 @@
         android:id="@+id/progressbar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView4"
+        android:layout_below="@id/next_up"
         android:layout_centerHorizontal="true"
-        android:paddingTop="15dp"
+        android:paddingTop="40dp"
         app:srcCompat="@drawable/progressbar1" />
 
     <ImageView
         android:id="@+id/progressbar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView4"
+        android:layout_below="@id/next_up"
         android:layout_centerHorizontal="true"
-        android:paddingTop="15dp"
+        android:paddingTop="40dp"
         app:srcCompat="@drawable/progressbar2" />
 
     <ImageView
         android:id="@+id/progressbar3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView4"
+        android:layout_below="@id/next_up"
         android:layout_centerHorizontal="true"
-        android:paddingTop="15dp"
+        android:paddingTop="40dp"
         app:srcCompat="@drawable/progressbar3" />
+
+    <TextView
+        android:id="@+id/next_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
+        android:text="@string/next_up"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/next_exercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/next_up"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="sheesh"
+        android:textSize="20sp" />
 
 </RelativeLayout>
