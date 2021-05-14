@@ -64,6 +64,7 @@ public class ExerciseProgram {
 
     public void editExercise(Exercise exe) {
         //what attribute we wanna edit?
+        // don't think we need this for our app. More relevant in future work.
     }
 
     public void startProgram() {
