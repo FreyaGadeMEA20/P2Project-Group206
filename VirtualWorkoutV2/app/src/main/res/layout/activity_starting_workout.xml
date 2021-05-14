@@ -6,10 +6,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/text_view_countdown"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingBottom="30dp"
+        android:text="TextView"
+        android:textSize="30sp"
+        tools:text="@string/workout_starts" />
+
+    <TextView
         android:id="@+id/text_view_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:00" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="00:00"
+        android:textColor="@color/xdBlueLight"
+        android:textSize="40sp"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_countdown"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="TextView"
+        android:paddingTop="20dp"
+        android:textSize="30sp"
+
+        tools:text="@string/place_phone" />
 
     <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
         android:id="@+id/grid_video_view_container_own"
@@ -26,4 +56,5 @@
         android:layout_marginTop="60dp"
         android:inflatedId="@id/small_video_view_dock"
         android:layout="@layout/agora_small_video_view_dock" />
+
 </RelativeLayout>
