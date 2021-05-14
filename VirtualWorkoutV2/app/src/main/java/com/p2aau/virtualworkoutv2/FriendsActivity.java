@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
-import com.p2aau.virtualworkoutv2.classes.MyAdapter;
+import com.p2aau.virtualworkoutv2.classes.FriendListAdapter;
 
 public class FriendsActivity extends AppCompatActivity {
 
@@ -20,10 +22,18 @@ public class FriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend);
 
+        getSupportActionBar().hide();
+
         recyclerView = findViewById(R.id.recyclerView);
 
-        MyAdapter myAdapter = new MyAdapter(this, friends, images);
-        recyclerView.setAdapter(myAdapter);
+        FriendListAdapter friendListAdapter = new FriendListAdapter(this, friends, images);
+        recyclerView.setAdapter(friendListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    public void onBackButtonClick(View view){
+        Intent intent = new Intent(FriendsActivity.this, MainMenuActivity.class);
+        intent.putExtra("Uniqid", "profile");
+        startActivity(intent);
     }
 }

@@ -9,7 +9,7 @@ public class ExerciseConstant {
 
     public static Exercise[] EXERCISES = null;
 
-    public static final ExerciseProgram[][] EXERCISE_PROGRAMS = null;
+    public static final ExerciseProgram[][] EXERCISE_PROGRAMS = new ExerciseProgram[4][4];
 
     static {
         //TODO add exercise programs here.
