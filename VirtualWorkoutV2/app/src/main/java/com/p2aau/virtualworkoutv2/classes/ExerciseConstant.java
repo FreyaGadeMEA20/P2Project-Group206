@@ -12,5 +12,13 @@ public class ExerciseConstant {
 
     static {
         //TODO add exercise programs here.
+
+        ExerciseProgram c1 = new ExerciseProgram("Cardio Level 1", "A beginner-friendly workout stimulating heart rate");
+        c1.addExercise(new Exercise("Jumping Jacks",/*"Jump to a position with legs spread and hands overhead, then jump back to original posture.",*/20000,1,15));
+        c1.addExercise(new Exercise("Squats",20000,1,15));
+        c1.addExercise(new Exercise("Knee Push-Ups",20000,1,10));
+        c1.addExercise(new Exercise("Lunges",20000,1,10));
+
+
     }
 }
