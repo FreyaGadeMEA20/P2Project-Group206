@@ -123,7 +123,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
         mUidsList.put(0, surfaceV); // get first surface view
 
-        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape); // first is now full view
+        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, false); // first is now full view
 
         joinChannel(channelName, config().mUid);
 
@@ -471,7 +471,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         if (mSmallVideoViewDock != null) {
             mSmallVideoViewDock.setVisibility(View.GONE);
         }
-        mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape);
+        mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape, false);
 
         mLayoutType = LAYOUT_TYPE_DEFAULT;
         boolean setRemoteUserPriorityFlag = false;
@@ -505,7 +505,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         mUidsList.get(bigBgUid).setZOrderOnTop(false);
         mUidsList.get(bigBgUid).setZOrderMediaOverlay(false);
 
-        mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice, mIsLandscape);
+        mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice, mIsLandscape, false);
 
         bindToSmallVideoView(bigBgUid);
 

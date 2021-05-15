@@ -94,7 +94,12 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         exerciseLevel = Integer.parseInt(level);
 
         ExerciseConstant.EXERCISE_LEVEL = exerciseLevel;
-        startActivity(intent);
+
+        if(ExerciseConstant.EXERCISE_PROGRAMS[ExerciseConstant.EXERCISE_TYPE-1][ExerciseConstant.EXERCISE_LEVEL-1] == null){
+            MakeAToast("This workout hasn't been implemented yet!");
+        } else {
+            startActivity(intent);
+        }
     }
 
     // - Method for making it easier to make a toast - //

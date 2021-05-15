@@ -20,10 +20,15 @@ import com.p2aau.virtualworkoutv2.R;
 public class GridVideoViewContainerAdapter extends VideoViewAdapter {
 
     private final static Logger log = LoggerFactory.getLogger(GridVideoViewContainerAdapter.class);
+    private int height = 4;
 
     public GridVideoViewContainerAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids) {
         super(activity, localUid, uids);
         log.debug("GridVideoViewContainerAdapter " + (mLocalUid & 0xFFFFFFFFL));
+    }
+
+    public void setHeight(int _height){
+        height = _height;
     }
 
     @Override
@@ -36,14 +41,26 @@ public class GridVideoViewContainerAdapter extends VideoViewAdapter {
             windowManager.getDefaultDisplay().getMetrics(outMetrics);
 
             int count = uids.size();
-            int DividerX = count;
+            int DividerX = 1;
             int DividerY = 1;
 
-            int width = outMetrics.widthPixels;
-            int height = outMetrics.heightPixels / 4;
+            if (count == 2) {
+                DividerY = 2;
+            } else if (count >= 3) {
+                DividerX = getNearestSqrt(count);
+                DividerY = (int) Math.ceil(count * 1.f / DividerX);
+            }
 
-            mItemWidth = width / DividerX;
-            mItemHeight = height / DividerY;
+            int width = outMetrics.widthPixels;
+            int height = outMetrics.heightPixels / height;
+
+            if (width > height) {
+                mItemWidth = width / DividerY;
+                mItemHeight = height / DividerX;
+            } else {
+                mItemWidth = width / DividerX;
+                mItemHeight = height / DividerY;
+            }
 
         }
     }

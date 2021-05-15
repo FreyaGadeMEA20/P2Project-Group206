@@ -104,7 +104,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
 
         mUidsList.put(0, surfaceV); // get first surface view
 
-        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape); // first is now full view
+        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, true); // first is now full view
 
         joinChannel(channelName, config().mUid);
 
@@ -451,7 +451,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         if (mSmallVideoViewDock != null) {
             mSmallVideoViewDock.setVisibility(View.GONE);
         }
-        mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape);
+        mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape, true);
 
         mLayoutType = LAYOUT_TYPE_DEFAULT;
         boolean setRemoteUserPriorityFlag = false;
@@ -485,7 +485,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         mUidsList.get(bigBgUid).setZOrderOnTop(false);
         mUidsList.get(bigBgUid).setZOrderMediaOverlay(false);
 
-        mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice, mIsLandscape);
+        mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice, mIsLandscape, true);
 
         bindToSmallVideoView(bigBgUid);
 

@@ -50,7 +50,7 @@ public class GridVideoViewContainer extends RecyclerView {
         return false;
     }
 
-    public void initViewContainer(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids, boolean isLandscape) {
+    public void initViewContainer(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids, boolean isLandscape, boolean grid) {
         boolean newCreated = initAdapter(activity, localUid, uids);
 
         if (!newCreated) {
@@ -63,9 +63,9 @@ public class GridVideoViewContainer extends RecyclerView {
         int orientation = isLandscape ? RecyclerView.VERTICAL : RecyclerView.HORIZONTAL;
 
         int count = uids.size();
-        if (count <= 2) { // only local full view or or with one peer
+        if (!grid) { // only local full view or or with one peer
             this.setLayoutManager(new LinearLayoutManager(activity.getApplicationContext(), orientation, false));
-        } else if (count > 2) {
+        } else if (grid) {
             int itemSpanCount = getNearestSqrt(count);
             this.setLayoutManager(new GridLayoutManager(activity.getApplicationContext(), itemSpanCount, orientation, false));
         }

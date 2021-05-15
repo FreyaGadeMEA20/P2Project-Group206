@@ -52,7 +52,6 @@ public class MainMenuActivity extends AppCompatActivity {
         String previousIntent = getIntent().getExtras().getString("Uniqid");
         if(previousIntent.equals("login") || previousIntent.equals("signup")) {
             SetupDrawer();
-            GetExtras();
             GenerateUser(userName);
         } else if (previousIntent.equals("profile")){
 
@@ -77,11 +76,11 @@ public class MainMenuActivity extends AppCompatActivity {
         String[] text = new String[images.length];
         for (int i = 0; i < images.length; i++){
             Random rand = new Random();
-            String temp = friends[rand.nextInt(friends.length+1)];
+            String temp = friends[rand.nextInt(friends.length)];
             if(images[i] == R.drawable.star_icon){
                 temp = temp + " leveled up to Level " + (rand.nextInt(3)+1);
             } else if (images[i] == R.drawable.smiley_icon){
-                temp = temp +" finished a " + workouts[rand.nextInt(workouts.length+1)] + " Workout Level";
+                temp = temp +" finished a " + workouts[rand.nextInt(workouts.length)] + " Workout Level";
             }
             text[i] = temp;
         }
@@ -171,17 +170,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // -- Backend methods -- //
 
-    // - Get the extra information relayed from the previous activity (username) - //
-    public void GetExtras(){
-        userName = ExerciseConstant.USERNAME;
-    }
-
     // - Generating the user and adding it to the database - //
     public void GenerateUser(final String _userName){
         mRef = FirebaseDatabase.getInstance().getReference("Users");
         //listen to the friend list in the database
         mRef.push();
-        mRef.child(userName).setValue(new User(userName));
+        mRef.child(ExerciseConstant.USERNAME).setValue(new User(ExerciseConstant.USERNAME));
     }
 
     // -- Special methods -- //
