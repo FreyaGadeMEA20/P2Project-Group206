@@ -96,6 +96,8 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
+    private double height = 0.35; // Hard coded due to not able to find the right attribute to the view.
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,7 +138,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
         mUidsList.put(0, surfaceV); // get first surface view
 
-        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, false); // first is now full view
+        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, false, height); // first is now full view
 
         joinChannel(channelName, config().mUid);
 
@@ -519,7 +521,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         if (mSmallVideoViewDock != null) {
             mSmallVideoViewDock.setVisibility(View.GONE);
         }
-        mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape, false);
+        mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape, false, height);
 
         mLayoutType = LAYOUT_TYPE_DEFAULT;
         boolean setRemoteUserPriorityFlag = false;
@@ -553,7 +555,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         mUidsList.get(bigBgUid).setZOrderOnTop(false);
         mUidsList.get(bigBgUid).setZOrderMediaOverlay(false);
 
-        mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice, mIsLandscape, false);
+        mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice, mIsLandscape, false, height);
 
         bindToSmallVideoView(bigBgUid);
 
@@ -576,7 +578,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
         if (mSmallVideoViewAdapter == null) {
             create = true;
-            mSmallVideoViewAdapter = new SmallVideoViewAdapter(this, config().mUid, exceptUid, mUidsList);
+            mSmallVideoViewAdapter = new SmallVideoViewAdapter(this, config().mUid, exceptUid, mUidsList, height);
             mSmallVideoViewAdapter.setHasStableIds(true);
         }
         recycler.setHasFixedSize(true);

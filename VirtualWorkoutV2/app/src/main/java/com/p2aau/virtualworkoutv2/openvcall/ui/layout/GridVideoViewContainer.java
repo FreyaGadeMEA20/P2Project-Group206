@@ -41,21 +41,21 @@ public class GridVideoViewContainer extends RecyclerView {
         this.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), listener));
     }
 
-    private boolean initAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids) {
+    private boolean initAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids, double _height) {
         if (mGridVideoViewContainerAdapter == null) {
-            mGridVideoViewContainerAdapter = new GridVideoViewContainerAdapter(activity, localUid, uids);
+            mGridVideoViewContainerAdapter = new GridVideoViewContainerAdapter(activity, localUid, uids, _height);
             mGridVideoViewContainerAdapter.setHasStableIds(true);
             return true;
         }
         return false;
     }
 
-    public void initViewContainer(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids, boolean isLandscape, boolean grid) {
-        boolean newCreated = initAdapter(activity, localUid, uids);
+    public void initViewContainer(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids, boolean isLandscape, boolean grid, double _height) {
+        boolean newCreated = initAdapter(activity, localUid, uids, _height);
 
         if (!newCreated) {
             mGridVideoViewContainerAdapter.setLocalUid(localUid);
-            mGridVideoViewContainerAdapter.customizedInit(uids, true);
+            mGridVideoViewContainerAdapter.customizedInit(uids, true, _height);
         }
 
         this.setAdapter(mGridVideoViewContainerAdapter);

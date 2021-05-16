@@ -33,13 +33,17 @@ public abstract class VideoViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     protected int mLocalUid;
 
-    public VideoViewAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids) {
+    protected double height;
+
+    public VideoViewAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids, double _height) {
         mInflater = ((Activity) activity).getLayoutInflater();
         mContext = ((Activity) activity).getApplicationContext();
 
         mLocalUid = localUid;
 
         mUsers = new ArrayList<>();
+
+        height = _height;
 
         init(uids);
     }
@@ -52,10 +56,10 @@ public abstract class VideoViewAdapter extends RecyclerView.Adapter<RecyclerView
     private void init(HashMap<Integer, SurfaceView> uids) {
         mUsers.clear();
 
-        customizedInit(uids, true);
+        customizedInit(uids, true, height);
     }
 
-    protected abstract void customizedInit(HashMap<Integer, SurfaceView> uids, boolean force);
+    protected abstract void customizedInit(HashMap<Integer, SurfaceView> uids, boolean force, double _height);
 
     public abstract void notifyUiChanged(HashMap<Integer, SurfaceView> uids, int uidExtra, HashMap<Integer, Integer> status, HashMap<Integer, Integer> volume);
 

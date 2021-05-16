@@ -17,14 +17,14 @@ public class SmallVideoViewAdapter extends VideoViewAdapter {
 
     private int mExceptedUid;
 
-    public SmallVideoViewAdapter(Activity activity, int localUid, int exceptedUid, HashMap<Integer, SurfaceView> uids) {
-        super(activity, localUid, uids);
+    public SmallVideoViewAdapter(Activity activity, int localUid, int exceptedUid, HashMap<Integer, SurfaceView> uids, double _height) {
+        super(activity, localUid, uids, _height);
         mExceptedUid = exceptedUid;
         log.debug("SmallVideoViewAdapter " + (mLocalUid & 0xFFFFFFFFL) + " " + (mExceptedUid & 0xFFFFFFFFL));
     }
 
     @Override
-    protected void customizedInit(HashMap<Integer, SurfaceView> uids, boolean force) {
+    protected void customizedInit(HashMap<Integer, SurfaceView> uids, boolean force, double _height) {
         VideoViewAdapterUtil.composeDataItem(mUsers, uids, mLocalUid, null, null, mVideoInfo, mExceptedUid);
 
         if (force || mItemWidth == 0 || mItemHeight == 0) {

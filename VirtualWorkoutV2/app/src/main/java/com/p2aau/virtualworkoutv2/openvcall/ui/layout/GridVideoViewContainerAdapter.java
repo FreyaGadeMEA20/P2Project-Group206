@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.p2aau.virtualworkoutv2.propeller.UserStatusData;
 
@@ -20,19 +21,14 @@ import com.p2aau.virtualworkoutv2.R;
 public class GridVideoViewContainerAdapter extends VideoViewAdapter {
 
     private final static Logger log = LoggerFactory.getLogger(GridVideoViewContainerAdapter.class);
-    private int height = 4;
 
-    public GridVideoViewContainerAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids) {
-        super(activity, localUid, uids);
+    public GridVideoViewContainerAdapter(Activity activity, int localUid, HashMap<Integer, SurfaceView> uids, double _height) {
+        super(activity, localUid, uids, _height);
         log.debug("GridVideoViewContainerAdapter " + (mLocalUid & 0xFFFFFFFFL));
     }
 
-    public void setHeight(int _height){
-        height = _height;
-    }
-
     @Override
-    protected void customizedInit(HashMap<Integer, SurfaceView> uids, boolean force) {
+    protected void customizedInit(HashMap<Integer, SurfaceView> uids, boolean force, double _height) {
         VideoViewAdapterUtil.composeDataItem1(mUsers, uids, mLocalUid); // local uid
 
         if (force || mItemWidth == 0 || mItemHeight == 0) {
@@ -52,14 +48,14 @@ public class GridVideoViewContainerAdapter extends VideoViewAdapter {
             }
 
             int width = outMetrics.widthPixels;
-            int height = outMetrics.heightPixels / height;
+            int screenHeight = (int) (outMetrics.heightPixels * _height);
 
             if (width > height) {
                 mItemWidth = width / DividerY;
-                mItemHeight = height / DividerX;
+                mItemHeight = screenHeight / DividerX;
             } else {
                 mItemWidth = width / DividerX;
-                mItemHeight = height / DividerY;
+                mItemHeight = screenHeight / DividerY;
             }
 
         }
