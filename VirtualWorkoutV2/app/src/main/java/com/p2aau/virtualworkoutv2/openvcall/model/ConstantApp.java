@@ -40,7 +40,7 @@ public class ConstantApp {
         public static final String PREF_PROPERTY_UID = "pOCXx_uid";
     }
 
-    public static final String ACTION_KEY_CHANNEL_NAME = "ecHANEL";
+    public static String ACTION_KEY_CHANNEL_NAME = "ecHANEL";
     public static final String ACTION_KEY_ENCRYPTION_KEY = "xdL_encr_key_";
     public static final String ACTION_KEY_ENCRYPTION_MODE = "tOK_edsx_Mode";
 

@@ -315,7 +315,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         rtcEngine().joinChannel(accessToken, channel, "OpenVCall", uid);
         config().mChannel = channel;
         enablePreProcessor();
-        log.debug("joinChannel " + channel + " " + uid);
+        System.out.println("joinChannel " + channel + " " + uid);
+
     }
 
     /**
@@ -336,7 +337,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param channel Channel Name
      */
     public final void leaveChannel(String channel) {
-        log.debug("leaveChannel " + channel);
+        System.out.println("leaveChannel " + channel);
         config().mChannel = null;
         disablePreProcessor();
         rtcEngine().leaveChannel();
