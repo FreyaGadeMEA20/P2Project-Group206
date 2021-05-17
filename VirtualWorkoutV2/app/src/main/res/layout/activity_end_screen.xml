@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".EndScreenActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textview4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="@string/end"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/progressbar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview4"
+            android:layout_centerHorizontal="true"
+            android:scaleX=".5"
+            android:scaleY=".5"
+            app:srcCompat="@drawable/check_mark" />
+
+        <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
+            android:id="@+id/grid_video_view_container_own"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:layout_constraintHeight_percent="0.25" />
+
+        <ViewStub
+            android:id="@id/small_video_view_dock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="60dp"
+            android:inflatedId="@id/small_video_view_dock"
+            android:layout="@layout/agora_small_video_view_dock" />
+
+</RelativeLayout>
