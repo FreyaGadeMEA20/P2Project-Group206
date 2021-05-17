@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VirtualWorkoutV2</string>
+    <string name="app_name">Virtual Workout</string>
     <string name="login_button">Login</string>
     <string name="signup_button">Sign Up</string>
     <string name="username_hint">Username</string>

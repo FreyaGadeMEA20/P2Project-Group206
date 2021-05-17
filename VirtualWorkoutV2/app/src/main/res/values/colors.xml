@@ -12,6 +12,9 @@
     <color name="xdBlueLight">#68A9C5</color>
     <color name="xdBlueDark">#6881C5</color>
 
+    <!-- text colors -->
+    <color name="text_color_primary">#FFFFFFFF</color>
+
     <!-- Workout colors -->
     <color name="cardio">#68A9C5</color>
     <color name="strength">#f46f6f</color>
