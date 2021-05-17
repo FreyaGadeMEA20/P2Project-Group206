@@ -14,7 +14,7 @@ public class FriendsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    String[] friends = {"Poul Poulsen", "Sarah Sarahsen", "Bjørn Bjørnsen", "Ben Ben", "Mike Æ", "Rasmus Reje"};
+    String[] friends = {"Poul Poulsen", "Sarah Sarahsen", "Amon Goose", "Frille Frøsnapper", "Mike Æblemand", "Brede Gade"};
     int[] images = {R.drawable.friend_1, R.drawable.friend_2, R.drawable.friend_3, R.drawable.friend_4, R.drawable.friend_5, R.drawable.friend_6};
 
     @Override

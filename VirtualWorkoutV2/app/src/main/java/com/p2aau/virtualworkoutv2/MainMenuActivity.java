@@ -38,7 +38,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private ActionBarDrawerToggle fToggle;
 
-    String[] friends = {"Poul Poulsen", "Sarah Sarahsen", "Bjørn Bjørnsen", "Ben Ben", "Mike Æ", "Rasmus Reje"};
+    String[] friends = {"Poul Poulsen", "Sarah Sarahsen", "Amon Goose", "Frille Frøsnapper", "Mike Æblemand", "Brede Gade"};
 
     RecyclerView recyclerView;
 

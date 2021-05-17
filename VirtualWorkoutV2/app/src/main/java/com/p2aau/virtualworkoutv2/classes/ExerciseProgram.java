@@ -19,6 +19,10 @@ public class ExerciseProgram {
         this.listOfExercises = new ArrayList<Exercise>();
     }
 
+    public ArrayList<Exercise> getListOfExercises(){
+        return listOfExercises;
+    }
+
     public String getExerciseProgramName() {
         return this.programName;
     }

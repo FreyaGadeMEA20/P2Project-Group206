@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
 import com.p2aau.virtualworkoutv2.openvcall.model.AGEventHandler;
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 import com.p2aau.virtualworkoutv2.openvcall.model.DuringCallEventHandler;
@@ -220,34 +221,49 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
     }
 
-        private void startTimer() {
-            mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    mTimeLeftInMillis = millisUntilFinished;
-                    updateCountDownText();
-                }
+    private void startTimer() {
+        mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
 
-                @Override
-                public void onFinish() {
-                    mTimerRunning = false;
-                    goToInbetweenWorkouts();
-                }
+            @Override
+            public void onFinish() {
+                mTimerRunning = false;
+                updatePage();
+            }
 
-            }.start();
-        }
+        }.start();
+    }
 
-        private void updateCountDownText() {
-            int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
-            int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
-            String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-            mTextViewCountDown.setText(timeLeftFormatted);
-        }
+    private void updateCountDownText() {
+        int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
+        int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
+        String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        mTextViewCountDown.setText(timeLeftFormatted);
+    }
 
-    public void goToInbetweenWorkouts() {
+    public void updatePage() {
         deInitUIandEvent();
-        Intent intent = new Intent(LobbyWorkoutActivity.this, InbetweenWorkoutsActivity.class);
-        startActivity(intent);
+        if (checkWorkoutStatus()) {
+            Intent intent = new Intent(LobbyWorkoutActivity.this, InbetweenWorkoutsActivity.class);
+            ExerciseConstant.CURRENT_EXERCISE++;
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(LobbyWorkoutActivity.this, EndScreenActivity.class);
+        }
+    }
+
+    public boolean checkWorkoutStatus(){
+        boolean bool;
+        if (ExerciseConstant.CURRENT_EXERCISE < ExerciseConstant.MAX_EXERCISE){
+            bool = true;
+        } else {
+            bool = false;
+        }
+        return bool;
     }
 
     private void optional() {

@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualWorkoutV2">
-        <activity android:name=".SkillTreeActivity"></activity>
+        <activity android:name=".EndScreenActivity"></activity>
+        <activity android:name=".SkillTreeActivity" />
         <activity android:name=".InbetweenWorkoutsActivity" />
         <activity android:name=".LobbyActivity" />
         <activity android:name=".LobbyWorkoutActivity" />

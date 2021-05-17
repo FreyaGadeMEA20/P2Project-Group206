@@ -14,10 +14,8 @@ import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
 
 public class ChooseWorkoutActivity extends AppCompatActivity {
 
-
     private int exerciseLevel;
     private int exerciseType;
-
 
     androidx.gridlayout.widget.GridLayout workOutCategories;
     ImageView[] workOutTypes;

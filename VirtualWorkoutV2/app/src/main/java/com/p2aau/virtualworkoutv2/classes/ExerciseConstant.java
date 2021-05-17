@@ -5,9 +5,12 @@ public class ExerciseConstant {
     public static int EXERCISE_LEVEL = 0;
     public static String USERNAME = null;
 
+    public static int CURRENT_EXERCISE = 0;
+    public static int MAX_EXERCISE = 0;
+
     public static ExerciseProgram EXERCISE_PROGRAM = null;
 
-    public static Exercise[] EXERCISES = null;
+    public static Exercise EXERCISE = null;
 
     public static final ExerciseProgram[][] EXERCISE_PROGRAMS = new ExerciseProgram[4][4];
 
