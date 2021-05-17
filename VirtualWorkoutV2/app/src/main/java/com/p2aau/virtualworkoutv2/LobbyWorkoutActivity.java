@@ -245,6 +245,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         }
 
     public void goToInbetweenWorkouts() {
+        deInitUIandEvent();
         Intent intent = new Intent(LobbyWorkoutActivity.this, InbetweenWorkoutsActivity.class);
         startActivity(intent);
     }

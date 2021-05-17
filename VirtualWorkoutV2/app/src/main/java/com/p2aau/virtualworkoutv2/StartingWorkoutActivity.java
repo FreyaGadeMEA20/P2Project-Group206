@@ -202,6 +202,7 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
     }
 
     public void startWorkout() {
+        deInitUIandEvent();
         Intent intent = new Intent(StartingWorkoutActivity.this, LobbyWorkoutActivity.class);
         startActivity(intent);
     }

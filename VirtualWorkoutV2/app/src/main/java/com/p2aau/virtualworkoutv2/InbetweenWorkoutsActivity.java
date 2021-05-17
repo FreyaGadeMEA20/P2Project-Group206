@@ -201,6 +201,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
     }
 
     public void nextWorkout() {
+        deInitUIandEvent();
         Intent intent = new Intent(InbetweenWorkoutsActivity.this, LobbyWorkoutActivity.class);
         startActivity(intent);
     }

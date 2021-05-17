@@ -285,6 +285,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
             }
         }*/
 
+        deInitUIandEvent();
         Intent intent = new Intent(LobbyActivity.this, StartingWorkoutActivity.class);
         startActivity(intent);
     }
