@@ -14,9 +14,9 @@
 
     <!-- Workout colors -->
     <color name="cardio">#68A9C5</color>
-    <color name="strength">#DEBFBF</color>
-    <color name="blitz">#DEDEBF</color>
-    <color name="fat_burn">#DED3BF</color>
+    <color name="strength">#f46f6f</color>
+    <color name="yoga">#6fde6f</color>
+    <color name="fat_burn">#ffd36f</color>
 
     <!-- AGORA -->
     <color name="agora_blue">#006AD8</color>

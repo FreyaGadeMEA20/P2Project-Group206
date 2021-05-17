@@ -3,7 +3,6 @@ package com.p2aau.virtualworkoutv2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +23,7 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
     ImageView[] workOutTypes;
     LinearLayout workOutSubcategories;
     Button[] workoutLevels;
-    int[] workoutColors = {R.color.cardio, R.color.strength, R.color.blitz, R.color.fat_burn};
+    int[] workoutColors = {R.color.cardio, R.color.strength, R.color.yoga, R.color.fat_burn};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,7 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
 
         workOutTypes = new ImageView[]{(ImageView) findViewById(R.id.cardio),
                 (ImageView) findViewById(R.id.strength),
-                (ImageView) findViewById(R.id.blitz),
+                (ImageView) findViewById(R.id.yoga),
                 (ImageView) findViewById(R.id.fat_burn)};
 
         workoutLevels = new Button[]{(Button) findViewById(R.id.button1),
