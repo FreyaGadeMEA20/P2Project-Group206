@@ -76,9 +76,11 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_workout);
+        
+        ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
 
         VideoView videoView = findViewById(R.id.exercise_video);
-        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.jumpingjack;
+        String videoPath = "android.resource://" + getPackageName() + "/" + ExerciseConstant.EXERCISE.getVideo();
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
         videoView.start();
@@ -253,6 +255,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
             startActivity(intent);
         } else {
             Intent intent = new Intent(LobbyWorkoutActivity.this, EndScreenActivity.class);
+            startActivity(intent);
         }
     }
 

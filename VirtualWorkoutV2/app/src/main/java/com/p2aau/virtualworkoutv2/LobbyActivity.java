@@ -285,11 +285,27 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
             }
         }*/
 
-        deInitUIandEvent();
-        Intent intent = new Intent(LobbyActivity.this, StartingWorkoutActivity.class);
-        ExerciseConstant.MAX_EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().size(); // Getting the size
-        ExerciseConstant.CURRENT_EXERCISE = 1;
-        startActivity(intent);
+        if(checkWorkoutStatus()) {
+            deInitUIandEvent();
+            Intent intent = new Intent(LobbyActivity.this, StartingWorkoutActivity.class);
+            ExerciseConstant.MAX_EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().size(); // Getting the size
+            ExerciseConstant.CURRENT_EXERCISE = 1;
+            startActivity(intent);
+        } else {
+            MakeAToast("Please choose a workout.");
+        }
+    }
+
+    public boolean checkWorkoutStatus(){
+        boolean bool;
+
+        if(ExerciseConstant.EXERCISE_PROGRAM == null){
+            bool = false;
+        } else {
+            bool = true;
+        }
+
+        return bool;
     }
 
     public void onAddFriendToLobbyClick(View view){

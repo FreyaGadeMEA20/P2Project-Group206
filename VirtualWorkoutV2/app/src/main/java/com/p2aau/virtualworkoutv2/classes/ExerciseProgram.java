@@ -23,6 +23,10 @@ public class ExerciseProgram {
         return listOfExercises;
     }
 
+    public Exercise getCurrentExercise(int _exercise){
+        return listOfExercises.get(_exercise);
+    }
+
     public String getExerciseProgramName() {
         return this.programName;
     }

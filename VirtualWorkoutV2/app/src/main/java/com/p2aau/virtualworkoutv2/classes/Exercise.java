@@ -9,12 +9,15 @@ public class Exercise {
     private int amountToDo;
     private boolean completed;
 
-    Exercise(String name, /*String desc,*/ int time, int diff, int amount) {
+    private int video;
+
+    Exercise(String name, /*String desc,*/ int time, int diff, int amount, int _video) {
         this.exerciseName = name;
         //this.edescription = desc;
         this.timeToComplete = time;
         this.difficulty = diff;
         this.amountToDo = amount;
+        video = _video;
 
     }
 
@@ -26,13 +29,9 @@ public class Exercise {
         this.exerciseName = name;
     }
 
-   /* public String getEDescription() {
-        return this.edescription;
-    }*/
-
-   /* public void setEDescription(String desc) {
-        this.edescription = desc;
-    }*/
+    public int getVideo(){
+        return video;
+    }
 
     public int getTimeToComplete() {
         return this.timeToComplete;
