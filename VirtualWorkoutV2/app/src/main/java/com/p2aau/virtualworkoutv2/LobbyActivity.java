@@ -96,7 +96,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
-    private double height = 0.35; // Hard coded due to not able to find the right attribute to the view.
+    private double height = 0.25; // Hard coded due to not able to find the right attribute to the view.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +110,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
     @Override
     protected void initUIandEvent() {
         addEventHandler(this);
-        String channelName = getIntent().getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME); // TODO fix to "test" for testing
+        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // TODO fix to "test" for testing
 
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
         mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {

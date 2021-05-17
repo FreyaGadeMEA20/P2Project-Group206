@@ -98,7 +98,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
     @Override
     protected void initUIandEvent() {
         addEventHandler(this);
-        String channelName = getIntent().getStringExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME); // TODO fix to "test" for testing
+        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // TODO fix to "test" for testing
 
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
         mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {

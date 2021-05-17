@@ -148,7 +148,7 @@ public class MainMenuActivity extends AppCompatActivity {
     // - Method for creating lobby button - //
     public void onCreateLobbyClick(View view){
         Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
-        intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");    // Name of the channel for AGORA. For testing it is "test"
+        ConstantApp.ACTION_KEY_CHANNEL_NAME = "test";    // Name of the channel for AGORA. For testing it is "test"
         intent.putExtra("user", userName);                              // Username for getting the user from the DB
         intent.putExtra("Uniqid", "create_lobby");                // ID to tell the program what to do
         startActivity(intent);
