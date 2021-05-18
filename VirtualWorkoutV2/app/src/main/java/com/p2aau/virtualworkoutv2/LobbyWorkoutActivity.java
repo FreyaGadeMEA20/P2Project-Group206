@@ -221,7 +221,6 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         ImageView iv = (ImageView) view;
 
         iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
-
     }
 
     private void startTimer() {
@@ -230,7 +229,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
-                if(millisUntilFinished<=65000) {
+                if(millisUntilFinished<=6500) {
                     playExerciseTimerAlarm();
                 }
             }
