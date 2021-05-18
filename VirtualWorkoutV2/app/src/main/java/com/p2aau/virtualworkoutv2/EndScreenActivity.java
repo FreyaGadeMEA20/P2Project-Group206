@@ -188,7 +188,7 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
     }
 
     public void onNextClick(View view){
-        Intent intent = new Intent(EndScreenActivity.this, InbetweenWorkoutsActivity.class);
+        Intent intent = new Intent(EndScreenActivity.this, ExerciseCompleteActivity.class);
         startActivity(intent);
     }
 

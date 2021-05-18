@@ -33,6 +33,8 @@ import com.p2aau.virtualworkoutv2.propeller.UserStatusData;
 import com.p2aau.virtualworkoutv2.propeller.ui.RecyclerItemClickListener;
 import com.p2aau.virtualworkoutv2.propeller.ui.RtlLinearLayoutManager;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
@@ -72,12 +74,19 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
     private double height = 0.25;
 
+    private TextView exerciseName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_workout);
+
+        getSupportActionBar().hide();
         
         ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
+
+        exerciseName = (TextView) findViewById(R.id.text_view_exercise_description);
+        exerciseName.setText(ExerciseConstant.EXERCISE.getExerciseName());
 
         VideoView videoView = findViewById(R.id.exercise_video);
         mTimeLeftInMillis = ExerciseConstant.EXERCISE.getTimeToComplete();

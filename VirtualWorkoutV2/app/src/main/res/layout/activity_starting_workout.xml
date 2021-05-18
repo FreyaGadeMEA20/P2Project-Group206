@@ -13,9 +13,8 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:paddingBottom="30dp"
-        android:text="TextView"
-        android:textSize="30sp"
-        tools:text="@string/workout_starts" />
+        android:text="@string/workout_starts"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/text_view_countdown"
@@ -35,11 +34,11 @@
         android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="TextView"
         android:paddingTop="20dp"
+        android:text="@string/place_phone"
         android:textSize="30sp"
 
-        tools:text="@string/place_phone" />
+        />
 
     <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
         android:id="@+id/grid_video_view_container_own"
