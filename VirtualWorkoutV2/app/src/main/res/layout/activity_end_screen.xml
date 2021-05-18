@@ -39,6 +39,8 @@
             android:text="@string/EndScreenNext"
             android:onClick="onNextClick"/>
 
+
+
         <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
             android:id="@+id/grid_video_view_container_own"
             android:layout_width="match_parent"
@@ -54,6 +56,64 @@
             android:layout_marginTop="60dp"
             android:inflatedId="@id/small_video_view_dock"
             android:layout="@layout/agora_small_video_view_dock" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/Emojibar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="70dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/emoji_bar"></ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="300dp">
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/Heart"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/emoji_heart" />
+
+            <ImageView
+                android:id="@+id/Laugh"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/emoji_laugh" />
+
+            <ImageView
+                android:id="@+id/StarEyes"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/star_eyes" />
+
+            <ImageView
+                android:id="@+id/ThumpsUp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/thumps_up" />
+
+            <ImageView
+                android:id="@+id/Cry"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/emoji_cry" />
+        </LinearLayout>
+    </FrameLayout>
 
 
 

@@ -51,6 +51,7 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
     private boolean mIsLandscape = false;
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
+    private int currentPosition;
 
     private double height = 0.6;
     private boolean grid = true;
@@ -76,9 +77,8 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
 
             @Override
             public void onItemLongClick(View view, int position) {
-            //change visibillity for emoji bar to visible
-                //hide next button
-                findViewById(R.id.Next).setVisibility(View.INVISIBLE);
+                emojiToggle();
+                currentPosition = position;
             }
 
             @Override
@@ -99,6 +99,20 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
         joinChannel(channelName, config().mUid);
 
         optional();
+    }
+
+    public void emojiToggle() {
+        findViewById(R.id.Next).setVisibility(View.INVISIBLE);
+        findViewById(R.id.Emojibar).setVisibility(View.VISIBLE);
+        findViewById(R.id.Heart).setVisibility(View.VISIBLE);
+        findViewById(R.id.Laugh).setVisibility(View.VISIBLE);
+        findViewById(R.id.StarEyes).setVisibility(View.VISIBLE);
+        findViewById(R.id.ThumpsUp).setVisibility(View.VISIBLE);
+        findViewById(R.id.Cry).setVisibility(View.VISIBLE);
+    }
+
+    public void assertEmoji(){
+
     }
 
     @Override
@@ -189,7 +203,7 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
 
     }
 
-    public void onNextClick(View view){
+    public void onNextClick(View view) {
         Intent intent = new Intent(EndScreenActivity.this, ExerciseCompleteActivity.class);
         startActivity(intent);
     }
