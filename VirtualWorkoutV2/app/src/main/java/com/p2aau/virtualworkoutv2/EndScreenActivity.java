@@ -76,9 +76,15 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
 
             @Override
             public void onItemLongClick(View view, int position) {
-            //change visibillity for emoji bar to visible
+            //change visibility for emoji bar to visible
                 //hide next button
                 findViewById(R.id.Next).setVisibility(View.INVISIBLE);
+                findViewById(R.id.Emojibar).setVisibility(View.VISIBLE);
+                findViewById(R.id.Heart).setVisibility(View.VISIBLE);
+                findViewById(R.id.Laugh).setVisibility(View.VISIBLE);
+                findViewById(R.id.StarEyes).setVisibility(View.VISIBLE);
+                findViewById(R.id.ThumpsUp).setVisibility(View.VISIBLE);
+                findViewById(R.id.Cry).setVisibility(View.VISIBLE);
             }
 
             @Override
