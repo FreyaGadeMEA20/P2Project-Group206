@@ -25,12 +25,25 @@
             android:scaleY=".5"
             app:srcCompat="@drawable/check_mark" />
 
+        <Button
+            android:id="@+id/Next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/button1"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/EndScreenNext" />
+
         <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
             android:id="@+id/grid_video_view_container_own"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:layout_constraintHeight_percent="0.25" />
+            app:layout_constraintHeight_percent="0.60" />
 
         <ViewStub
             android:id="@id/small_video_view_dock"
@@ -40,5 +53,7 @@
             android:layout_marginTop="60dp"
             android:inflatedId="@id/small_video_view_dock"
             android:layout="@layout/agora_small_video_view_dock" />
+
+
 
 </RelativeLayout>

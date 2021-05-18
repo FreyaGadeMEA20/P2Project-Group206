@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EndScreenActivity"></activity>
+        <activity android:name=".ExerciseCompleteActivity"></activity>
+        <activity android:name=".EndScreenActivity" />
         <activity android:name=".SkillTreeActivity" />
         <activity android:name=".InbetweenWorkoutsActivity" />
         <activity android:name=".LobbyActivity" />

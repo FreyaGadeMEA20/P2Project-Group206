@@ -1,6 +1,5 @@
 package com.p2aau.virtualworkoutv2;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
