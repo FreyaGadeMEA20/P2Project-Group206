@@ -53,7 +53,7 @@ public class MainMenuActivity extends AppCompatActivity {
         if(previousIntent.equals("login") || previousIntent.equals("signup")) {
             SetupDrawer();
             GenerateUser(userName);
-        } else if (previousIntent.equals("profile")){
+        } else {
 
         }
     }
@@ -125,22 +125,28 @@ public class MainMenuActivity extends AppCompatActivity {
         return true;
     }
 
+    // - Method for going to the home page - //
+    public void onHomeClick(MenuItem item){
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        intent.putExtra("Uniqid", "home");
+        startActivity(intent);
+    }
+
     // - Method for going to the profile page - //
-    public void onProfileClick(MenuItem item){
-        Intent intent = new Intent(MainMenuActivity.this, ProfileActivity.class);
-        intent.putExtra("user", userName);
+    public void onProfileClick(MenuItem item) {
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
 
     // - Method for going to the friends page - //
-    public void onFriendsClick(MenuItem item){
-        Intent intent = new Intent(MainMenuActivity.this, FriendsActivity.class);
+    public void onFriendsClick(MenuItem item) {
+        Intent intent = new Intent(this, FriendsActivity.class);
         startActivity(intent);
     }
 
     // - Method for going to the workout page - //
-    public void onWorkoutClick(MenuItem item){
-        Intent intent = new Intent(MainMenuActivity.this, WorkoutsActivity.class);
+    public void onWorkoutClick(MenuItem item) {
+        Intent intent = new Intent(this, WorkoutsActivity.class);
         startActivity(intent);
     }
 
@@ -149,7 +155,7 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onCreateLobbyClick(View view){
         Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
         ConstantApp.ACTION_KEY_CHANNEL_NAME = "test";    // Name of the channel for AGORA. For testing it is "test"
-        intent.putExtra("user", userName);                              // Username for getting the user from the DB
+        //intent.putExtra("user", ExerciseConstant.USERNAME);                              // Username for getting the user from the DB
         intent.putExtra("Uniqid", "create_lobby");                // ID to tell the program what to do
         startActivity(intent);
     }
@@ -163,12 +169,10 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onLobbyClick(MenuItem item){
         Intent intent = new Intent(MainMenuActivity.this, LobbyActivity.class);
         intent.putExtra(ConstantApp.ACTION_KEY_CHANNEL_NAME,"test");    // Name of the channel for AGORA. For testing it is "test"
-        intent.putExtra("user", ExerciseConstant.USERNAME);                              // Username for getting the user from the DB
+        //intent.putExtra("user", ExerciseConstant.USERNAME);                              // Username for getting the user from the DB
         intent.putExtra("Uniqid", "find_lobby");                   // ID to tell the program what to do
         startActivity(intent);
     }
-
-    // -- Backend methods -- //
 
     // - Generating the user and adding it to the database - //
     public void GenerateUser(final String _userName){

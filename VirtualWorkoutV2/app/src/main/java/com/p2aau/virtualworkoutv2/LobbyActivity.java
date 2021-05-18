@@ -93,14 +93,12 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
-    private double height = 0.25; // Hard coded due to not able to find the right attribute to the view.
+    private double height = 0.7; // Hard coded due to not able to find the right attribute to the view.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
-
-        //GetExtra();
     }
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
@@ -139,7 +137,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
 
         joinChannel(channelName, config().mUid);
 
-        SetupDrawer();
+        //SetupDrawer();
 
         String previousIntent = getIntent().getExtras().getString("Uniqid");
         if(previousIntent.equals("create_lobby")){
@@ -243,7 +241,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
     }
 
-    public void SetupDrawer(){
+    /*public void SetupDrawer(){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.lobbyLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
@@ -251,7 +249,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
+    }*/
 
     public void onSelectWorkoutClick(View view){
         Intent intent = new Intent(LobbyActivity.this, ChooseWorkoutActivity.class);

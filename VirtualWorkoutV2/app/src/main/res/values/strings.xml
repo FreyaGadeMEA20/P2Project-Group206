@@ -2,8 +2,11 @@
     <string name="app_name">Virtual Workout</string>
     <string name="login_button">Login</string>
     <string name="signup_button">Sign Up</string>
+    <string name="demo">This is a demo app, only the username is needed.</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
+    <string name="email">Email</string>
+    <string name="retry_password_hint">Confirm Password</string>
     <string name="create_lobby_button">Create Lobby</string>
     <string name="find_lobby_button">Find lobby</string>
     <string name="create_lobby_title">Choose a workout</string>
@@ -16,6 +19,8 @@
     <string name="button_3">Level 3</string>
     <string name="button_4">Level 4</string>
     <!-- End of button strings-->
+
+    <string name="lobby_start">Start</string>
 
     <string name="select_workout_button">Select Workout</string>
 

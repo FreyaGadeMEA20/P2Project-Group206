@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-  <androidx.drawerlayout.widget.DrawerLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,15 +10,12 @@
     android:keepScreenOn="true"
     android:id="@+id/lobbyLayout">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onAddFriendToLobbyClick"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,24 +25,23 @@
 
     <Button
         android:id="@+id/button3"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="278dp"
-        android:layout_height="54dp"
+        android:background="@drawable/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="50dp"
+        android:gravity="center"
         android:onClick="onSelectWorkoutClick"
-        android:text="Select Workout"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        android:text="Select Workout" />
 
     <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
         android:id="@+id/grid_video_view_container_own"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/button3"
-        app:layout_constraintHeight_percent="0.35"/>
+        android:layout_below="@id/button3"
+        app:layout_constraintHeight_percent="0.70"
+        android:layout_marginTop="10dp"/>
 
     <ViewStub
         android:id="@id/small_video_view_dock"
@@ -53,41 +49,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:inflatedId="@id/small_video_view_dock"
-        app:layout_constraintTop_toBottomOf="@id/button3"
         android:layout="@layout/agora_small_video_view_dock" />
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="234dp"
-        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/button1"
         android:onClick="onReadyUpClick"
-        android:text="Ready Up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.414" />
+        android:text="@string/lobby_start" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:srcCompat="@drawable/ic_launcher_background" />
-  </androidx.constraintlayout.widget.ConstraintLayout>
-
-  <com.google.android.material.navigation.NavigationView
-      android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:menu="@menu/friends_list"
-        android:layout_gravity="end">
-  </com.google.android.material.navigation.NavigationView>
-
-</androidx.drawerlayout.widget.DrawerLayout>
+</RelativeLayout>
 
