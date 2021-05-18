@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewParent;
@@ -15,7 +16,9 @@ import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
 import com.p2aau.virtualworkoutv2.openvcall.model.AGEventHandler;
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 import com.p2aau.virtualworkoutv2.openvcall.model.DuringCallEventHandler;
@@ -26,6 +29,8 @@ import com.p2aau.virtualworkoutv2.openvcall.ui.layout.SmallVideoViewDecoration;
 import com.p2aau.virtualworkoutv2.propeller.UserStatusData;
 import com.p2aau.virtualworkoutv2.propeller.ui.RecyclerItemClickListener;
 import com.p2aau.virtualworkoutv2.propeller.ui.RtlLinearLayoutManager;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -66,14 +71,77 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
 
     private double height = 0.6;
 
+    private String progressString;
+
+    private boolean progress1;
+    private boolean progress2;
+    private boolean progress3;
+    ImageView progressbar1;
+    ImageView progressbar2;
+    ImageView progressbar3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbetween_workouts);
-        mTextViewCountDown = findViewById(R.id.text_view_countdown);
+        mTextViewCountDown = (TextView) findViewById(R.id.text_view_countdown);
         updateCountDownText();
         startTimer();
+
+        progressbar1 = (ImageView) findViewById(R.id.progressbar1);
+
+
+        progressbar1.setVisibility(View.INVISIBLE);
+        progressbar2.setVisibility(View.INVISIBLE);
+        progressbar3.setVisibility(View.INVISIBLE);
+
+        TextView textView = findViewById(R.id.progressText);
+        progressString = ExerciseConstant.CURRENT_EXERCISE+"/"+ExerciseConstant.MAX_EXERCISE;
+        textView.setText(progressString);
+
+
+
+
+        Toast.makeText(this, ExerciseConstant.CURRENT_EXERCISE+"", Toast.LENGTH_SHORT).show();
+
+        if(ExerciseConstant.CURRENT_EXERCISE-1 == 2) {
+            progress1 = true;
+            progress2 = false;
+            progress3 = false;
+        } else if(ExerciseConstant.CURRENT_EXERCISE-1 == 3) {
+            progress1 = false;
+            progress2 = true;
+            progress3 = false;
+        } else if (ExerciseConstant.CURRENT_EXERCISE-1 == 4) {
+            progress1 = false;
+            progress2 = false;
+            progress3 = true;
+        }
+
+
+        if(progress1) {
+            progressbar1.setVisibility(View.VISIBLE);
+        } else {
+            progressbar2.setVisibility(View.INVISIBLE);
+            progressbar3.setVisibility(View.INVISIBLE);
+        }
+        if(progress2) {
+            progressbar2.setVisibility(View.VISIBLE);
+        } else {
+            progressbar1.setVisibility(View.INVISIBLE);
+            progressbar3.setVisibility(View.INVISIBLE);
+
+        }
+        if(progress3) {
+            progressbar3.setVisibility(View.VISIBLE);
+        } else {
+            progressbar1.setVisibility(View.INVISIBLE);
+            progressbar2.setVisibility(View.INVISIBLE);
+        }
+
     }
+
+
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
     @Override

@@ -76,7 +76,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_workout);
-        
+
         ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
 
         VideoView videoView = findViewById(R.id.exercise_video);
