@@ -64,7 +64,7 @@
                     android:scaleX=".5"
                     android:scaleY=".5"
                     android:visibility="invisible"
-                    app:srcCompat="@drawable/Heart" />
+                    app:srcCompat="@drawable/emoji_heart" />
 
                 <ImageView
                     android:id="@+id/Laugh"
@@ -74,7 +74,7 @@
                     android:scaleX=".5"
                     android:scaleY=".5"
                     android:visibility="invisible"
-                    app:srcCompat="@drawable/Laugh" />
+                    app:srcCompat="@drawable/emoji_laugh" />
 
                 <ImageView
                     android:id="@+id/StarEyes"
@@ -104,7 +104,7 @@
                     android:scaleX=".5"
                     android:scaleY=".5"
                     android:visibility="invisible"
-                    app:srcCompat="@drawable/Cry" />
+                    app:srcCompat="@drawable/emoji_cry" />
             </LinearLayout>
         </FrameLayout>
 
