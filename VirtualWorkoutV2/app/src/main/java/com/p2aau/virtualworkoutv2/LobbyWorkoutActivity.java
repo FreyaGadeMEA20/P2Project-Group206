@@ -44,12 +44,13 @@ import io.agora.rtc.video.VideoCanvas;
 
 public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
 
-    private static long START_TIME_IN_MILLIS = 10000;
+
     private TextView mTextViewCountDown;
     private CountDownTimer mCountDownTimer;
+    private MediaPlayer alarmPlayer;
 
     private boolean mTimerRunning;
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private long mTimeLeftInMillis;
 
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
@@ -79,6 +80,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
 
         VideoView videoView = findViewById(R.id.exercise_video);
+        mTimeLeftInMillis = ExerciseConstant.EXERCISE.getTimeToComplete();
         String videoPath = "android.resource://" + getPackageName() + "/" + ExerciseConstant.EXERCISE.getVideo();
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
@@ -228,6 +230,9 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
+                if(millisUntilFinished<=65000) {
+                    playExerciseTimerAlarm();
+                }
             }
 
             @Override
@@ -244,6 +249,21 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         mTextViewCountDown.setText(timeLeftFormatted);
+
+    }
+
+    public void playExerciseTimerAlarm() {
+        if(alarmPlayer==null) {
+            alarmPlayer = MediaPlayer.create(this, R.raw.tickdown);
+            alarmPlayer.start();
+            alarmPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    alarmPlayer.release();
+                }
+            });
+        }
+
     }
 
     public void updatePage() {
