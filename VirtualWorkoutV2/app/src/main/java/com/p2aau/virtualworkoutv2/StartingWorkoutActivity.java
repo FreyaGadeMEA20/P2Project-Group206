@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.p2aau.virtualworkoutv2.classes.ExerciseConstant;
 import com.p2aau.virtualworkoutv2.openvcall.model.AGEventHandler;
 import com.p2aau.virtualworkoutv2.openvcall.model.ConstantApp;
 import com.p2aau.virtualworkoutv2.openvcall.model.DuringCallEventHandler;
@@ -70,6 +71,8 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting_workout);
+
+        ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
 
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         updateCountDownText();

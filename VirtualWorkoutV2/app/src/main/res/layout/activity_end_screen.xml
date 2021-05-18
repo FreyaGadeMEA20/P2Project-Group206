@@ -49,7 +49,7 @@
              android:layout_height="wrap_content"
             android:paddingHorizontal="12dp"
              android:visibility="invisible"
-             app:srcCompat="@drawable/EmojiBarinvert"></ImageView>
+             app:srcCompat="@drawable/emoji_barinvert"></ImageView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                     android:scaleX=".5"
                     android:scaleY=".5"
                     android:visibility="invisible"
-                    app:srcCompat="@drawable/StarEyes" />
+                    app:srcCompat="@drawable/star_eyes" />
 
                 <ImageView
                     android:id="@+id/ThumpsUp"
@@ -94,7 +94,7 @@
                     android:scaleX=".5"
                     android:scaleY=".5"
                     android:visibility="invisible"
-                    app:srcCompat="@drawable/ThumpsUp" />
+                    app:srcCompat="@drawable/thumps_up" />
 
                 <ImageView
                     android:id="@+id/Cry"

@@ -83,9 +83,8 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
 
         getSupportActionBar().hide();
-        
 
-        ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
+
 
         exerciseName = (TextView) findViewById(R.id.text_view_exercise_description);
         exerciseName.setText(ExerciseConstant.EXERCISE.getExerciseName());
@@ -281,6 +280,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         if (checkWorkoutStatus()) {
             Intent intent = new Intent(LobbyWorkoutActivity.this, InbetweenWorkoutsActivity.class);
             ExerciseConstant.CURRENT_EXERCISE++;
+            ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
             startActivity(intent);
         } else {
             Intent intent = new Intent(LobbyWorkoutActivity.this, EndScreenActivity.class);

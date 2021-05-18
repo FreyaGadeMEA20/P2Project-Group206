@@ -72,6 +72,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
     private double height = 0.6;
 
     private String progressString;
+    private String nextExerciseString;
 
     private boolean progress1;
     private boolean progress2;
@@ -88,22 +89,19 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         updateCountDownText();
         startTimer();
 
-        progressbar1 = (ImageView) findViewById(R.id.progressbar1);
+        TextView textViewNextExercise = findViewById((R.id.next_exercise));
+        nextExerciseString = ExerciseConstant.EXERCISE.getExerciseName();
+        textViewNextExercise.setText(nextExerciseString);
 
-
-        progressbar1.setVisibility(View.INVISIBLE);
-        progressbar2.setVisibility(View.INVISIBLE);
-        progressbar3.setVisibility(View.INVISIBLE);
-
-        TextView textView = findViewById(R.id.progressText);
-        progressString = ExerciseConstant.CURRENT_EXERCISE+"/"+ExerciseConstant.MAX_EXERCISE;
-        textView.setText(progressString);
+        TextView textViewProgressText = findViewById(R.id.progress_text);
+        progressString = ExerciseConstant.CURRENT_EXERCISE-1+"/"+ExerciseConstant.MAX_EXERCISE;
+        textViewProgressText.setText(progressString);
 
 
 
 
         Toast.makeText(this, ExerciseConstant.CURRENT_EXERCISE+"", Toast.LENGTH_SHORT).show();
-
+ /*
         if(ExerciseConstant.CURRENT_EXERCISE-1 == 2) {
             progress1 = true;
             progress2 = false;
@@ -138,7 +136,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
             progressbar1.setVisibility(View.INVISIBLE);
             progressbar2.setVisibility(View.INVISIBLE);
         }
-
+*/
     }
 
 
