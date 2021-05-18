@@ -51,6 +51,8 @@ public class ExerciseProgram {
         listOfExercises.remove(exe);
     }
 
+    public int getCurrentExerciseCounter() {return this.currentExerciseCounter;}
+
     public int getPPauseTime() {
         int ptime = 0;
         for (Exercise e : listOfExercises)

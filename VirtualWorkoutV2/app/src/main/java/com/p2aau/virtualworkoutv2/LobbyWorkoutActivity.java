@@ -81,8 +81,10 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_workout);
 
+
         getSupportActionBar().hide();
         
+
         ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
 
         exerciseName = (TextView) findViewById(R.id.text_view_exercise_description);
