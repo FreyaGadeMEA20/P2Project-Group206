@@ -72,9 +72,6 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 
 public class LobbyActivity extends BaseActivity implements DuringCallEventHandler {
 
-    User user;
-    Room room;
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
