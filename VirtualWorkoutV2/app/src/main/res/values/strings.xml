@@ -24,6 +24,8 @@
 
     <string name="username">User1</string>
 
+    <string name="EndScreenNext">Next</string>
+    <string name="BackToLobby">Back to Lobby</string>
 
     <!-- Workout strings -->
     <string name="congrats">Well done, you have completed the exercise!</string>

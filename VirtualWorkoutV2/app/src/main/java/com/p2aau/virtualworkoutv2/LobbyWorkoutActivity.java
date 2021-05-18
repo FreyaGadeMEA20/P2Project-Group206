@@ -1,6 +1,5 @@
 package com.p2aau.virtualworkoutv2;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +33,8 @@ import com.p2aau.virtualworkoutv2.propeller.UserStatusData;
 import com.p2aau.virtualworkoutv2.propeller.ui.RecyclerItemClickListener;
 import com.p2aau.virtualworkoutv2.propeller.ui.RtlLinearLayoutManager;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
@@ -45,12 +46,13 @@ import io.agora.rtc.video.VideoCanvas;
 
 public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
 
-    private static long START_TIME_IN_MILLIS = 10000;
+
     private TextView mTextViewCountDown;
     private CountDownTimer mCountDownTimer;
+    private MediaPlayer alarmPlayer;
 
     private boolean mTimerRunning;
-    private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
+    private long mTimeLeftInMillis;
 
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
@@ -72,14 +74,24 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
     private double height = 0.25;
 
+    private TextView exerciseName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_workout);
 
+
+        getSupportActionBar().hide();
+        
+
         ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
 
+        exerciseName = (TextView) findViewById(R.id.text_view_exercise_description);
+        exerciseName.setText(ExerciseConstant.EXERCISE.getExerciseName());
+
         VideoView videoView = findViewById(R.id.exercise_video);
+        mTimeLeftInMillis = ExerciseConstant.EXERCISE.getTimeToComplete();
         String videoPath = "android.resource://" + getPackageName() + "/" + ExerciseConstant.EXERCISE.getVideo();
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
@@ -220,7 +232,6 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         ImageView iv = (ImageView) view;
 
         iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
-
     }
 
     private void startTimer() {
@@ -229,6 +240,9 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
+                if(millisUntilFinished<=6500) {
+                    playExerciseTimerAlarm();
+                }
             }
 
             @Override
@@ -245,6 +259,21 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
         String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         mTextViewCountDown.setText(timeLeftFormatted);
+
+    }
+
+    public void playExerciseTimerAlarm() {
+        if(alarmPlayer==null) {
+            alarmPlayer = MediaPlayer.create(this, R.raw.tickdown);
+            alarmPlayer.start();
+            alarmPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    alarmPlayer.release();
+                }
+            });
+        }
+
     }
 
     public void updatePage() {
