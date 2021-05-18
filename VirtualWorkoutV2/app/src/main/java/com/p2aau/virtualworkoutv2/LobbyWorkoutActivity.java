@@ -239,7 +239,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
-                if(millisUntilFinished<=6500) {
+                if(millisUntilFinished<=6000) {
                     playExerciseTimerAlarm();
                 }
             }
