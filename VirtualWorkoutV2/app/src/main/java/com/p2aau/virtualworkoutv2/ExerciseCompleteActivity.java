@@ -38,7 +38,7 @@ public class ExerciseCompleteActivity extends AppCompatActivity {
 
         // - Workout icon - //
         workoutIcon = (ImageView) findViewById(R.id.exercise_logo);
-        workoutIcon.setImageResource(icons[ExerciseConstant.EXERCISE_LEVEL-1]);
+        workoutIcon.setImageResource(icons[ExerciseConstant.EXERCISE_TYPE-1]);
 
         // - Title text - //
         titleText = (TextView) findViewById(R.id.CompleteTextView);
