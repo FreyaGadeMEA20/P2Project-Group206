@@ -36,7 +36,7 @@ public class ExerciseConstant {
 
         // - Cardio level 2
         ExerciseProgram c2 = new ExerciseProgram("Cardio Level 2", "A moderately difficult workout stimulating heart rate");
-        c2.addExercise(new Exercise("Run in Place",30000,2,30, R.raw.yumpingyacks));
+        c2.addExercise(new Exercise("Run in Place",30000,2,30, R.raw.jumpingjack));
         c2.addExercise(new Exercise("Squats",30000,2,25, R.raw.feetinandoutplank));
         c2.addExercise(new Exercise("Feet in and out",20000,2,20, R.raw.squats));
         c2.addExercise(new Exercise("Push-Ups",20000,2,15, R.raw.pushups));
@@ -94,7 +94,7 @@ public class ExerciseConstant {
         f2.addExercise(new Exercise("High Knees",20000,1,40, R.raw.highknees));
         f2.addExercise(new Exercise("Dolphin Push Ups",40000,1,60, R.raw.pushups));
         f2.addExercise(new Exercise("Lunges to Jumps",20000,1,15, R.raw.squats));
-        f2.addExercise(new Exercise("Jump in square",40000,1,30, R.raw.burpees));
+        f2.addExercise(new Exercise("Jump in square",40000,1,30, R.raw.burpee));
         f2.addExercise(new Exercise("2m Sidesteps",20000,1,6, R.raw.normalplank));
 
         EXERCISE_PROGRAMS[3][1]= f2;
