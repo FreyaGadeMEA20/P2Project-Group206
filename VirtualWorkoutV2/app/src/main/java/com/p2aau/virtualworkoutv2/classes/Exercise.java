@@ -6,7 +6,7 @@ public class Exercise {
     private int timeToComplete;
     private int pauseTime;
     private int difficulty;
-    private int amountToDo;
+    //private int amountToDo;
     private boolean completed;
 
     private int video;
@@ -16,7 +16,15 @@ public class Exercise {
         //this.edescription = desc;
         this.timeToComplete = time;
         this.difficulty = diff;
-        this.amountToDo = amount;
+        //this.amountToDo = amount;
+        video = _video;
+
+    }
+
+    Exercise(String name, int time, int diff, int _video) {
+        this.exerciseName = name;
+        this.timeToComplete = time;
+        this.difficulty = diff;
         video = _video;
 
     }
@@ -57,13 +65,13 @@ public class Exercise {
         this.difficulty = diff;
     }
 
-    public int getAmountToDo() {
+    /*public int getAmountToDo() {
         return this.amountToDo;
-    }
+    }*/
 
-    public void setAmountToDo(int amount) {
+    /*public void setAmountToDo(int amount) {
         this.amountToDo = amount;
-    }
+    }*/
 
     public boolean getCompleted() {
         return this.completed;
