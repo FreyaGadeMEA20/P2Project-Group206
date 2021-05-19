@@ -163,36 +163,38 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
 
     public void setEmoji(int _image) {
         /*if (currentPosition == 0) {
-            assertedEmoji1.setImageResource(_image);
-            showEmoji(assertedEmoji1);
-            if(something.config()==0){
-                assertedEmoji1.setX()
+            assertedEmoji1.setPadding(
+                        outMetrics.widthPixels/2 - 20,
+                        outMetrics.heightPixels - 420,
+                       outMetrics.widthPixels/2 - 20,
+                        outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
             }
+            showEmoji(assertedEmoji1);
         } else*/
         if (currentPosition == 1) {
             assertedEmoji1.setImageResource(_image);
             if (config().mUid == 1) {
                 assertedEmoji1.setPadding(
-                        outMetrics.widthPixels-(1/4*(outMetrics.widthPixels)) - 20,
+                        outMetrics.widthPixels-outMetrics.widthPixels/4 - 20,
                         outMetrics.heightPixels - 420,
-                        (1/4*(outMetrics.widthPixels)) - 20,
+                        outMetrics.widthPixels/4- 20,
                         outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
             }
             showEmoji(assertedEmoji1);
         } else if (currentPosition == 2) {
             assertedEmoji2.setImageResource(_image);
             assertedEmoji1.setPadding(
-                    outMetrics.widthPixels-(1/6*(outMetrics.widthPixels)) - 20,
+                    outMetrics.widthPixels-outMetrics.widthPixels/6 - 20,
                     outMetrics.heightPixels - 420,
-                    (1/6*(outMetrics.widthPixels)) - 20,
+                    outMetrics.widthPixels/6 - 20,
                     outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
             showEmoji(assertedEmoji2);
         } else if (currentPosition == 3) {
             assertedEmoji3.setImageResource(_image);
             assertedEmoji1.setPadding(
-                    outMetrics.widthPixels-(1/8*(outMetrics.widthPixels)) - 20,
+                    outMetrics.widthPixels-outMetrics.widthPixels/8 - 20,
                     outMetrics.heightPixels - 420,
-                    (1/8*(outMetrics.widthPixels)) - 20,
+                    outMetrics.widthPixels/8- 20,
                     outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
             showEmoji(assertedEmoji3);
         }
