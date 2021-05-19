@@ -24,7 +24,7 @@
         app:srcCompat="@drawable/add_friend_to_party" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/selectWorkoutButton"
         android:background="@drawable/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:id="@+id/grid_video_view_container_own"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/button3"
+        android:layout_below="@id/selectWorkoutButton"
         app:layout_constraintHeight_percent="0.70"
         android:layout_marginTop="10dp"/>
 

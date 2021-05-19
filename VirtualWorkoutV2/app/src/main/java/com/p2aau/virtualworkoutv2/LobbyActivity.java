@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -147,6 +148,9 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
             // Only adds the user to the room in the database
         } else if (previousIntent.equals("choose_workout")){
             ChooseExerciseLevel(ExerciseConstant.EXERCISE_TYPE, ExerciseConstant.EXERCISE_LEVEL); // Gets the exercise
+            Button selectWorkoutButton = (Button) findViewById(R.id.selectWorkoutButton);
+            String workoutButtonNewText = ExerciseConstant.EXERCISE_TYPE_NAME + " - Level " + ExerciseConstant.EXERCISE_LEVEL;
+            selectWorkoutButton.setText(workoutButtonNewText);
         } else if (previousIntent.equals("end_screen")){
             // TODO?
         }

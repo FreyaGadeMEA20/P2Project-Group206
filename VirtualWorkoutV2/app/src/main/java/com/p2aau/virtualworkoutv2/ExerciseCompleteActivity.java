@@ -20,7 +20,7 @@ public class ExerciseCompleteActivity extends AppCompatActivity {
     TextView titleText;
     TextView xpText;
 
-    int[] reactions = {R.drawable.friend_1,R.drawable.friend_2,R.drawable.friend_3,R.drawable.friend_4};
+    int[] reactions = {R.drawable.emoji_laugh, R.drawable.emoji_heart, R.drawable.star_eyes, R.drawable.thumps_up, R.drawable.emoji_cry};
     String[] exerciseTypes = {"Cardio", "Strength", "Yoga", "Fat Burn"};
     int[] icons = {R.drawable.cardio_icon_color, R.drawable.strength_icon_color, R.drawable.yoga_icon_color, R.drawable.fat_burn_icon_color};
     ImageView workoutIcon;
