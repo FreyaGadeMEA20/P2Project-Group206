@@ -71,7 +71,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="300dp">
+            android:paddingTop="300dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -96,7 +96,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/star_eyes" />
+                app:srcCompat="@drawable/emoji_star_eyes" />
 
             <ImageView
                 android:id="@+id/ThumpsUp"
@@ -104,7 +104,7 @@
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:visibility="invisible"
-                app:srcCompat="@drawable/thumps_up" />
+                app:srcCompat="@drawable/emoji_thumps_up" />
 
             <ImageView
                 android:id="@+id/Cry"
@@ -115,7 +115,42 @@
                 app:srcCompat="@drawable/emoji_cry" />
         </LinearLayout>
     </FrameLayout>
-
+    <ImageView
+        android:id="@+id/Assertedemoji1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleX=".1"
+        android:scaleY=".1"
+        android:visibility="invisible"
+         />
+    <ImageView
+        android:id="@+id/Assertedemoji2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleX=".1"
+        android:scaleY=".1"
+        android:visibility="invisible"
+        />
+    <ImageView
+        android:id="@+id/Assertedemoji3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleX=".1"
+        android:scaleY=".1"
+        android:visibility="invisible"
+        />
+    <ImageView
+        android:id="@+id/Assertedemoji4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleX=".1"
+        android:scaleY=".1"
+        android:visibility="invisible"
+        />
 
 
 </RelativeLayout>
