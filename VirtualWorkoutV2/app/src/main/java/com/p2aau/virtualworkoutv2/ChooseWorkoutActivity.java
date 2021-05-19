@@ -82,6 +82,8 @@ public class ChooseWorkoutActivity extends AppCompatActivity {
         intent.putExtra("Uniqid", "choose_workout");
         ExerciseConstant.EXERCISE_TYPE  = exerciseType+1;
 
+        ExerciseConstant.EXERCISE_TYPE_NAME = ExerciseConstant.EXERCISE_TYPES[exerciseType];
+
         Button button = (Button) findViewById(view.getId());
 
         String level = (String) button.getText();

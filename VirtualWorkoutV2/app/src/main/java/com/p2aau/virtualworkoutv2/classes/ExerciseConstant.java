@@ -3,9 +3,14 @@ package com.p2aau.virtualworkoutv2.classes;
 import com.p2aau.virtualworkoutv2.R;
 
 public class ExerciseConstant {
-    public static int EXERCISE_TYPE = 0;
-    public static int EXERCISE_LEVEL = 0;
     public static String USERNAME = null;
+
+    public static int EXERCISE_TYPE = 0;
+    public static String EXERCISE_TYPE_NAME = null;
+
+    public static final String[] EXERCISE_TYPES = {"Cardio", "Strength", "Yoga", "Fat Burn"};
+
+    public static int EXERCISE_LEVEL = 0;
 
     public static int CURRENT_EXERCISE = 0;
     public static int MAX_EXERCISE = 0;
