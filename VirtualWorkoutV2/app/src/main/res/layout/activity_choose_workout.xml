@@ -92,6 +92,19 @@
             android:text="@string/button_4" />
     </LinearLayout>
 
+    <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
+        android:id="@+id/grid_video_view_container_own"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintHeight_percent="0"
+        android:layout_marginTop="10dp"/>
 
+    <ViewStub
+        android:id="@id/small_video_view_dock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:inflatedId="@id/small_video_view_dock"
+        android:layout="@layout/agora_small_video_view_dock" />
 
 </RelativeLayout>
