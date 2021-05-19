@@ -34,7 +34,7 @@
 
     <!-- Workout strings -->
     <string name="congrats">Well done, you have completed the exercise!</string>
-    <string name="end">Congrats, you have finally finished the workout!</string>
+    <string name="end">Congrats, you have finally finished the workout! Hold on Your friends face to react to their performance</string>
     <string name="workout_starts">Workout starting in</string>
     <string name="place_phone">Please place phone in an upright position</string>
     <string name="next_up">Next up:</string>
