@@ -27,20 +27,20 @@ public class ExerciseConstant {
         // -- Cardio -- //
         // - Cardio level 1 - //
         ExerciseProgram c1 = new ExerciseProgram("Cardio Level 1", "A beginner-friendly workout stimulating heart rate");
-        c1.addExercise(new Exercise("Jumping Jacks",/*"Jump to a position with legs spread and hands overhead, then jump back to original posture.",*/20000,1,15, R.raw.jumpingjack));
-        c1.addExercise(new Exercise("Squats",20000,1,15, R.raw.squat));
-        c1.addExercise(new Exercise("Knee Push-Ups",20000,1,10, R.raw.jumpingjack));
-        c1.addExercise(new Exercise("Lunges",20000,1,10, R.raw.squat));
+        c1.addExercise(new Exercise("Jumping Jacks",/*"Jump to a position with legs spread and hands overhead, then jump back to original posture.",*/20000,1,15, R.raw.yumpingyacks));
+        c1.addExercise(new Exercise("Squats",20000,1,15, R.raw.squats));
+        c1.addExercise(new Exercise("Knee Push-Ups",20000,1,10, R.raw.pushups));
+        c1.addExercise(new Exercise("Lunges",20000,1,10, R.raw.lunges));
 
         EXERCISE_PROGRAMS[0][0]= c1;
 
         // - Cardio level 2
         ExerciseProgram c2 = new ExerciseProgram("Cardio Level 2", "A moderately difficult workout stimulating heart rate");
         c2.addExercise(new Exercise("Run in Place",30000,2,30, R.raw.jumpingjack));
-        c2.addExercise(new Exercise("Squats",30000,2,25, R.raw.squat));
-        c2.addExercise(new Exercise("Feet in and out",20000,2,20, R.raw.jumpingjack));
-        c2.addExercise(new Exercise("Push-Ups",20000,2,15, R.raw.squat));
-        c2.addExercise(new Exercise("Big sideways jumps",20000,2,10, R.raw.jumpingjack));
+        c2.addExercise(new Exercise("Squats",30000,2,25, R.raw.feetinandoutplank));
+        c2.addExercise(new Exercise("Feet in and out",20000,2,20, R.raw.squats));
+        c2.addExercise(new Exercise("Push-Ups",20000,2,15, R.raw.pushups));
+        c2.addExercise(new Exercise("Big sideways jumps",20000,2,10, R.raw.highknees));
 
         EXERCISE_PROGRAMS[0][1]= c2;
 
