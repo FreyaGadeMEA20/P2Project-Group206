@@ -27,13 +27,10 @@ public class ExerciseConstant {
         // -- Cardio -- //
         // - Cardio level 1 - //
         ExerciseProgram c1 = new ExerciseProgram("Cardio Level 1", "A beginner-friendly workout stimulating heart rate");
-<<<<<<< Updated upstream
         c1.addExercise(new Exercise("Jumping Jacks",/*"Jump to a position with legs spread and hands overhead, then jump back to original posture.",*/20000,1,15, R.raw.jumpingjack));
         c1.addExercise(new Exercise("Squats",20000,1,15, R.raw.squats));
-=======
-        c1.addExercise(new Exercise("Jumping Jacks",20000,1,15, R.raw.yumpingyacks));
+        c1.addExercise(new Exercise("Jumping Jacks",20000,1,15, R.raw.jumpingjack));
         c1.addExercise(new Exercise("Squats",30000,1,15, R.raw.squats));
->>>>>>> Stashed changes
         c1.addExercise(new Exercise("Knee Push-Ups",20000,1,10, R.raw.pushups));
         c1.addExercise(new Exercise("Lunges",30000,1,10, R.raw.lunges));
 
@@ -41,19 +38,19 @@ public class ExerciseConstant {
 
         // - Cardio level 2
         ExerciseProgram c2 = new ExerciseProgram("Cardio Level 2", "A moderately difficult workout stimulating heart rate");
-<<<<<<< Updated upstream
+
         c2.addExercise(new Exercise("Run in Place",30000,2,30, R.raw.jumpingjack));
         c2.addExercise(new Exercise("Squats",30000,2,25, R.raw.feetinandoutplank));
         c2.addExercise(new Exercise("Feet in and out",20000,2,20, R.raw.squats));
         c2.addExercise(new Exercise("Push-Ups",20000,2,15, R.raw.pushups));
         c2.addExercise(new Exercise("Big sideways jumps",20000,2,10, R.raw.highknees));
-=======
-        c2.addExercise(new Exercise("Jump jacks",30000,2,30, R.raw.yumpingyacks));
+
+        c2.addExercise(new Exercise("Jump jacks",30000,2,30, R.raw.jumpingjack));
         c2.addExercise(new Exercise("Feet in and out plank",20000,2,25, R.raw.feetinandoutplank));
         c2.addExercise(new Exercise("Squats",30000,2,20, R.raw.squats));
         c2.addExercise(new Exercise("Push-Ups",30000,2,15, R.raw.pushups));
         c2.addExercise(new Exercise("Run in place",30000,2,10, R.raw.highknees));
->>>>>>> Stashed changes
+
 
         EXERCISE_PROGRAMS[0][1]= c2;
 
@@ -82,7 +79,7 @@ public class ExerciseConstant {
         ExerciseProgram y1 = new ExerciseProgram("Yoga Level 1", "An intense workout for burning fat over time");
         y1.addExercise(new Exercise("Child's pose",20000,1,12, R.raw.childspose));
         y1.addExercise(new Exercise("Cat cow",20000,1,40, R.raw.catcow));
-        y1.addExercise(new Exercise("Down dog pedal feet",20000,1,60, R.raw.peddlefeet));
+        y1.addExercise(new Exercise("Down dog pedal feet",20000,1,60, R.raw.pedalfeet));
         y1.addExercise(new Exercise("Dog down left leg up",10000,1,15, R.raw.downdogleft));
         y1.addExercise(new Exercise("Dog down right leg up",10000,1,30, R.raw.downdogright));
         y1.addExercise(new Exercise("High plank",20000,1,6, R.raw.highplank));
@@ -121,17 +118,14 @@ public class ExerciseConstant {
         ExerciseProgram f2 = new ExerciseProgram("Fat Burner Level 2", "An intense workout for burning fat over time");
         f2.addExercise(new Exercise("Lunges",30000,1,12, R.raw.lunges));
         f2.addExercise(new Exercise("High Knees",20000,1,40, R.raw.highknees));
-<<<<<<< Updated upstream
         f2.addExercise(new Exercise("Dolphin Push Ups",40000,1,60, R.raw.pushups));
         f2.addExercise(new Exercise("Lunges to Jumps",20000,1,15, R.raw.squats));
         f2.addExercise(new Exercise("Jump in square",40000,1,30, R.raw.burpee));
         f2.addExercise(new Exercise("2m Sidesteps",20000,1,6, R.raw.normalplank));
-=======
         f2.addExercise(new Exercise("Push-ups",20000,1,60, R.raw.pushups));
         f2.addExercise(new Exercise("Squats",30000,1,15, R.raw.squats));
-        f2.addExercise(new Exercise("Boat to low boat crunches",20000,1,30, R.raw.burpees));
+        f2.addExercise(new Exercise("Boat to low boat crunches",20000,1,30, R.raw.burpee));
         f2.addExercise(new Exercise("Normal plank",20000,1,6, R.raw.normalplank));
->>>>>>> Stashed changes
 
         EXERCISE_PROGRAMS[3][1]= f2;
     }
