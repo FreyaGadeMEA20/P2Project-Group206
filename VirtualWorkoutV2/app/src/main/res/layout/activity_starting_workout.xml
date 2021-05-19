@@ -6,10 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/workout_starting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/text_view_countdown"
+        android:layout_below="@+id/small_video_view_dock"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:paddingBottom="30dp"
@@ -21,17 +22,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@id/workout_starting"
         android:text="00:00"
         android:textColor="@color/xdBlueLight"
-        android:textSize="40sp"/>
+        android:textSize="50sp"/>
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/text_view_countdown"
-        android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:paddingTop="20dp"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:layout_constraintHeight_percent="0.25" />
+        app:layout_constraintHeight_percent="0.40" />
 
     <ViewStub
         android:id="@id/small_video_view_dock"

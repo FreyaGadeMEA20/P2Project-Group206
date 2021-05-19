@@ -65,7 +65,7 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
-    private double height = 0.25;
+    private double height = 0.40;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -31,7 +31,7 @@
         android:layout_marginTop="10dp"
         android:text="00:00"
         android:textAlignment="center"
-        android:textColor="@color/black_light"
+        android:textColor="@color/xdBlueLight"
         android:textSize="60sp" />
 
     <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer

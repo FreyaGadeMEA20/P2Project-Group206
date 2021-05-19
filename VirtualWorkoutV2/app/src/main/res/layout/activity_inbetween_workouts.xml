@@ -11,16 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
         android:textSize="40dp"
-        android:text="00:00" />
+        android:text="00:00"
+        android:textColor="@color/xdBlueLight"/>
 
     <com.p2aau.virtualworkoutv2.openvcall.ui.layout.GridVideoViewContainer
         android:id="@+id/grid_video_view_container_own"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:layout_constraintHeight_percent="0.60" />
+        app:layout_constraintHeight_percent="0.50" />
 
     <ViewStub
         android:id="@id/small_video_view_dock"
@@ -32,24 +33,24 @@
         android:layout="@layout/agora_small_video_view_dock" />
 
     <TextView
-        android:id="@+id/textview4"
+        android:id="@+id/grats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp"
-        android:textSize="20sp"
+        android:layout_marginTop="70dp"
         android:gravity="center"
-        android:text="@string/congrats" />
+        android:text="@string/congrats"
+        android:textSize="21sp" />
 
     <TextView
         android:id="@+id/next_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textview4"
+        android:layout_below="@id/progress_text"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="@string/next_up"
-        android:textSize="20sp" />
+        android:textSize="21sp" />
 
     <TextView
         android:id="@+id/next_exercise"
@@ -59,16 +60,18 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="sheesh"
-        android:textSize="20sp" />
+        android:textStyle="bold"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/progress_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/next_exercise"
+        android:layout_below="@id/textview4"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="poop"
-        android:textSize="24sp" />
+        android:textSize="36dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
