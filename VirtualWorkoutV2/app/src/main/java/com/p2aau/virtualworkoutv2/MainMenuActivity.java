@@ -52,7 +52,7 @@ public class MainMenuActivity extends AppCompatActivity {
         String previousIntent = getIntent().getExtras().getString("Uniqid");
         if(previousIntent.equals("login") || previousIntent.equals("signup")) {
             SetupDrawer();
-            GenerateUser(userName);
+            GenerateUser();
         } else {
 
         }
@@ -175,7 +175,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     // - Generating the user and adding it to the database - //
-    public void GenerateUser(final String _userName){
+    public void GenerateUser(){
         mRef = FirebaseDatabase.getInstance().getReference("Users");
         //listen to the friend list in the database
         mRef.push();
