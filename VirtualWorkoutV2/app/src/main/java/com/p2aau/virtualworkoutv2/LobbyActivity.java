@@ -129,7 +129,6 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
             @Override
             public void onItemClick(View view, int position) {
                 onBigVideoViewClicked(view, position);
-                MakeAToast(position+"");
             }
 
             @Override
