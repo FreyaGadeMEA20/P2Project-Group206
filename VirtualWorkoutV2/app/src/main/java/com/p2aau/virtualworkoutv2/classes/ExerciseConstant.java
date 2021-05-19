@@ -31,7 +31,7 @@ public class ExerciseConstant {
         c1.addExercise(new Exercise("Squats",20000,1,15, R.raw.squats));
         c1.addExercise(new Exercise("Jumping Jacks",20000,1,15, R.raw.jumpingjack));
         c1.addExercise(new Exercise("Squats",30000,1,15, R.raw.squats));
-        c1.addExercise(new Exercise("Knee Push-Ups",20000,1,10, R.raw.pushups));
+        c1.addExercise(new Exercise("Push-Ups",20000,1,10, R.raw.pushups));
         c1.addExercise(new Exercise("Lunges",30000,1,10, R.raw.lunges));
 
         EXERCISE_PROGRAMS[0][0]= c1;
