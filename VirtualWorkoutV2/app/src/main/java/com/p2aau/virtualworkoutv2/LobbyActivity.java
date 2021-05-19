@@ -1,5 +1,6 @@
 package com.p2aau.virtualworkoutv2;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
@@ -100,6 +101,21 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
+
+        // Add a callback to the activity, so when they press the back button, they always go back to the main menu.
+        // This was due to when they were done with an exercise and got back to the lobby, they would back to the end of exercise
+        // screen, instead of going back to the main menu.
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                deInitUIandEvent();
+                Intent intent = new Intent(LobbyActivity.this, MainMenuActivity.class);
+                intent.putExtra("Uniqid", "lobby");
+                startActivity(intent);
+            }
+        };
+        // Adds the back button to the activity
+        this.getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
@@ -165,6 +181,8 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         removeEventHandler(this);
         mUidsList.clear();
     }
+    
+
 
     private void doLeaveChannel() {
         leaveChannel(config().mChannel);
