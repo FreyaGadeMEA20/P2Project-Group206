@@ -69,7 +69,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
-    private double height = 0.6;
+    private double height = 0.5;
 
     private String progressString;
     private String nextExerciseString;
@@ -100,7 +100,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
 
 
 
-        Toast.makeText(this, ExerciseConstant.CURRENT_EXERCISE+"", Toast.LENGTH_SHORT).show();
+
  /*
         if(ExerciseConstant.CURRENT_EXERCISE-1 == 2) {
             progress1 = true;
