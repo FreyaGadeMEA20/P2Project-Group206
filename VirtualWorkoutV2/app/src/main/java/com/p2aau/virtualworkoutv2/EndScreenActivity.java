@@ -175,7 +175,7 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
                 assertedEmoji1.setPadding(
                         outMetrics.widthPixels-(1/4*(outMetrics.widthPixels)) - 20,
                         outMetrics.heightPixels - 420,
-                        (1/6*(outMetrics.widthPixels)) - 20,
+                        (1/4*(outMetrics.widthPixels)) - 20,
                         outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
             }
             showEmoji(assertedEmoji1);
