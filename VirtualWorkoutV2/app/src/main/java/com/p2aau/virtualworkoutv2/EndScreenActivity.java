@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewParent;
@@ -56,11 +57,58 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
     private double height = 0.6;
     private boolean grid = true;
 
+    DisplayMetrics outMetrics = new DisplayMetrics();
+
+    ImageView[] emojiTypes;
+    int[] emojiPics;
+    ImageView assertedEmoji1;
+    ImageView assertedEmoji2;
+    ImageView assertedEmoji3;
+    // ImageView assertedEmoji4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_screen);
+
+        emojiTypes = new ImageView[]{(ImageView) findViewById(R.id.Heart),
+                (ImageView) findViewById(R.id.Laugh),
+                (ImageView) findViewById(R.id.StarEyes),
+                (ImageView) findViewById(R.id.ThumpsUp),
+                (ImageView) findViewById(R.id.Cry)};
+
+        emojiPics = new int[]{R.drawable.emoji_heart,
+                R.drawable.emoji_laugh,
+                R.drawable.emoji_star_eyes,
+                R.drawable.emoji_thumps_up,
+                R.drawable.emoji_cry,};
+
+        for (int i = 0; i < emojiTypes.length; i++) {
+            emojiTypes[i].setOnClickListener(handler);
+        }
+        assertedEmoji1 = findViewById(R.id.Assertedemoji1);
+        assertedEmoji2 = findViewById(R.id.Assertedemoji2);
+        assertedEmoji3 = findViewById(R.id.Assertedemoji3);
+        // assertedEmoji4 = findViewById(R.id.Assertedemoji4);
     }
+
+    View.OnClickListener handler = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (v == emojiTypes[0]) {
+                setEmoji(emojiPics[0]);
+            } else if (v == emojiTypes[1]) {
+                setEmoji(emojiPics[1]);
+            } else if (v == emojiTypes[2]) {
+                setEmoji(emojiPics[2]);
+            } else if (v == emojiTypes[3]) {
+                setEmoji(emojiPics[3]);
+            } else if (v == emojiTypes[4]) {
+                setEmoji(emojiPics[4]);
+            }
+        }
+    };
+
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
     @Override
@@ -77,8 +125,10 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
 
             @Override
             public void onItemLongClick(View view, int position) {
-                emojiToggle();
-                currentPosition = position;
+                if (position != 0) {
+                    emojiToggle();
+                    currentPosition = position;
+                }
             }
 
             @Override
@@ -111,7 +161,52 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
         findViewById(R.id.Cry).setVisibility(View.VISIBLE);
     }
 
-    public void assertEmoji(){
+    public void setEmoji(int _image) {
+        /*if (currentPosition == 0) {
+            assertedEmoji1.setImageResource(_image);
+            showEmoji(assertedEmoji1);
+            if(something.config()==0){
+                assertedEmoji1.setX()
+            }
+        } else*/
+        if (currentPosition == 1) {
+            assertedEmoji1.setImageResource(_image);
+            if (config().mUid == 1) {
+                assertedEmoji1.setPadding(
+                        outMetrics.widthPixels-(1/4*(outMetrics.widthPixels)) - 20,
+                        outMetrics.heightPixels - 420,
+                        (1/6*(outMetrics.widthPixels)) - 20,
+                        outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
+            }
+            showEmoji(assertedEmoji1);
+        } else if (currentPosition == 2) {
+            assertedEmoji2.setImageResource(_image);
+            assertedEmoji1.setPadding(
+                    outMetrics.widthPixels-(1/6*(outMetrics.widthPixels)) - 20,
+                    outMetrics.heightPixels - 420,
+                    (1/6*(outMetrics.widthPixels)) - 20,
+                    outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
+            showEmoji(assertedEmoji2);
+        } else if (currentPosition == 3) {
+            assertedEmoji3.setImageResource(_image);
+            assertedEmoji1.setPadding(
+                    outMetrics.widthPixels-(1/8*(outMetrics.widthPixels)) - 20,
+                    outMetrics.heightPixels - 420,
+                    (1/8*(outMetrics.widthPixels)) - 20,
+                    outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
+            showEmoji(assertedEmoji3);
+        }
+    }
+
+    public void showEmoji(ImageView _view) {
+        _view.setVisibility(View.VISIBLE);
+        findViewById(R.id.Next).setVisibility(View.VISIBLE);
+        findViewById(R.id.Emojibar).setVisibility(View.INVISIBLE);
+        findViewById(R.id.Heart).setVisibility(View.INVISIBLE);
+        findViewById(R.id.Laugh).setVisibility(View.INVISIBLE);
+        findViewById(R.id.StarEyes).setVisibility(View.INVISIBLE);
+        findViewById(R.id.ThumpsUp).setVisibility(View.INVISIBLE);
+        findViewById(R.id.Cry).setVisibility(View.INVISIBLE);
 
     }
 
