@@ -103,7 +103,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
             public void handleOnBackPressed() {
                 deInitUIandEvent();
                 Intent intent = new Intent(ChooseWorkoutActivity.this, LobbyActivity.class);
-                intent.putExtra("Uniqid", "choose_workout");
+                intent.putExtra("Uniqid", "choose_workout_cancel");
                 startActivity(intent);
             }
         };

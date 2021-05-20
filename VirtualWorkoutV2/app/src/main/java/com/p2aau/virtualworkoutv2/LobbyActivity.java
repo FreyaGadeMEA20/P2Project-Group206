@@ -330,7 +330,11 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
     }
 
     public void ChooseExerciseLevel(int _type, int _level){
-        ExerciseConstant.EXERCISE_PROGRAM = ExerciseConstant.EXERCISE_PROGRAMS[_type-1][_level-1];
+        try{
+            ExerciseConstant.EXERCISE_PROGRAM = ExerciseConstant.EXERCISE_PROGRAMS[_type-1][_level-1];
+        } catch(ArrayIndexOutOfBoundsException e) {
+
+        }
     }
 
     private void optional() {
