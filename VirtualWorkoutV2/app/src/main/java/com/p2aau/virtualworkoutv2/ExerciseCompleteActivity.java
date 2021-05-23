@@ -27,7 +27,7 @@ public class ExerciseCompleteActivity extends AppCompatActivity {
 
     int level = ExerciseConstant.EXERCISE_LEVEL;
 
-    String exerciseName = exerciseTypes[ExerciseConstant.EXERCISE_TYPE-1];;
+    String exerciseName = exerciseTypes[ExerciseConstant.EXERCISE_TYPE];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class ExerciseCompleteActivity extends AppCompatActivity {
 
         // - Workout icon - //
         workoutIcon = (ImageView) findViewById(R.id.exercise_logo);
-        workoutIcon.setImageResource(icons[ExerciseConstant.EXERCISE_TYPE-1]);
+        workoutIcon.setImageResource(icons[ExerciseConstant.EXERCISE_TYPE]);
 
         // - Title text - //
         titleText = (TextView) findViewById(R.id.CompleteTextView);
