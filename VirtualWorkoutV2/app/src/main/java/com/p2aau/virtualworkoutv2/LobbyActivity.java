@@ -162,7 +162,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         } else if (previousIntent.equals("find_lobby")){
             // Only adds the user to the room in the database
         } else if (previousIntent.equals("choose_workout")){
-            ChooseExerciseLevel(ExerciseConstant.EXERCISE_TYPE, ExerciseConstant.EXERCISE_LEVEL); // Gets the exercise
+            ChooseExerciseLevel(); // Gets the exercise
             Button selectWorkoutButton = (Button) findViewById(R.id.selectWorkoutButton);
             String workoutButtonNewText = ExerciseConstant.EXERCISE_TYPE_NAME + " - Level " + ExerciseConstant.EXERCISE_LEVEL;
             selectWorkoutButton.setText(workoutButtonNewText);
@@ -329,9 +329,9 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         mDrawerLayout.openDrawer(GravityCompat.END);
     }
 
-    public void ChooseExerciseLevel(int _type, int _level){
+    public void ChooseExerciseLevel(){
         try{
-            ExerciseConstant.EXERCISE_PROGRAM = ExerciseConstant.EXERCISE_PROGRAMS[_type-1][_level-1];
+            ExerciseConstant.EXERCISE_PROGRAM = ExerciseConstant.EXERCISE_PROGRAMS[ExerciseConstant.EXERCISE_TYPE][ExerciseConstant.EXERCISE_LEVEL-1];
         } catch(ArrayIndexOutOfBoundsException e) {
 
         }

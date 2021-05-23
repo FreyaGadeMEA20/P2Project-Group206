@@ -40,6 +40,8 @@ import io.agora.rtc.video.VideoCanvas;
 
 public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
 
+    // --- Attributes --- //
+    // -- Attributes for category and level -- //
     private int exerciseLevel;
     private int exerciseType;
 
@@ -49,6 +51,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
     Button[] workoutLevels;
     int[] workoutColors = {R.color.cardio, R.color.strength, R.color.yoga, R.color.fat_burn};
 
+    // -- Attributes for webcam -- //
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
 
@@ -67,6 +70,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
 
     private SmallVideoViewAdapter mSmallVideoViewAdapter;
 
+    // 0 as we just needed the volume part
     private double height = 0; // Hard coded due to not able to find the right attribute to the view.
 
     @Override
@@ -74,30 +78,35 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_workout);
 
+        // Grid layout of the workout categories
         workOutCategories = (androidx.gridlayout.widget.GridLayout) findViewById(R.id.workOuts);
-        workOutCategories.setVisibility(View.VISIBLE);
+        workOutCategories.setVisibility(View.VISIBLE); // Sets it to visible, just to be safe
 
-        workOutSubcategories = (LinearLayout) findViewById(R.id.level_layout);
-
-        workOutSubcategories.setVisibility(View.GONE);
-
+        // Array of the 4 different imageviews of the categories
         workOutTypes = new ImageView[]{(ImageView) findViewById(R.id.cardio),
                 (ImageView) findViewById(R.id.strength),
                 (ImageView) findViewById(R.id.yoga),
                 (ImageView) findViewById(R.id.fat_burn)};
 
+        // Sets an on click listener to each of the images in the workout type
+        for(int i = 0; i < workOutTypes.length; i++){
+            workOutTypes[i].setOnClickListener(handler);
+        }
+
+        // LinearLayout of the level buttons
+        workOutSubcategories = (LinearLayout) findViewById(R.id.level_layout);
+        workOutSubcategories.setVisibility(View.GONE); // Sets it to gone, just to be safe
+
+        // Array of each of the levels the user can choose
+        // - For expansion, this should be changed to be a for loop, so it can be easily expandable.
         workoutLevels = new Button[]{(Button) findViewById(R.id.button1),
                 (Button) findViewById(R.id.button2),
                 (Button) findViewById(R.id.button3),
                 (Button) findViewById(R.id.button4)};
 
-        for(int i = 0; i < workOutTypes.length; i++){
-            workOutTypes[i].setOnClickListener(handler);
-        }
 
-        // Add a callback to the activity, so when they press the back button, they always go back to the main menu.
-        // This was due to when they were done with an exercise and got back to the lobby, they would back to the end of exercise
-        // screen, instead of going back to the main menu.
+        // Add a callback to the activity, so when they press the back button, they always go back to the lobby
+        // This was done in order to not have the webcam freeze once they click on the back button.
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -112,29 +121,19 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
     }
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
+    // This is from the Agora code example for adding webcam.
+    // Even though there is no webcam on the activity, we still needed the audio.
+    // As it was right before testing, we did not spend time looking for what was the webcam and what was the audio.
+    // So we just made the webcam practically invisible. Should be looked at for minor optimization.
     @Override
     protected void initUIandEvent() {
-        addEventHandler(this);
-        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // TODO fix to "test" for testing
+        addEventHandler(this); // Tells the program it is this activity that gets worked on.
+        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // The channel name which the user joins for webcam
 
+        // Finds the view in which the program has to confine in
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
-        mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                onBigVideoViewClicked(view, position);
-            }
 
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onItemDoubleClick(View view, int position) {
-                onBigVideoViewDoubleClicked(view, position);
-            }
-        });
-
+        // Generates the local video and the view at which the webcam will place
         SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
         preview(true, surfaceV, 0);
         surfaceV.setZOrderOnTop(false);
@@ -142,13 +141,17 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
 
         mUidsList.put(0, surfaceV); // get first surface view
 
+        // Initializes the container with all the views
         mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, false, height); // first is now full view
 
+        // Connects to the server and joins the channel
         joinChannel(channelName, config().mUid);
 
+        // Runs anything optional that is missing.
         optional();
     }
 
+    // - Destroys the UI and the event to leave the channel, to remove the video call from the screen - //
     @Override
     protected void deInitUIandEvent() {
         optionalDestroy();
@@ -157,58 +160,13 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         mUidsList.clear();
     }
 
+    // - Leaves the channel - //
     private void doLeaveChannel() {
         leaveChannel(config().mChannel);
         preview(false, null, 0);
     }
 
-    public void onHangupClicked(View view) {
-        finish();
-    }
-
-    public void onVideoMuteClicked(View view) {
-        if (mUidsList.size() == 0) {
-            return;
-        }
-
-        SurfaceView surfaceV = getLocalView();
-        ViewParent parent;
-        if (surfaceV == null || (parent = surfaceV.getParent()) == null) {
-            return;
-        }
-
-        RtcEngine rtcEngine = rtcEngine();
-        mVideoMuted = !mVideoMuted;
-
-        if (mVideoMuted) {
-            rtcEngine.disableVideo();
-        } else {
-            rtcEngine.enableVideo();
-        }
-
-        ImageView iv = (ImageView) view;
-
-        iv.setImageResource(mVideoMuted ? R.drawable.agora_btn_camera_off : R.drawable.agora_btn_camera);
-
-        hideLocalView(mVideoMuted);
-    }
-
-    private SurfaceView getLocalView() {
-        for (HashMap.Entry<Integer, SurfaceView> entry : mUidsList.entrySet()) {
-            if (entry.getKey() == 0 || entry.getKey() == config().mUid) {
-                return entry.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    private void hideLocalView(boolean hide) {
-        int uid = config().mUid;
-        doHideTargetView(uid, hide);
-    }
-
-    private void doHideTargetView(int targetUid, boolean hide) {
+    /*private void doHideTargetView(int targetUid, boolean hide) {
         HashMap<Integer, Integer> status = new HashMap<>();
         status.put(targetUid, hide ? UserStatusData.VIDEO_MUTED : UserStatusData.DEFAULT_STATUS);
         if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
@@ -234,11 +192,13 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         ImageView iv = (ImageView) view;
 
         iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
-    }
+    }*/
 
+    // - Generates what the handler will do when the user clicks on the screen.
     View.OnClickListener handler = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            // Gets which of the four images that gets clicked on and runs a command based on what images that is clicked on
             if (v == workOutTypes[0]){
                 workOutCategory(0);
             } else if (v == workOutTypes[1]){
@@ -251,37 +211,50 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         }
     };
 
+    // - What happens when an image is clicked on - //
     public void workOutCategory(int _int) {
+        // Sets the categories to be gone, so the user can click on the levels instead
         workOutCategories.setVisibility(View.GONE);
 
+        // Saves their choice
         exerciseType = _int;
 
+        // Makes the level buttons visible again
         workOutSubcategories.setVisibility(View.VISIBLE);
 
+        // Sets the color of the buttons to be the same as the image pressed on for visual feedback to the user
         for(int i = 0; i < workoutLevels.length; i++){
-            workoutLevels[i].setBackgroundColor(getResources().getColor(workoutColors[_int]));
+            // Gets the color based on which exercise has been clicked on
+            workoutLevels[i].setBackgroundColor(getResources().getColor(workoutColors[exerciseType]));
        }
     }
 
+    // - Method for when the user clicks on a button - //
     public void onWorkoutClick(View view){
+        // Saves their type choice (cardio, strength, etc.) in a static variable so it can be used later on.
+        ExerciseConstant.EXERCISE_TYPE  = exerciseType;
 
-        ExerciseConstant.EXERCISE_TYPE  = exerciseType+1;
-
+        // Saves the name of the exercise type in a static variable.
         ExerciseConstant.EXERCISE_TYPE_NAME = ExerciseConstant.EXERCISE_TYPES[exerciseType];
 
+        // Finds the button that is clicked on
         Button button = (Button) findViewById(view.getId());
-
+        // Gets the text of the button
         String level = (String) button.getText();
-
+        // Removes the "level " part of it to only get the number
         level = level.replace("Level ", "");
-
+        // Parses the number to an int
         exerciseLevel = Integer.parseInt(level);
 
+        // Sets the constant static variable to be the level that has been chosen
         ExerciseConstant.EXERCISE_LEVEL = exerciseLevel;
 
-        if(ExerciseConstant.EXERCISE_PROGRAMS[ExerciseConstant.EXERCISE_TYPE-1][ExerciseConstant.EXERCISE_LEVEL-1] == null){
+        // Checks if the chosen workout is null. If it is, it shows a toast it hasn't been implemented yet
+        // - for future it should instead make the buttons be a dull version of the color instead.
+        if(ExerciseConstant.EXERCISE_PROGRAMS[ExerciseConstant.EXERCISE_TYPE][ExerciseConstant.EXERCISE_LEVEL-1] == null){
             MakeAToast("This workout hasn't been implemented yet!");
         } else {
+            // If it isn't null, it will instead start up the lobby activity.
             Intent intent = new Intent(ChooseWorkoutActivity.this, LobbyActivity.class);
             intent.putExtra("Uniqid", "choose_workout");
             deInitUIandEvent();
@@ -294,42 +267,28 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         Toast.makeText(this, _toast, Toast.LENGTH_SHORT).show();
     }
 
+    // - Code from Agora - //
     private void optional() {
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
     }
 
+    // - Code from Agora - //
     private void optionalDestroy() {
     }
 
-    private void onBigVideoViewClicked(View view, int position) {
-        //toggleFullscreen();
-    }
-
-    private void onBigVideoViewDoubleClicked(View view, int position) {
-        /*if (mUidsList.size() < 2) {
-            return;
-        }
-
-        UserStatusData user = mGridVideoViewContainer.getItem(position);
-        int uid = (user.mUid == 0) ? config().mUid : user.mUid;
-
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
-            switchToSmallVideoView(uid);
-        } else {
-            switchToDefaultVideoView();
-        }*/
-    }
-
+    // - Code from Agora - //
     @Override
     public void onUserJoined(int uid) {
 
     }
 
+    // - Code from Agora - //
     @Override
     public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
         doRenderRemoteUi(uid);
     }
 
+    // - Code from Agora - //
     private void doRenderRemoteUi(final int uid) {
         runOnUiThread(new Runnable() {
             @Override
@@ -374,16 +333,19 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         });
     }
 
+    // - Code from Agora - //
     @Override
     public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
 
     }
 
+    // - Code from Agora - //
     @Override
     public void onUserOffline(int uid, int reason) {
         doRemoveRemoteUi(uid);
     }
 
+    // - Code from Agora - //
     private void doRemoveRemoteUi(final int uid) {
         runOnUiThread(new Runnable() {
             @Override
@@ -411,6 +373,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         });
     }
 
+    // - Code from Agora - //
     @Override
     public void onExtraCallback(int type, Object... data) {
         runOnUiThread(new Runnable() {
@@ -425,6 +388,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         });
     }
 
+    // - Code from Agora - //
     private void doHandleExtraCallback(int type, Object... data) {
         int peerUid;
         boolean muted;
@@ -446,7 +410,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
                 peerUid = (Integer) data[0];
                 muted = (boolean) data[1];
 
-                doHideTargetView(peerUid, muted);
+                //doHideTargetView(peerUid, muted);
 
                 break;
 
@@ -514,6 +478,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         }
     }
 
+    // - Code from Agora - //
     private void switchToDefaultVideoView() {
         if (mSmallVideoViewDock != null) {
             mSmallVideoViewDock.setVisibility(View.GONE);
@@ -539,6 +504,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         }
     }
 
+    // - Code from Agora - //
     private void switchToSmallVideoView(int bigBgUid) {
         HashMap<Integer, SurfaceView> slice = new HashMap<>(1);
         slice.put(bigBgUid, mUidsList.get(bigBgUid));
@@ -561,6 +527,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         //requestRemoteStreamType(mUidsList.size());
     }
 
+    // - Code from Agora - //
     private void bindToSmallVideoView(int exceptUid) {
         if (mSmallVideoViewDock == null) {
             ViewStub stub = (ViewStub) findViewById(R.id.small_video_view_dock);
@@ -624,10 +591,12 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         mSmallVideoViewDock.setVisibility(View.VISIBLE);
     }
 
+    // - Code from Agora - //
     private void onSmallVideoViewDoubleClicked(View view, int position) {
         switchToDefaultVideoView();
     }
 
+    // - Code from Agora - //
     public void notifyHeadsetPlugged(final int routing) {
         mAudioRouting = routing;
     }

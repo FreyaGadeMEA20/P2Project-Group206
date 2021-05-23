@@ -39,7 +39,7 @@ import io.agora.rtc.video.VideoCanvas;
 
 
 public class StartingWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
-    private static long START_TIME_IN_MILLIS = 10000;
+    private static long START_TIME_IN_MILLIS = 20000;
     private TextView mTextViewCountDown;
 
     private CountDownTimer mCountDownTimer;
