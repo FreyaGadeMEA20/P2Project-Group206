@@ -37,8 +37,10 @@ import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
 
-
 public class StartingWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
+
+    // -- Attributes -- //
+    // - Attributes for timer - //
     private static long START_TIME_IN_MILLIS = 10000;
     private TextView mTextViewCountDown;
 
@@ -47,6 +49,7 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
+    // - Attributes for webcam -  //
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
 
@@ -72,11 +75,13 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting_workout);
 
+        // Sets the exercise for the program to use, based on the constants.
         ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
 
+        // Finds the text view that is where the timer will be written
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
-        updateCountDownText();
-        startTimer();
+        updateCountDownText(); // Runs the update function
+        startTimer(); // Starts the timer
     }
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
@@ -86,22 +91,6 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
         String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // TODO fix to "test" for testing
 
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
-        mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                onBigVideoViewClicked(view, position);
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onItemDoubleClick(View view, int position) {
-                onBigVideoViewDoubleClicked(view, position);
-            }
-        });
 
         SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
         preview(true, surfaceV, 0);
@@ -128,10 +117,6 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
     private void doLeaveChannel() {
         leaveChannel(config().mChannel);
         preview(false, null, 0);
-    }
-
-    public void onHangupClicked(View view) {
-        finish();
     }
 
     public void onVideoMuteClicked(View view) {
@@ -204,6 +189,7 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
         iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
     }
 
+    // Function that starts the next page, meaning the "starting" period is over
     public void startWorkout() {
         deInitUIandEvent();
         Intent intent = new Intent(StartingWorkoutActivity.this, LobbyWorkoutActivity.class);
@@ -212,19 +198,19 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
 
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
+            @Override // Function that runs every tick
             public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
+                mTimeLeftInMillis = millisUntilFinished;  // time left in timer
+                updateCountDownText(); // updates text
             }
 
-            @Override
+            @Override // Function that runs when the timer is finished
             public void onFinish() {
-                mTimerRunning = false;
-                startWorkout();
+                mTimerRunning = false; // tells the program the timer isn't running anymore
+                startWorkout(); // starts the workout
             }
 
-        }.start();
+        }.start(); // Starts the timer
     }
 
     private void updateCountDownText() {
