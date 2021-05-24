@@ -20,6 +20,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    // In the superclass it asks for the permission, so it gets done at the first page.
     @Override
     protected void initUIandEvent() {
 
@@ -32,6 +33,7 @@ public class LoginActivity extends BaseActivity {
 
     // Login button
     public void onLoginNextClick(View view){
+        // Finds the views and gets the username
         EditText userNameEditText = findViewById(R.id.login_user_name_field);
         String userName = userNameEditText.getText().toString();
 

@@ -77,6 +77,7 @@ public class Exercise {
         return this.completed;
     }
 
+    // TODO change app to use this with some pass by reference for the timers and such
     public void startExercise() {
         //play animations and start timers and what not...s
     }

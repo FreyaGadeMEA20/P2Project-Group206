@@ -27,20 +27,20 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        // gets username view and sets it to the constant which the user typed in
         TextView textView = findViewById(R.id.username);
-
         String message = ExerciseConstant.USERNAME;
-
         textView.setText(message);
 
+        // sets up the drawer
         SetupDrawer();
-
     }
 
     // -- Side menu -- //
 
     // - Method for setting up the side menu - //
     public void SetupDrawer(){
+        // finds the layout and adds functionality to the navigation menu
         mDrawerLayout = (DrawerLayout) findViewById(R.id.profileLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 

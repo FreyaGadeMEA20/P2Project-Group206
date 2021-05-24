@@ -74,9 +74,12 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 
 public class LobbyActivity extends BaseActivity implements DuringCallEventHandler {
 
+    // -- Attributes -- //
+    // - Attribute for sidemenu view - //
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
+    // - Attribute for webcam - //
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
 
@@ -116,45 +119,8 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         };
         // Adds the back button to the activity
         this.getOnBackPressedDispatcher().addCallback(this, callback);
-    }
 
-    // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
-    @Override
-    protected void initUIandEvent() {
-        addEventHandler(this);
-        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // TODO fix to "test" for testing
-
-        mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
-        mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                onBigVideoViewClicked(view, position);
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onItemDoubleClick(View view, int position) {
-                onBigVideoViewDoubleClicked(view, position);
-            }
-        });
-
-        SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
-        preview(true, surfaceV, 0);
-        surfaceV.setZOrderOnTop(false);
-        surfaceV.setZOrderMediaOverlay(false);
-
-        mUidsList.put(0, surfaceV); // get first surface view
-
-        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, false, height); // first is now full view
-
-        joinChannel(channelName, config().mUid);
-
-        //SetupDrawer();
-
+        // Checks which room it came from and does different things depending on what room it came from
         String previousIntent = getIntent().getExtras().getString("Uniqid");
         if(previousIntent.equals("create_lobby")){
             // Would create the room in the database
@@ -169,10 +135,37 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         } else if (previousIntent.equals("end_screen")){
             // TODO?
         }
+    }
 
+    // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
+    // This is from the Agora code example for adding webcam, with slight customization.
+    @Override
+    protected void initUIandEvent() {
+        addEventHandler(this); // Tells the program it is this activity that gets worked on.
+        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // The channel name which the user joins for webcam
+
+        // Finds the view in which the program has to confine in
+        mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
+
+        // Generates the local video and the view at which the webcam will place
+        SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
+        preview(true, surfaceV, 0);
+        surfaceV.setZOrderOnTop(false);
+        surfaceV.setZOrderMediaOverlay(false);
+
+        mUidsList.put(0, surfaceV); // get first surface view
+
+        // Initializes the container with all the views
+        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, false, height); // first is now full view
+
+        // Connects to the server and joins the channel
+        joinChannel(channelName, config().mUid);
+
+        // Runs anything optional that is missing.
         optional();
     }
 
+    // - Destroys the UI and the event to leave the channel, to remove the video call from the screen - //
     @Override
     protected void deInitUIandEvent() {
         optionalDestroy();
@@ -180,88 +173,14 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         removeEventHandler(this);
         mUidsList.clear();
     }
-    
 
-
+    // - Leaves the channel - //
     private void doLeaveChannel() {
         leaveChannel(config().mChannel);
         preview(false, null, 0);
     }
 
-    public void onHangupClicked(View view) {
-        finish();
-    }
-
-    public void onVideoMuteClicked(View view) {
-        if (mUidsList.size() == 0) {
-            return;
-        }
-
-        SurfaceView surfaceV = getLocalView();
-        ViewParent parent;
-        if (surfaceV == null || (parent = surfaceV.getParent()) == null) {
-            return;
-        }
-
-        RtcEngine rtcEngine = rtcEngine();
-        mVideoMuted = !mVideoMuted;
-
-        if (mVideoMuted) {
-            rtcEngine.disableVideo();
-        } else {
-            rtcEngine.enableVideo();
-        }
-
-        ImageView iv = (ImageView) view;
-
-        iv.setImageResource(mVideoMuted ? R.drawable.agora_btn_camera_off : R.drawable.agora_btn_camera);
-
-        hideLocalView(mVideoMuted);
-    }
-
-    private SurfaceView getLocalView() {
-        for (HashMap.Entry<Integer, SurfaceView> entry : mUidsList.entrySet()) {
-            if (entry.getKey() == 0 || entry.getKey() == config().mUid) {
-                return entry.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    private void hideLocalView(boolean hide) {
-        int uid = config().mUid;
-        doHideTargetView(uid, hide);
-    }
-
-    private void doHideTargetView(int targetUid, boolean hide) {
-        HashMap<Integer, Integer> status = new HashMap<>();
-        status.put(targetUid, hide ? UserStatusData.VIDEO_MUTED : UserStatusData.DEFAULT_STATUS);
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
-            mGridVideoViewContainer.notifyUiChanged(mUidsList, targetUid, status, null);
-        } else if (mLayoutType == LAYOUT_TYPE_SMALL) {
-            UserStatusData bigBgUser = mGridVideoViewContainer.getItem(0);
-            if (bigBgUser.mUid == targetUid) { // big background is target view
-                mGridVideoViewContainer.notifyUiChanged(mUidsList, targetUid, status, null);
-            } else { // find target view in small video view list
-                mSmallVideoViewAdapter.notifyUiChanged(mUidsList, bigBgUser.mUid, status, null);
-            }
-        }
-    }
-
-    public void onVoiceMuteClicked(View view) {
-        if (mUidsList.size() == 0) {
-            return;
-        }
-
-        RtcEngine rtcEngine = rtcEngine();
-        rtcEngine.muteLocalAudioStream(mAudioMuted = !mAudioMuted);
-
-        ImageView iv = (ImageView) view;
-
-        iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
-    }
-
+    // Code for drawer, for future if adding "add friend" button
     /*public void SetupDrawer(){
         mDrawerLayout = (DrawerLayout) findViewById(R.id.lobbyLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -272,12 +191,14 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }*/
 
+    // - Opens select workout - //
     public void onSelectWorkoutClick(View view){
         deInitUIandEvent();
         Intent intent = new Intent(LobbyActivity.this, ChooseWorkoutActivity.class);
         startActivity(intent);
     }
 
+    // - Starts the exercise - //
     public void onReadyUpClick(View view){
         // This snippet of code would be for checking if all the people are ready. However, we were not able to implement it to work well.
         // This meant it was ignored, as it was not a large part of what we had to test.
@@ -302,6 +223,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
             }
         }*/
 
+        // Checks if the user has chosen a workout or not.
         if(checkWorkoutStatus()) {
             deInitUIandEvent();
             Intent intent = new Intent(LobbyActivity.this, StartingWorkoutActivity.class);
@@ -313,6 +235,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         }
     }
 
+    // - Checks if the user has chosen a workout or not - //
     public boolean checkWorkoutStatus(){
         boolean bool;
 
@@ -325,54 +248,50 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         return bool;
     }
 
+    // - Function for opening drawer, which is where friends are - //
     public void onAddFriendToLobbyClick(View view){
         mDrawerLayout.openDrawer(GravityCompat.END);
     }
 
+    // - Sets the exercise program - //
     public void ChooseExerciseLevel(){
+        // Sometimes the problem would stumble upon an error when it crashes, meaning the exercise would be null
+        // We added a try/catch to prevent that for testing.
+        // Should have no implication on the app.
         try{
             ExerciseConstant.EXERCISE_PROGRAM = ExerciseConstant.EXERCISE_PROGRAMS[ExerciseConstant.EXERCISE_TYPE][ExerciseConstant.EXERCISE_LEVEL-1];
         } catch(ArrayIndexOutOfBoundsException e) {
-
+            ExerciseConstant.EXERCISE_PROGRAM = null;
         }
     }
 
+    // - Method for making it easier to make a toast - //
+    public void MakeAToast(String _toast){
+        Toast.makeText(this, _toast, Toast.LENGTH_SHORT).show();
+    }
+
+    // - Code from Agora - //
     private void optional() {
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
     }
 
+    // - Code from Agora - //
     private void optionalDestroy() {
     }
 
-    private void onBigVideoViewClicked(View view, int position) {
-        //toggleFullscreen();
-    }
-
-    private void onBigVideoViewDoubleClicked(View view, int position) {
-        /*if (mUidsList.size() < 2) {
-            return;
-        }
-
-        UserStatusData user = mGridVideoViewContainer.getItem(position);
-        int uid = (user.mUid == 0) ? config().mUid : user.mUid;
-
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
-            switchToSmallVideoView(uid);
-        } else {
-            switchToDefaultVideoView();
-        }*/
-    }
-
+    // - Code from Agora - //
     @Override
     public void onUserJoined(int uid) {
 
     }
 
+    // - Code from Agora - //
     @Override
     public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
         doRenderRemoteUi(uid);
     }
 
+    // - Code from Agora - //
     private void doRenderRemoteUi(final int uid) {
         runOnUiThread(new Runnable() {
             @Override
@@ -417,16 +336,19 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         });
     }
 
+    // - Code from Agora - //
     @Override
     public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
 
     }
 
+    // - Code from Agora - //
     @Override
     public void onUserOffline(int uid, int reason) {
         doRemoveRemoteUi(uid);
     }
 
+    // - Code from Agora - //
     private void doRemoveRemoteUi(final int uid) {
         runOnUiThread(new Runnable() {
             @Override
@@ -454,6 +376,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         });
     }
 
+    // - Code from Agora - //
     @Override
     public void onExtraCallback(int type, Object... data) {
         runOnUiThread(new Runnable() {
@@ -468,6 +391,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         });
     }
 
+    // - Code from Agora - //
     private void doHandleExtraCallback(int type, Object... data) {
         int peerUid;
         boolean muted;
@@ -489,7 +413,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
                 peerUid = (Integer) data[0];
                 muted = (boolean) data[1];
 
-                doHideTargetView(peerUid, muted);
+                //doHideTargetView(peerUid, muted);
 
                 break;
 
@@ -557,6 +481,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         }
     }
 
+    // - Code from Agora - //
     private void switchToDefaultVideoView() {
         if (mSmallVideoViewDock != null) {
             mSmallVideoViewDock.setVisibility(View.GONE);
@@ -582,6 +507,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         }
     }
 
+    // - Code from Agora - //
     private void switchToSmallVideoView(int bigBgUid) {
         HashMap<Integer, SurfaceView> slice = new HashMap<>(1);
         slice.put(bigBgUid, mUidsList.get(bigBgUid));
@@ -604,6 +530,7 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         //requestRemoteStreamType(mUidsList.size());
     }
 
+    // - Code from Agora - //
     private void bindToSmallVideoView(int exceptUid) {
         if (mSmallVideoViewDock == null) {
             ViewStub stub = (ViewStub) findViewById(R.id.small_video_view_dock);
@@ -667,15 +594,13 @@ public class LobbyActivity extends BaseActivity implements DuringCallEventHandle
         mSmallVideoViewDock.setVisibility(View.VISIBLE);
     }
 
+    // - Code from Agora - //
     private void onSmallVideoViewDoubleClicked(View view, int position) {
         switchToDefaultVideoView();
     }
 
+    // - Code from Agora - //
     public void notifyHeadsetPlugged(final int routing) {
         mAudioRouting = routing;
-    }
-
-    public void MakeAToast(String _toast){
-        Toast.makeText(this, _toast, Toast.LENGTH_SHORT).show();
     }
 }

@@ -11,4 +11,6 @@ public class SkillTreeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skill_tree);
     }
+
+    // todo - not implemented yet
 }

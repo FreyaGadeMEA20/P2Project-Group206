@@ -126,6 +126,5 @@ public class ExerciseConstant {
         f2.addExercise(new Exercise("Normal plank",20000,1,6, R.raw.normalplank));
 
         EXERCISE_PROGRAMS[3][1]= f2;
-
     }
 }

@@ -53,6 +53,7 @@ public class ExerciseProgram {
 
     public int getCurrentExerciseCounter() {return this.currentExerciseCounter;}
 
+    // Gets the total amount of pause time, which is how much time is inbetween each exercise in total.
     public int getPPauseTime() {
         int ptime = 0;
         for (Exercise e : listOfExercises)
@@ -61,9 +62,7 @@ public class ExerciseProgram {
         return ptime;
     }
 
-    // public void setPauseTime(Date pause) {} RN we don't change the total pausetime, we change the pausetime of an individual exercise
-    // public void SetPTimeToComplete() {} - same goes with timetocomplete...
-
+    // Same as above, just for time to complete instead
     public int getPTimeToComplete() {
         int ttime = 0;
         for (Exercise e : listOfExercises)
@@ -72,17 +71,22 @@ public class ExerciseProgram {
         return ttime + getPPauseTime();
     }
 
+    // Function to call if we wanted to make the program able to change an exercise in the application
     public void editExercise(Exercise exe) {
         //what attribute we wanna edit?
         // don't think we need this for our app. More relevant in future work.
     }
 
+    // starts exercise
+    // TODO change the app to use this instead
     public void startProgram() {
-        this.currentExercise=listOfExercises.get(0);
-        this.currentExerciseCounter =1;
+        this.currentExercise = listOfExercises.get(0);
+        this.currentExerciseCounter = 1;
         this.currentExercise.startExercise();
     }
 
+    // choses next exercise.
+    // TODO change the app to use this instead
     public void nextExercise() {
         currentExercise = listOfExercises.get(currentExerciseCounter);
         currentExerciseCounter++;
