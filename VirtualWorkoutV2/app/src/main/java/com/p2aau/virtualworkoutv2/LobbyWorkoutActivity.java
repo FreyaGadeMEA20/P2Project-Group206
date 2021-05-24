@@ -46,7 +46,8 @@ import io.agora.rtc.video.VideoCanvas;
 
 public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
 
-
+    // -- Attributes -- //
+    // - Attributes for timer - //
     private TextView mTextViewCountDown;
     private CountDownTimer mCountDownTimer;
     private MediaPlayer alarmPlayer;
@@ -54,6 +55,10 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
     private boolean mTimerRunning;
     private long mTimeLeftInMillis;
 
+    // - Attributes for exercise - //
+    private TextView exerciseName;
+
+    // - Attributes for webcam - //
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
 
@@ -74,31 +79,35 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
     private double height = 0.25;
 
-    private TextView exerciseName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_workout);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().hide(); // Hides the top action bar, as it serves no purpose other than being ugly
 
+        // Finds the view for where the name of the exercise will be, and sets it
         exerciseName = (TextView) findViewById(R.id.text_view_exercise_description);
         exerciseName.setText(ExerciseConstant.EXERCISE.getExerciseName());
 
+        // Finds the view and gets the time to complete
         VideoView videoView = findViewById(R.id.exercise_video);
         mTimeLeftInMillis = ExerciseConstant.EXERCISE.getTimeToComplete();
+
+        // Finds the video in the resources based on what video the exercise got given
         String videoPath = "android.resource://" + getPackageName() + "/" + ExerciseConstant.EXERCISE.getVideo();
-        Uri uri = Uri.parse(videoPath);
-        videoView.setVideoURI(uri);
-        videoView.start();
+        Uri uri = Uri.parse(videoPath); // Parses the path to a variable the video class wants
+        videoView.setVideoURI(uri); // Sets the video viewers video to the one specified
+        videoView.start(); // Starts the video
         videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setLooping(true);
             }
-        });
+        }); // Once the video is ready, we tell it that it should loop
 
+        // Timer
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
         updateCountDownText();
         startTimer();
@@ -196,11 +205,12 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
     // - Next page method - //
     public void updatePage() {
-        deInitUIandEvent();
-        if (checkWorkoutStatus()) { // if it is finished with the program it starts inbetween and counts up the constant
+
+        deInitUIandEvent(); // turns off webcam and leaves lobby
+        if (checkWorkoutStatus()) { // Checks how long the user is in exercise program, and if they are finished or not
             Intent intent = new Intent(LobbyWorkoutActivity.this, InbetweenWorkoutsActivity.class);
-            ExerciseConstant.CURRENT_EXERCISE++;
-            ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
+            ExerciseConstant.CURRENT_EXERCISE++; // counts up
+            ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1); // gets the next exercise in the list
             startActivity(intent);
         } else { // else if it is finished, it will go to the end screen
             Intent intent = new Intent(LobbyWorkoutActivity.this, EndScreenActivity.class);
@@ -211,9 +221,9 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
     // - Method for checking if it is finished with the workout - //
     public boolean checkWorkoutStatus(){
         boolean bool;
-        if (ExerciseConstant.CURRENT_EXERCISE < ExerciseConstant.MAX_EXERCISE){
+        if (ExerciseConstant.CURRENT_EXERCISE < ExerciseConstant.MAX_EXERCISE){ // checks if it still below the max amount of exercises
             bool = true;
-        } else {
+        } else { // else it will return false, meaning it is finished
             bool = false;
         }
         return bool;

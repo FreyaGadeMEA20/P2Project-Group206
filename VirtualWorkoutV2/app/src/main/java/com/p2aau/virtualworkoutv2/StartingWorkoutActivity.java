@@ -37,9 +37,7 @@ import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
 
-
 public class StartingWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
-
     // -- Attributes -- //
     // - Attributes for timer - //
     private static long START_TIME_IN_MILLIS = 20000;
@@ -50,7 +48,7 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
-    // - Attributes for webcam - //
+    // - Attributes for webcam -  //
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
 
@@ -76,13 +74,13 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting_workout);
 
-        // sets the current exercise
+        // Sets the exercise for the program to use, based on the constants.
         ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1);
 
         // generates and starts the timer
         mTextViewCountDown = findViewById(R.id.text_view_countdown);
-        updateCountDownText();
-        startTimer();
+        updateCountDownText(); // Runs the update function
+        startTimer(); // Starts the timer
     }
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
@@ -138,19 +136,19 @@ public class StartingWorkoutActivity extends BaseActivity implements DuringCallE
     // - Timer - //
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override // Every tick
+            @Override // Function that runs every tick
             public void onTick(long millisUntilFinished) {
-                mTimeLeftInMillis = millisUntilFinished;
-                updateCountDownText();
+                mTimeLeftInMillis = millisUntilFinished;  // time left in timer
+                updateCountDownText(); // updates text
             }
 
-            @Override // On finish
+            @Override // Function that runs when the timer is finished
             public void onFinish() {
-                mTimerRunning = false;
-                startWorkout();
+                mTimerRunning = false; // tells the program the timer isn't running anymore
+                startWorkout(); // starts the workout
             }
 
-        }.start();
+        }.start(); // Starts the timer
     }
 
     // - Updates text - //
