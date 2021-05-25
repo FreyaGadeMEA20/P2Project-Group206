@@ -43,6 +43,12 @@ import io.agora.rtc.video.VideoCanvas;
 
 public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCallEventHandler {
 
+    // -- Attributes -- //
+    // - Attributes for progress and next exercise - //
+    private String progressString;
+    private String nextExerciseString;
+
+    // - Attributes for timer - //
     private static long START_TIME_IN_MILLIS = 10000;
     private TextView mTextViewCountDown;
 
@@ -51,6 +57,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
     private boolean mTimerRunning;
     private long mTimeLeftInMillis = START_TIME_IN_MILLIS;
 
+    // - Attributes for webcam - //
     public static final int LAYOUT_TYPE_DEFAULT = 0;
     public static final int LAYOUT_TYPE_SMALL = 1;
 
@@ -71,100 +78,38 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
 
     private double height = 0.5;
 
-    private String progressString;
-    private String nextExerciseString;
-
-    private boolean progress1;
-    private boolean progress2;
-    private boolean progress3;
-    ImageView progressbar1;
-    ImageView progressbar2;
-    ImageView progressbar3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbetween_workouts);
+
+        // Finds and draws the timer
         mTextViewCountDown = (TextView) findViewById(R.id.text_view_countdown);
         updateCountDownText();
         startTimer();
 
+        // Changes the text to show the next exercise
         TextView textViewNextExercise = findViewById((R.id.next_exercise));
         nextExerciseString = ExerciseConstant.EXERCISE.getExerciseName();
         textViewNextExercise.setText(nextExerciseString);
 
+        // Changes the text to show progress
         TextView textViewProgressText = findViewById(R.id.progress_text);
         progressString = ExerciseConstant.CURRENT_EXERCISE-1+"/"+ExerciseConstant.MAX_EXERCISE;
         textViewProgressText.setText(progressString);
-
-
-
-
-
- /*
-        if(ExerciseConstant.CURRENT_EXERCISE-1 == 2) {
-            progress1 = true;
-            progress2 = false;
-            progress3 = false;
-        } else if(ExerciseConstant.CURRENT_EXERCISE-1 == 3) {
-            progress1 = false;
-            progress2 = true;
-            progress3 = false;
-        } else if (ExerciseConstant.CURRENT_EXERCISE-1 == 4) {
-            progress1 = false;
-            progress2 = false;
-            progress3 = true;
-        }
-
-
-        if(progress1) {
-            progressbar1.setVisibility(View.VISIBLE);
-        } else {
-            progressbar2.setVisibility(View.INVISIBLE);
-            progressbar3.setVisibility(View.INVISIBLE);
-        }
-        if(progress2) {
-            progressbar2.setVisibility(View.VISIBLE);
-        } else {
-            progressbar1.setVisibility(View.INVISIBLE);
-            progressbar3.setVisibility(View.INVISIBLE);
-
-        }
-        if(progress3) {
-            progressbar3.setVisibility(View.VISIBLE);
-        } else {
-            progressbar1.setVisibility(View.INVISIBLE);
-            progressbar2.setVisibility(View.INVISIBLE);
-        }
-*/
     }
 
-
-
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
+    // This is from the Agora code example for adding webcam, with slight customization.
     @Override
     protected void initUIandEvent() {
-        addEventHandler(this);
-        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // TODO fix to "test" for testing
+        addEventHandler(this); // Tells the program it is this activity that gets worked on.
+        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // The channel name which the user joins for webcam
 
+        // Finds the view in which the program has to confine in
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
-        mGridVideoViewContainer.setItemEventHandler(new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                onBigVideoViewClicked(view, position);
-            }
 
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onItemDoubleClick(View view, int position) {
-                onBigVideoViewDoubleClicked(view, position);
-            }
-        });
-
+        // Generates the local video and the view at which the webcam will place
         SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
         preview(true, surfaceV, 0);
         surfaceV.setZOrderOnTop(false);
@@ -172,13 +117,17 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
 
         mUidsList.put(0, surfaceV); // get first surface view
 
-        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, true, height); // first is now full view
+        // Initializes the container with all the views
+        mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, false, height); // first is now full view
 
+        // Connects to the server and joins the channel
         joinChannel(channelName, config().mUid);
 
+        // Runs anything optional that is missing.
         optional();
     }
 
+    // - Destroys the UI and the event to leave the channel, to remove the video call from the screen - //
     @Override
     protected void deInitUIandEvent() {
         optionalDestroy();
@@ -187,100 +136,29 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         mUidsList.clear();
     }
 
+    // - Leaves the channel - //
     private void doLeaveChannel() {
         leaveChannel(config().mChannel);
         preview(false, null, 0);
     }
 
-    public void onHangupClicked(View view) {
-        finish();
-    }
-
-    public void onVideoMuteClicked(View view) {
-        if (mUidsList.size() == 0) {
-            return;
-        }
-
-        SurfaceView surfaceV = getLocalView();
-        ViewParent parent;
-        if (surfaceV == null || (parent = surfaceV.getParent()) == null) {
-            return;
-        }
-
-        RtcEngine rtcEngine = rtcEngine();
-        mVideoMuted = !mVideoMuted;
-
-        if (mVideoMuted) {
-            rtcEngine.disableVideo();
-        } else {
-            rtcEngine.enableVideo();
-        }
-
-        ImageView iv = (ImageView) view;
-
-        iv.setImageResource(mVideoMuted ? R.drawable.agora_btn_camera_off : R.drawable.agora_btn_camera);
-
-        hideLocalView(mVideoMuted);
-    }
-
-    private SurfaceView getLocalView() {
-        for (HashMap.Entry<Integer, SurfaceView> entry : mUidsList.entrySet()) {
-            if (entry.getKey() == 0 || entry.getKey() == config().mUid) {
-                return entry.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    private void hideLocalView(boolean hide) {
-        int uid = config().mUid;
-        doHideTargetView(uid, hide);
-    }
-
-    private void doHideTargetView(int targetUid, boolean hide) {
-        HashMap<Integer, Integer> status = new HashMap<>();
-        status.put(targetUid, hide ? UserStatusData.VIDEO_MUTED : UserStatusData.DEFAULT_STATUS);
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
-            mGridVideoViewContainer.notifyUiChanged(mUidsList, targetUid, status, null);
-        } else if (mLayoutType == LAYOUT_TYPE_SMALL) {
-            UserStatusData bigBgUser = mGridVideoViewContainer.getItem(0);
-            if (bigBgUser.mUid == targetUid) { // big background is target view
-                mGridVideoViewContainer.notifyUiChanged(mUidsList, targetUid, status, null);
-            } else { // find target view in small video view list
-                mSmallVideoViewAdapter.notifyUiChanged(mUidsList, bigBgUser.mUid, status, null);
-            }
-        }
-    }
-
-    public void onVoiceMuteClicked(View view) {
-        if (mUidsList.size() == 0) {
-            return;
-        }
-
-        RtcEngine rtcEngine = rtcEngine();
-        rtcEngine.muteLocalAudioStream(mAudioMuted = !mAudioMuted);
-
-        ImageView iv = (ImageView) view;
-
-        iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
-    }
-
+    // - Starts the next workout - //
     public void nextWorkout() {
         deInitUIandEvent();
         Intent intent = new Intent(InbetweenWorkoutsActivity.this, LobbyWorkoutActivity.class);
         startActivity(intent);
     }
 
+    // - Timer - //
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
+            @Override // each tick
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
             }
 
-            @Override
+            @Override // on finish
             public void onFinish() {
                 mTimerRunning = false;
                 nextWorkout();
@@ -289,6 +167,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         }.start();
     }
 
+    // - Updates the text - //
     private void updateCountDownText() {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -296,42 +175,28 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         mTextViewCountDown.setText(timeLeftFormatted);
     }
 
+    // - Code from Agora - //
     private void optional() {
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
     }
 
+    // - Code from Agora - //
     private void optionalDestroy() {
     }
 
-    private void onBigVideoViewClicked(View view, int position) {
-        //toggleFullscreen();
-    }
-
-    private void onBigVideoViewDoubleClicked(View view, int position) {
-        /*if (mUidsList.size() < 2) {
-            return;
-        }
-
-        UserStatusData user = mGridVideoViewContainer.getItem(position);
-        int uid = (user.mUid == 0) ? config().mUid : user.mUid;
-
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
-            switchToSmallVideoView(uid);
-        } else {
-            switchToDefaultVideoView();
-        }*/
-    }
-
+    // - Code from Agora - //
     @Override
     public void onUserJoined(int uid) {
 
     }
 
+    // - Code from Agora - //
     @Override
     public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
         doRenderRemoteUi(uid);
     }
 
+    // - Code from Agora - //
     private void doRenderRemoteUi(final int uid) {
         runOnUiThread(new Runnable() {
             @Override
@@ -376,16 +241,19 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         });
     }
 
+    // - Code from Agora - //
     @Override
     public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
 
     }
 
+    // - Code from Agora - //
     @Override
     public void onUserOffline(int uid, int reason) {
         doRemoveRemoteUi(uid);
     }
 
+    // - Code from Agora - //
     private void doRemoveRemoteUi(final int uid) {
         runOnUiThread(new Runnable() {
             @Override
@@ -413,6 +281,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         });
     }
 
+    // - Code from Agora - //
     @Override
     public void onExtraCallback(int type, Object... data) {
         runOnUiThread(new Runnable() {
@@ -427,6 +296,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         });
     }
 
+    // - Code from Agora - //
     private void doHandleExtraCallback(int type, Object... data) {
         int peerUid;
         boolean muted;
@@ -448,7 +318,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
                 peerUid = (Integer) data[0];
                 muted = (boolean) data[1];
 
-                doHideTargetView(peerUid, muted);
+                //doHideTargetView(peerUid, muted);
 
                 break;
 
@@ -516,11 +386,12 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         }
     }
 
+    // - Code from Agora - //
     private void switchToDefaultVideoView() {
         if (mSmallVideoViewDock != null) {
             mSmallVideoViewDock.setVisibility(View.GONE);
         }
-        mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape, true, height);
+        mGridVideoViewContainer.initViewContainer(this, config().mUid, mUidsList, mIsLandscape, false, height);
 
         mLayoutType = LAYOUT_TYPE_DEFAULT;
         boolean setRemoteUserPriorityFlag = false;
@@ -541,6 +412,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         }
     }
 
+    // - Code from Agora - //
     private void switchToSmallVideoView(int bigBgUid) {
         HashMap<Integer, SurfaceView> slice = new HashMap<>(1);
         slice.put(bigBgUid, mUidsList.get(bigBgUid));
@@ -554,7 +426,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         mUidsList.get(bigBgUid).setZOrderOnTop(false);
         mUidsList.get(bigBgUid).setZOrderMediaOverlay(false);
 
-        mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice, mIsLandscape, true, height);
+        mGridVideoViewContainer.initViewContainer(this, bigBgUid, slice, mIsLandscape, false, height);
 
         bindToSmallVideoView(bigBgUid);
 
@@ -563,6 +435,7 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         //requestRemoteStreamType(mUidsList.size());
     }
 
+    // - Code from Agora - //
     private void bindToSmallVideoView(int exceptUid) {
         if (mSmallVideoViewDock == null) {
             ViewStub stub = (ViewStub) findViewById(R.id.small_video_view_dock);
@@ -626,10 +499,12 @@ public class InbetweenWorkoutsActivity extends BaseActivity implements DuringCal
         mSmallVideoViewDock.setVisibility(View.VISIBLE);
     }
 
+    // - Code from Agora - //
     private void onSmallVideoViewDoubleClicked(View view, int position) {
         switchToDefaultVideoView();
     }
 
+    // - Code from Agora - //
     public void notifyHeadsetPlugged(final int routing) {
         mAudioRouting = routing;
     }

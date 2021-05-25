@@ -38,6 +38,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private ActionBarDrawerToggle fToggle;
 
+    // - Attributes for the recycler view - //
     String[] friends = {"Poul Poulsen", "Sarah Sarahsen", "Amon Goose", "Frille Frøsnapper", "Mike Æblemand", "Brede Gade"};
 
     RecyclerView recyclerView;
@@ -47,11 +48,16 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        // generates activity
         GenerateRecyclerView();
 
+        // sets up the drawer
+        SetupDrawer();
+
+        // checks what the previous activity was
         String previousIntent = getIntent().getExtras().getString("Uniqid");
         if(previousIntent.equals("login") || previousIntent.equals("signup")) {
-            SetupDrawer();
+            // generates the user if the user logged in or signed up
             GenerateUser();
         } else {
 
@@ -62,29 +68,39 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // -- Friend activity -- //
     public void GenerateRecyclerView() {
+        // finds the view
         recyclerView = findViewById(R.id.recyclerViewMain);
 
+        // generates a list of 10 elements
         int[] images = new int[10];
+        // gives each element a random image
         for (int i = 0; i < images.length; i++){
             int[] tempImages = {R.drawable.star_icon, R.drawable.smiley_icon};
             Random rand = new Random();
             images[i] = tempImages[rand.nextInt(2)];
         }
 
-        String[] workouts = {"Cardio", "Strength", "Blitz", "Fat Burn"};
+        // gets the 4 exercise types
+        String[] workouts = ExerciseConstant.EXERCISE_TYPES;
 
+        // generates the same size array for the text
         String[] text = new String[images.length];
+        // gives each element a text based on the icon
         for (int i = 0; i < images.length; i++){
             Random rand = new Random();
+            // adds a random friend name
             String temp = friends[rand.nextInt(friends.length)];
+            // checks which icon is at the elemtn
             if(images[i] == R.drawable.star_icon){
                 temp = temp + " leveled up to Level " + (rand.nextInt(3)+1);
             } else if (images[i] == R.drawable.smiley_icon){
                 temp = temp +" finished a " + workouts[rand.nextInt(workouts.length)] + " Workout Level";
             }
+            // adds it to that list element
             text[i] = temp;
         }
 
+        //generates the friend activity based on the two arrays
         ActivityAdapter activityAdapter = new ActivityAdapter(this, text, images);
         recyclerView.setAdapter(activityAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -94,10 +110,13 @@ public class MainMenuActivity extends AppCompatActivity {
 
     // - Method for setting up the side menu - //
     public void SetupDrawer(){
+        // gets the main layout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.mainMenuLayout);
+        // gives the two menus a function
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
         fToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
+        // adds the functionality to the layout
         mDrawerLayout.addDrawerListener(mToggle);
         mDrawerLayout.addDrawerListener(fToggle);
         mToggle.syncState();

@@ -26,7 +26,6 @@
         <activity android:name=".LobbyWorkoutActivity" />
         <activity android:name=".ChooseWorkoutActivity" />
         <activity android:name=".StartingWorkoutActivity" />
-        <activity android:name=".FindLobbyActivity" />
         <activity android:name=".WorkoutsActivity" />
         <activity android:name=".FriendsActivity" />
         <activity android:name=".ProfileActivity" />

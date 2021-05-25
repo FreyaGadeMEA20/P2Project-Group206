@@ -17,8 +17,12 @@ import com.p2aau.virtualworkoutv2.classes.FriendListAdapter;
 
 public class FriendsActivity extends AppCompatActivity {
 
+    // -- Attributes -- //
+    // - Attribute for the view - //
     RecyclerView recyclerView;
 
+    // - Arrays for each friend and each image icon - //
+    // Future could just replace this with pull from firebase
     String[] friends = {"Poul Poulsen", "Sarah Sarahsen", "Amon Goose", "Frille Frøsnapper", "Mike Æblemand", "Brede Gade"};
     int[] images = {R.drawable.friend_1, R.drawable.friend_2, R.drawable.friend_3, R.drawable.friend_4, R.drawable.friend_5, R.drawable.friend_6};
 
@@ -31,12 +35,17 @@ public class FriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend);
 
+        // Finds the views
         recyclerView = findViewById(R.id.recyclerView);
 
+        // Generates the friendlist
         FriendListAdapter friendListAdapter = new FriendListAdapter(this, friends, images);
+
+        // Sets the view to listen to the friendlist and draws it
         recyclerView.setAdapter(friendListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Sets up the side menu
         SetupDrawer();
     }
 

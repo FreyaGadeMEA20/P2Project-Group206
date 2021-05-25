@@ -113,15 +113,17 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         startTimer();
     }
 
-
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
+    // This is from the Agora code example for adding webcam, with slight customization.
     @Override
     protected void initUIandEvent() {
-        addEventHandler(this);
-        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // TODO fix to "test" for testing
+        addEventHandler(this); // Tells the program it is this activity that gets worked on.
+        String channelName = ConstantApp.ACTION_KEY_CHANNEL_NAME; // The channel name which the user joins for webcam
 
+        // Finds the view in which the program has to confine in
         mGridVideoViewContainer = (GridVideoViewContainer) findViewById(R.id.grid_video_view_container_own);
 
+        // Generates the local video and the view at which the webcam will place
         SurfaceView surfaceV = RtcEngine.CreateRendererView(getApplicationContext());
         preview(true, surfaceV, 0);
         surfaceV.setZOrderOnTop(false);
@@ -129,13 +131,17 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
         mUidsList.put(0, surfaceV); // get first surface view
 
+        // Initializes the container with all the views
         mGridVideoViewContainer.initViewContainer(this, 0, mUidsList, mIsLandscape, false, height); // first is now full view
 
+        // Connects to the server and joins the channel
         joinChannel(channelName, config().mUid);
 
+        // Runs anything optional that is missing.
         optional();
     }
 
+    // - Destroys the UI and the event to leave the channel, to remove the video call from the screen - //
     @Override
     protected void deInitUIandEvent() {
         optionalDestroy();
@@ -144,97 +150,27 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         mUidsList.clear();
     }
 
+    // - Leaves the channel - //
     private void doLeaveChannel() {
         leaveChannel(config().mChannel);
         preview(false, null, 0);
     }
 
-    public void onHangupClicked(View view) {
-        finish();
-    }
-
-    public void onVideoMuteClicked(View view) {
-        if (mUidsList.size() == 0) {
-            return;
-        }
-
-        SurfaceView surfaceV = getLocalView();
-        ViewParent parent;
-        if (surfaceV == null || (parent = surfaceV.getParent()) == null) {
-            return;
-        }
-
-        RtcEngine rtcEngine = rtcEngine();
-        mVideoMuted = !mVideoMuted;
-
-        if (mVideoMuted) {
-            rtcEngine.disableVideo();
-        } else {
-            rtcEngine.enableVideo();
-        }
-
-        ImageView iv = (ImageView) view;
-
-        iv.setImageResource(mVideoMuted ? R.drawable.agora_btn_camera_off : R.drawable.agora_btn_camera);
-
-        hideLocalView(mVideoMuted);
-    }
-
-    private SurfaceView getLocalView() {
-        for (HashMap.Entry<Integer, SurfaceView> entry : mUidsList.entrySet()) {
-            if (entry.getKey() == 0 || entry.getKey() == config().mUid) {
-                return entry.getValue();
-            }
-        }
-
-        return null;
-    }
-
-    private void hideLocalView(boolean hide) {
-        int uid = config().mUid;
-        doHideTargetView(uid, hide);
-    }
-
-    private void doHideTargetView(int targetUid, boolean hide) {
-        HashMap<Integer, Integer> status = new HashMap<>();
-        status.put(targetUid, hide ? UserStatusData.VIDEO_MUTED : UserStatusData.DEFAULT_STATUS);
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
-            mGridVideoViewContainer.notifyUiChanged(mUidsList, targetUid, status, null);
-        } else if (mLayoutType == LAYOUT_TYPE_SMALL) {
-            UserStatusData bigBgUser = mGridVideoViewContainer.getItem(0);
-            if (bigBgUser.mUid == targetUid) { // big background is target view
-                mGridVideoViewContainer.notifyUiChanged(mUidsList, targetUid, status, null);
-            } else { // find target view in small video view list
-                mSmallVideoViewAdapter.notifyUiChanged(mUidsList, bigBgUser.mUid, status, null);
-            }
-        }
-    }
-
-    public void onVoiceMuteClicked(View view) {
-        if (mUidsList.size() == 0) {
-            return;
-        }
-
-        RtcEngine rtcEngine = rtcEngine();
-        rtcEngine.muteLocalAudioStream(mAudioMuted = !mAudioMuted);
-
-        ImageView iv = (ImageView) view;
-
-        iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
-    }
-
+    // - Timer - //
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
-            @Override
+            @Override // each tick
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
                 updateCountDownText();
+
+                // Once the timer gets below six seconds it starts playing the alarm
                 if(millisUntilFinished<=6000) {
                     playExerciseTimerAlarm();
                 }
             }
 
-            @Override
+            @Override // on finish
             public void onFinish() {
                 mTimerRunning = false;
                 updatePage();
@@ -243,6 +179,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         }.start();
     }
 
+    // - Updates text - //
     private void updateCountDownText() {
         int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -251,6 +188,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
     }
 
+    // - Players alarm sound - //
     public void playExerciseTimerAlarm() {
         if(alarmPlayer==null) {
             alarmPlayer = MediaPlayer.create(this, R.raw.tickdown);
@@ -265,20 +203,23 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
 
     }
 
+    // - Next page method - //
     public void updatePage() {
+
         deInitUIandEvent(); // turns off webcam and leaves lobby
         if (checkWorkoutStatus()) { // Checks how long the user is in exercise program, and if they are finished or not
             Intent intent = new Intent(LobbyWorkoutActivity.this, InbetweenWorkoutsActivity.class);
             ExerciseConstant.CURRENT_EXERCISE++; // counts up
             ExerciseConstant.EXERCISE = ExerciseConstant.EXERCISE_PROGRAM.getListOfExercises().get(ExerciseConstant.CURRENT_EXERCISE-1); // gets the next exercise in the list
             startActivity(intent);
-        } else {
+        } else { // else if it is finished, it will go to the end screen
             Intent intent = new Intent(LobbyWorkoutActivity.this, EndScreenActivity.class);
             startActivity(intent);
         }
     }
 
-    public boolean checkWorkoutStatus() {
+    // - Method for checking if it is finished with the workout - //
+    public boolean checkWorkoutStatus(){
         boolean bool;
         if (ExerciseConstant.CURRENT_EXERCISE < ExerciseConstant.MAX_EXERCISE){ // checks if it still below the max amount of exercises
             bool = true;
@@ -287,43 +228,28 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         }
         return bool;
     }
-
+    // - Code from Agora - //
     private void optional() {
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
     }
 
+    // - Code from Agora - //
     private void optionalDestroy() {
     }
 
-    private void onBigVideoViewClicked(View view, int position) {
-        //toggleFullscreen();
-    }
-
-    private void onBigVideoViewDoubleClicked(View view, int position) {
-        /*if (mUidsList.size() < 2) {
-            return;
-        }
-
-        UserStatusData user = mGridVideoViewContainer.getItem(position);
-        int uid = (user.mUid == 0) ? config().mUid : user.mUid;
-
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT && mUidsList.size() != 1) {
-            switchToSmallVideoView(uid);
-        } else {
-            switchToDefaultVideoView();
-        }*/
-    }
-
+    // - Code from Agora - //
     @Override
     public void onUserJoined(int uid) {
 
     }
 
+    // - Code from Agora - //
     @Override
     public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
         doRenderRemoteUi(uid);
     }
 
+    // - Code from Agora - //
     private void doRenderRemoteUi(final int uid) {
         runOnUiThread(new Runnable() {
             @Override
@@ -368,16 +294,19 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         });
     }
 
+    // - Code from Agora - //
     @Override
     public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
 
     }
 
+    // - Code from Agora - //
     @Override
     public void onUserOffline(int uid, int reason) {
         doRemoveRemoteUi(uid);
     }
 
+    // - Code from Agora - //
     private void doRemoveRemoteUi(final int uid) {
         runOnUiThread(new Runnable() {
             @Override
@@ -405,6 +334,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         });
     }
 
+    // - Code from Agora - //
     @Override
     public void onExtraCallback(int type, Object... data) {
         runOnUiThread(new Runnable() {
@@ -419,6 +349,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         });
     }
 
+    // - Code from Agora - //
     private void doHandleExtraCallback(int type, Object... data) {
         int peerUid;
         boolean muted;
@@ -440,7 +371,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
                 peerUid = (Integer) data[0];
                 muted = (boolean) data[1];
 
-                doHideTargetView(peerUid, muted);
+                //doHideTargetView(peerUid, muted);
 
                 break;
 
@@ -508,6 +439,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         }
     }
 
+    // - Code from Agora - //
     private void switchToDefaultVideoView() {
         if (mSmallVideoViewDock != null) {
             mSmallVideoViewDock.setVisibility(View.GONE);
@@ -533,6 +465,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         }
     }
 
+    // - Code from Agora - //
     private void switchToSmallVideoView(int bigBgUid) {
         HashMap<Integer, SurfaceView> slice = new HashMap<>(1);
         slice.put(bigBgUid, mUidsList.get(bigBgUid));
@@ -555,6 +488,7 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         //requestRemoteStreamType(mUidsList.size());
     }
 
+    // - Code from Agora - //
     private void bindToSmallVideoView(int exceptUid) {
         if (mSmallVideoViewDock == null) {
             ViewStub stub = (ViewStub) findViewById(R.id.small_video_view_dock);
@@ -618,10 +552,12 @@ public class LobbyWorkoutActivity extends BaseActivity implements DuringCallEven
         mSmallVideoViewDock.setVisibility(View.VISIBLE);
     }
 
+    // - Code from Agora - //
     private void onSmallVideoViewDoubleClicked(View view, int position) {
         switchToDefaultVideoView();
     }
 
+    // - Code from Agora - //
     public void notifyHeadsetPlugged(final int routing) {
         mAudioRouting = routing;
     }

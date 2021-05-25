@@ -40,15 +40,18 @@ import io.agora.rtc.video.VideoCanvas;
 
 public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEventHandler {
 
-    // --- Attributes --- //
-    // -- Attributes for category and level -- //
+    // -- Attributes -- //
+    // - Attributes for category and level -- //
     private int exerciseLevel;
     private int exerciseType;
 
+    // - Attributes for all the widgets that gets affected by the code - //
     androidx.gridlayout.widget.GridLayout workOutCategories;
     ImageView[] workOutTypes;
     LinearLayout workOutSubcategories;
     Button[] workoutLevels;
+
+    // - Array of the 4 different colors - //
     int[] workoutColors = {R.color.cardio, R.color.strength, R.color.yoga, R.color.fat_burn};
 
     // -- Attributes for webcam -- //
@@ -121,7 +124,7 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
     }
 
     // Gets run before the onCreate above, as it comes from the super class "BaseActivity".
-    // This is from the Agora code example for adding webcam.
+    // This is from the Agora code example for adding webcam, with slight customization.
     // Even though there is no webcam on the activity, we still needed the audio.
     // As it was right before testing, we did not spend time looking for what was the webcam and what was the audio.
     // So we just made the webcam practically invisible. Should be looked at for minor optimization.
@@ -165,34 +168,6 @@ public class ChooseWorkoutActivity extends BaseActivity implements DuringCallEve
         leaveChannel(config().mChannel);
         preview(false, null, 0);
     }
-
-    /*private void doHideTargetView(int targetUid, boolean hide) {
-        HashMap<Integer, Integer> status = new HashMap<>();
-        status.put(targetUid, hide ? UserStatusData.VIDEO_MUTED : UserStatusData.DEFAULT_STATUS);
-        if (mLayoutType == LAYOUT_TYPE_DEFAULT) {
-            mGridVideoViewContainer.notifyUiChanged(mUidsList, targetUid, status, null);
-        } else if (mLayoutType == LAYOUT_TYPE_SMALL) {
-            UserStatusData bigBgUser = mGridVideoViewContainer.getItem(0);
-            if (bigBgUser.mUid == targetUid) { // big background is target view
-                mGridVideoViewContainer.notifyUiChanged(mUidsList, targetUid, status, null);
-            } else { // find target view in small video view list
-                mSmallVideoViewAdapter.notifyUiChanged(mUidsList, bigBgUser.mUid, status, null);
-            }
-        }
-    }
-
-    public void onVoiceMuteClicked(View view) {
-        if (mUidsList.size() == 0) {
-            return;
-        }
-
-        RtcEngine rtcEngine = rtcEngine();
-        rtcEngine.muteLocalAudioStream(mAudioMuted = !mAudioMuted);
-
-        ImageView iv = (ImageView) view;
-
-        iv.setImageResource(mAudioMuted ? R.drawable.agora_btn_microphone_off : R.drawable.agora_btn_microphone);
-    }*/
 
     // - Generates what the handler will do when the user clicks on the screen.
     View.OnClickListener handler = new View.OnClickListener() {

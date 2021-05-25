@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class WorkoutsActivity extends AppCompatActivity {
 
@@ -22,7 +23,11 @@ public class WorkoutsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_workout);
 
         SetupDrawer();
+
+        Toast.makeText(this, "Page not yet implemented", Toast.LENGTH_SHORT).show();
     }
+
+    // todo - content functionallity not implemented yet
 
     // -- Side menu -- //
 

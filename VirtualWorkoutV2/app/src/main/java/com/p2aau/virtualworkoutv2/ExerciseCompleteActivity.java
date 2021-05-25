@@ -20,13 +20,14 @@ public class ExerciseCompleteActivity extends AppCompatActivity {
     TextView titleText;
     TextView xpText;
 
+    // - Arrays for the elements that get changes - //
     int[] reactions = {R.drawable.emoji_laugh, R.drawable.emoji_heart, R.drawable.emoji_star_eyes, R.drawable.emoji_thumps_up, R.drawable.emoji_cry};
     String[] exerciseTypes = {"Cardio", "Strength", "Yoga", "Fat Burn"};
     int[] icons = {R.drawable.cardio_icon_color, R.drawable.strength_icon_color, R.drawable.yoga_icon_color, R.drawable.fat_burn_icon_color};
     ImageView workoutIcon;
 
+    // - Attributes for the exercise the user chose - //
     int level = ExerciseConstant.EXERCISE_LEVEL;
-
     String exerciseName = exerciseTypes[ExerciseConstant.EXERCISE_TYPE];
 
     @Override
@@ -47,22 +48,24 @@ public class ExerciseCompleteActivity extends AppCompatActivity {
 
         // - XP text - //
         xpText = (TextView) findViewById(R.id.XPandCalories);
-        String xpString = "+ " + (rand.nextInt(10)*10) + " " + exerciseName + " XP";
-        String xpString2 = "\n+ " + (rand.nextInt(10)*10) + " User XP\n";
-        String caloryString = (rand.nextInt(5)*100+rand.nextInt(10)*10)+ " Calories burned";
-        String xpAndCaloryString = xpString+xpString2+caloryString;
+        String xpString = "+ " + (rand.nextInt(10) * 10) + " " + exerciseName + " XP";
+        String xpString2 = "\n+ " + (rand.nextInt(10) * 10) + " User XP\n";
+        String caloryString = (rand.nextInt(5) * 100 + rand.nextInt(10) * 10) + " Calories burned";
+        String xpAndCaloryString = xpString + xpString2 + caloryString;
         xpText.setText(xpAndCaloryString);
 
-        // - Reactions - //
+        // - Reactions views - //
         imageViews = new ImageView[]{(ImageView) findViewById(R.id.Reaction1),
                 (ImageView) findViewById(R.id.Reaction2),
                 (ImageView) findViewById(R.id.Reaction3)};
 
-        for(int i = 0; i < imageViews.length; i++){
+        // Sets random emoji for reactions received
+        for (int i = 0; i < imageViews.length; i++) {
             imageViews[i].setImageResource(reactions[rand.nextInt(reactions.length)]);
         }
     }
 
+    // - Button for going back to the lobby - //
     public void onBackToLobbyClick(View view){
         Intent intent = new Intent(ExerciseCompleteActivity.this, LobbyActivity.class);
         intent.putExtra("Uniqid", "end_screen");

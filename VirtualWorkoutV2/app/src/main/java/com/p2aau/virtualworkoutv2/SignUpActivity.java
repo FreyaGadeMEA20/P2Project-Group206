@@ -18,6 +18,11 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
     }
 
+    /*
+            FUNCTIONALLY THE SAME AS THE LOGINACTIVITY.JAVA
+            VERY MINOR DIFFERENCES
+     */
+
     // Sign up button
     public void onSignUpNextClick(View view){
         EditText userNameEditText = findViewById(R.id.login_user_name_field);
