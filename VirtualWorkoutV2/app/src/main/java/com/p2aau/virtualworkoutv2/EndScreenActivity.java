@@ -64,7 +64,7 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
     ImageView assertedEmoji1;
     ImageView assertedEmoji2;
     ImageView assertedEmoji3;
-    // ImageView assertedEmoji4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +89,6 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
         assertedEmoji1 = findViewById(R.id.Assertedemoji1);
         assertedEmoji2 = findViewById(R.id.Assertedemoji2);
         assertedEmoji3 = findViewById(R.id.Assertedemoji3);
-        // assertedEmoji4 = findViewById(R.id.Assertedemoji4);
     }
 
     View.OnClickListener handler = new View.OnClickListener() {
@@ -162,15 +161,6 @@ public class EndScreenActivity extends BaseActivity implements DuringCallEventHa
     }
 
     public void setEmoji(int _image) {
-        /*if (currentPosition == 0) {
-            assertedEmoji1.setPadding(
-                        outMetrics.widthPixels/2 - 20,
-                        outMetrics.heightPixels - 420,
-                       outMetrics.widthPixels/2 - 20,
-                        outMetrics.heightPixels - (outMetrics.heightPixels - 420) - 20);
-            }
-            showEmoji(assertedEmoji1);
-        } else*/
         if (currentPosition == 1) {
             assertedEmoji1.setImageResource(_image);
             if (config().mUid == 1) {
