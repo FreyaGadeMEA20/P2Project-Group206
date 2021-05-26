@@ -6,7 +6,7 @@
     <!-- After you entered the App ID, remove <##> outside of Your App ID -->
     <!-- For formal released project, please use Security Keys/Token
         https://docs.agora.io/en/Video/token?platform=All%20Platforms -->
-    <string name="agora_app_id">fbfcfb09e23d41d787a776d8fc78a7fe</string>
+    <string name="agora_app_id"></string>
     <!-- Please leave it if not enable App Certificate -->
     <!-- You can generate a temporary token at https://dashboard.agora.io/projects -->
     <string name="agora_access_token">006fbfcfb09e23d41d787a776d8fc78a7feIADMRhLDFTcuFUmvjSFIB2AyRp7rmDIXuq/3yWrh+wbrkgx+f9gAAAAAEABpDq0kP/usYAEAAQBA+6xg</string>
